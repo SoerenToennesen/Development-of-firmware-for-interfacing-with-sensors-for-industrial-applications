@@ -38,6 +38,9 @@
 #include <cyu3error.h>
 #include <cyfxversion.h>
 
+#include "stdio.h"
+#include "stdint.h"
+
 /* Memory error detection is supported in SDK 1.3.3 and later. */
 #if ((CYFX_VERSION_MINOR > 3) || ((CYFX_VERSION_MINOR == 3) && (CYFX_VERSION_PATCH >= 3)))
 #define CYFXTX_ERRORDETECTION   1

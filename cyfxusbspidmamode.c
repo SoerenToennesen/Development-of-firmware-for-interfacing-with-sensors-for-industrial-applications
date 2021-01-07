@@ -41,7 +41,9 @@
 
 #include <cyu3gpio.h>
 
+#include <inttypes.h>
 
+typedef uint8_t byte;
 
 
 
@@ -88,11 +90,11 @@ CyFxDebugInit (
     }
 
     CyU3PMemSet ((uint8_t *)&uartConfig, 0, sizeof (uartConfig));
-    uartConfig.baudRate = CY_U3P_UART_BAUDRATE_115200;
+    uartConfig.baudRate = CY_U3P_UART_BAUDRATE_9600;
     uartConfig.stopBit  = CY_U3P_UART_ONE_STOP_BIT;
     uartConfig.parity   = CY_U3P_UART_NO_PARITY;
     uartConfig.txEnable = CyTrue;
-    uartConfig.rxEnable = CyFalse;
+    uartConfig.rxEnable = CyTrue;
     uartConfig.flowCtrl = CyFalse;
     uartConfig.isDma    = CyTrue;
     status = CyU3PUartSetConfig (&uartConfig, NULL);
@@ -113,8 +115,6 @@ CyFxDebugInit (
 
     return status;
 }
-
-
 
 /* SPI initialization for application. */
 CyU3PReturnStatus_t
@@ -142,8 +142,8 @@ CyFxSpiInit (uint16_t pageLen)
     spiConfig.leadTime   = CY_U3P_SPI_SSN_LAG_LEAD_HALF_CLK;
     spiConfig.lagTime    = CY_U3P_SPI_SSN_LAG_LEAD_HALF_CLK;
     spiConfig.ssnCtrl    = CY_U3P_SPI_SSN_CTRL_FW;
-    spiConfig.clock      = 8000000;
-    spiConfig.wordLen    = 8;
+    spiConfig.clock      = 1400000; //8000000 previously
+    spiConfig.wordLen    = 16;
 
     status = CyU3PSpiSetConfig (&spiConfig, NULL);
     if (status != CY_U3P_SUCCESS)
@@ -189,103 +189,14 @@ CyFxSpiInit (uint16_t pageLen)
     return status;
 }
 
-
-/* Read real-time data */
-
-CyU3PReturnStatus_t readData(uint8_t *buffer) {
-	CyU3PReturnStatus_t status = CY_U3P_SUCCESS;
-	CyU3PDmaBuffer_t buf_p;
-
-
-	buf_p.buffer = buffer;
-	buf_p.status = 0;
-    buf_p.size  = 0x70;
-    buf_p.count = 0x70;
-
-	uint8_t data[5];    //rasx
-	data[0] = 0x00;
-	data[1] = 0x3E;
-	data[2] = 0x00;
-	data[3] = 0x08;
-	data[4] = 0x00;
-	data[5] = 0x00;
-
-	uint8_t data2[2];
-	data[0] = 0x3E;
-	data[1] = 0x02;
-
-	//uint8_t data[] = {0x00, 0x3E,0x00, 0x08, 0x00, 0x00};
-	//uint8_t data[] = {0x02, 0x3E, 0x08};
-	//uint8_t data[] = {0x08, 0x3E, 0x02};
-
-	CyU3PSpiSetSsnLine (CyFalse);
-
-	status = CyU3PSpiTransmitWords(data2, 3);
-
-	//Do we need to reset DMA channels? Check cy3spi.h descriptions ...
-
-	if (status != CY_U3P_SUCCESS) {
-		CyU3PDebugPrint (2, "SPI WRITE command failed\r\n");
-		CyU3PSpiSetSsnLine (CyTrue);
-	}
-
-	CyU3PSpiSetSsnLine (CyTrue);
-
-	CyU3PThreadSleep(20); //min 12ms delay
-
-	CyU3PSpiSetSsnLine (CyFalse);
-
-	//status = CyU3PSpiReceiveWords(dataBuffer, 200);   //this is register mode
-
-	// The second parameter is Number of words (200/2 (wordlenth) to be received  (not bytes)
-	//enables the DMA mode
-	//rasx
-	CyU3PSpiSetBlockXfer (0, 0x64);
-
-	//receives buffer
-	status = CyU3PDmaChannelSetupRecvBuffer (&glSpiRxHandle, &buf_p);
-	if (status != CY_U3P_SUCCESS)
-	{
-		CyU3PDebugPrint (2, "CyU3PDmaChannelSetupRecvBuffer failed\r\n");
-		CyU3PSpiSetSsnLine (CyTrue);
-		return status;
-	}
-	status = CyU3PDmaChannelWaitForCompletion (&glSpiRxHandle,
-	CY_FX_USB_SPI_TIMEOUT);
-	if (status != CY_U3P_SUCCESS)
-	{
-		CyU3PDebugPrint (2, "CyU3PDmaChannelWaitForCompletion failed\r\n");
-		CyU3PSpiSetSsnLine (CyTrue);
-		return status;
-	}
-
-	CyU3PSpiSetSsnLine (CyTrue);
-	CyU3PSpiDisableBlockXfer (CyFalse, CyTrue);
-
-	if (status != CY_U3P_SUCCESS) {
-		CyU3PDebugPrint (2, "SPI READ command failed\r\n");
-	}
-
-	//CyU3PSpiSetSsnLine (CyTrue);
-
-
-	return status;
-
-}
-
-
-
-CyBool_t
-CyFxUSBSetupCB (
-        uint32_t setupdat0,
-        uint32_t setupdat1)
-{
+// Perhaps delete this entire function if not needed.
+CyBool_t CyFxUSBSetupCB (uint32_t setupdat0, uint32_t setupdat1) {
     /* Fast enumeration is used. Only requests addressed to the interface, class,
      * vendor and unknown control requests are received by this function. */
 
     uint8_t  bRequest, bReqType;
     uint8_t  bType, bTarget;
-    uint16_t wValue, wIndex, wLength;
+    uint16_t wValue;//, wLength, wIndex;
     CyBool_t isHandled = CyFalse;
     CyU3PReturnStatus_t status = CY_U3P_SUCCESS;
 
@@ -295,11 +206,10 @@ CyFxUSBSetupCB (
     bTarget  = (bReqType & CY_U3P_USB_TARGET_MASK);
     bRequest = ((setupdat0 & CY_U3P_USB_REQUEST_MASK) >> CY_U3P_USB_REQUEST_POS);
     wValue   = ((setupdat0 & CY_U3P_USB_VALUE_MASK)   >> CY_U3P_USB_VALUE_POS);
-    wIndex   = ((setupdat1 & CY_U3P_USB_INDEX_MASK)   >> CY_U3P_USB_INDEX_POS);
-    wLength   = ((setupdat1 & CY_U3P_USB_LENGTH_MASK)   >> CY_U3P_USB_LENGTH_POS);
+    //wIndex   = ((setupdat1 & CY_U3P_USB_INDEX_MASK)   >> CY_U3P_USB_INDEX_POS);
+    //wLength   = ((setupdat1 & CY_U3P_USB_LENGTH_MASK)   >> CY_U3P_USB_LENGTH_POS);
 
-    if (bType == CY_U3P_USB_STANDARD_RQT)
-    {
+    if (bType == CY_U3P_USB_STANDARD_RQT) {
         /* Handle SET_FEATURE(FUNCTION_SUSPEND) and CLEAR_FEATURE(FUNCTION_SUSPEND)
          * requests here. It should be allowed to pass if the device is in configured
          * state and failed otherwise. */
@@ -335,14 +245,14 @@ CyFxUSBSetupCB (
                 }
                 break;*/
 
-            case CY_FX_RQT_SPI_FLASH_READ:
+            /*case CY_FX_RQT_SPI_FLASH_READ:
                 CyU3PMemSet (glEp0Buffer, 0, sizeof (glEp0Buffer));
                 status = readData (glEp0Buffer);
                 if (status == CY_U3P_SUCCESS)
                 {
                     status = CyU3PUsbSendEP0Data (wLength, glEp0Buffer);
                 }
-                break;
+                break;*/
 
             /*case CY_FX_RQT_SPI_FLASH_ERASE_POLL:
                 status = CyFxSpiEraseSector ((wValue) ? CyTrue : CyFalse,
@@ -531,155 +441,623 @@ CyFxUsbSpiInit (
     return status;
 }
 
-
-
-
-/* Write start command */
-
-CyU3PReturnStatus_t startSampling() {   //not used
+// We have to unplug the power to the accelerometer to reset from RTS mode, since we have no stop signal
+// Otherwise, when restarting the program on the FX3 chip, it still records data from the beginning (w/o configuration)
+CyU3PReturnStatus_t start_sampling_RTS() {
 	CyU3PReturnStatus_t status = CY_U3P_SUCCESS;
-	// Register address: 0x3E
-	// Start Command: 0x0800
-	uint8_t data[5];    //rasx
+	uint8_t data[2];
+
+	// SELECT RTS MODE ////////////////////////////////////// START
+
 	data[0] = 0x00;
-	data[1] = 0x3E;
-	data[2] = 0x00;
-	data[3] = 0x08;
-	data[4] = 0x00;
-	data[5] = 0x00;
-
-	//uint8_t data[] = {0x00, 0x3E,0x00, 0x08, 0x00, 0x00};
-	//uint8_t data[] = {0x02, 0x3E, 0x08};
-	//uint8_t data[] = {0x08, 0x3E, 0x02};
-
+	data[1] = 0x80; //Page ID selector
 	CyU3PSpiSetSsnLine (CyFalse);
+	status = CyU3PSpiTransmitWords(data, 2);
+	CyU3PSpiSetSsnLine (CyTrue);
 
-	status = CyU3PSpiTransmitWords(data, 3);
+	CyU3PThreadSleep (0.35);
 
-	//Do we need to reset DMA channels? Check cy3spi.h descriptions ...
+	data[0] = 0x00;
+	data[1] = 0x81; //Page ID selector
+	CyU3PSpiSetSsnLine (CyFalse);
+	status = CyU3PSpiTransmitWords(data, 2);
+	CyU3PSpiSetSsnLine (CyTrue);
 
+	CyU3PThreadSleep (0.25);
+
+	data[0] = 0x00;
+	data[1] = 0x1A;
+	CyU3PSpiSetSsnLine (CyFalse);
+	status = CyU3PSpiTransmitWords(data, 2);
+	CyU3PSpiSetSsnLine (CyTrue);
+
+	//CyU3PThreadSleep (0.1);
+
+	data[0] = 0x00;
+	data[1] = 0x00;
+	CyU3PSpiSetSsnLine (CyFalse);
+	status = CyU3PSpiTransmitWords(data, 2);
+	CyU3PSpiSetSsnLine (CyTrue);
+
+	CyU3PThreadSleep (0.35);
+
+	data[0] = 0x00;
+	data[1] = 0x80;
+	CyU3PSpiSetSsnLine (CyFalse);
+	status = CyU3PSpiTransmitWords(data, 2);
+	CyU3PSpiSetSsnLine (CyTrue);
+
+	CyU3PThreadSleep (0.35);
+
+	data[0] = 0x03; //RTS selector (11 = 3 in decimal)
+	data[1] = 0x9A; //REC_CTRL (9A - 80 = 1A)
+	CyU3PSpiSetSsnLine (CyFalse);
+	status = CyU3PSpiTransmitWords(data, 2);
+	CyU3PSpiSetSsnLine (CyTrue);
+
+	CyU3PThreadSleep (0.25);
+
+	data[0] = 0x11;
+	data[1] = 0x9B; //REC_CTRL 2nd
+	CyU3PSpiSetSsnLine (CyFalse);
+	status = CyU3PSpiTransmitWords(data, 2);
+	CyU3PSpiSetSsnLine (CyTrue);
+
+	CyU3PThreadSleep (12);
+
+	// SELECT RTS MODE //////////////////////////////////////// END
+
+
+	// WRITE TO TRIGGER DATA IN RTS MODE //////////////////// START
+
+	CyU3PThreadSleep (150);
+
+	data[0] = 0x00;
+	data[1] = 0x80; //Page ID selector
+	CyU3PSpiSetSsnLine (CyFalse);
+	status = CyU3PSpiTransmitWords(data, 2);
+	CyU3PSpiSetSsnLine (CyTrue);
+
+	CyU3PThreadSleep (0.45);
+
+	data[0] = 0x03;
+	data[1] = 0x9A;
+	CyU3PSpiSetSsnLine (CyFalse);
+	status = CyU3PSpiTransmitWords(data, 2);
+	CyU3PSpiSetSsnLine (CyTrue);
+
+	CyU3PThreadSleep (0.4);
+
+	data[0] = 0x01;
+	data[1] = 0x9B;
+	CyU3PSpiSetSsnLine (CyFalse);
+	status = CyU3PSpiTransmitWords(data, 2);
+	CyU3PSpiSetSsnLine (CyTrue);
+
+	CyU3PThreadSleep (150);
+
+	data[0] = 0x00;
+	data[1] = 0x80;
+	CyU3PSpiSetSsnLine (CyFalse);
+	status = CyU3PSpiTransmitWords(data, 2);
+	CyU3PSpiSetSsnLine (CyTrue);
+
+	CyU3PThreadSleep (10);
+
+	data[0] = 0x00;
+	data[1] = 0x64; //MISC_CTRL read
+	CyU3PSpiSetSsnLine (CyFalse);
+	status = CyU3PSpiTransmitWords(data, 2);
+	CyU3PSpiSetSsnLine (CyTrue);
+
+	//CyU3PThreadSleep (0.1);
+
+	data[0] = 0x00;
+	data[1] = 0x00;
+	CyU3PSpiSetSsnLine (CyFalse);
+	status = CyU3PSpiTransmitWords(data, 2);
+	CyU3PSpiSetSsnLine (CyTrue);
+
+	//CyU3PThreadSleep (0.1);
+
+	data[0] = 0x00;
+	data[1] = 0xE4; //MISC_CTRL write (E4 - 80 = 64)
+	CyU3PSpiSetSsnLine (CyFalse);
+	status = CyU3PSpiTransmitWords(data, 2);
+	CyU3PSpiSetSsnLine (CyTrue);
+
+	//CyU3PThreadSleep (0.1);
+
+	data[0] = 0x00;
+	data[1] = 0xE5; //MISC_CTRL write 2nd
+	CyU3PSpiSetSsnLine (CyFalse);
+	status = CyU3PSpiTransmitWords(data, 2);
+	CyU3PSpiSetSsnLine (CyTrue);
+
+	//CyU3PThreadSleep (0.1);
+
+	data[0] = 0x00;
+	data[1] = 0xBE; //GLOB_CMD (3E + 80 = BE)
+	CyU3PSpiSetSsnLine (CyFalse);
+	status = CyU3PSpiTransmitWords(data, 2);
+	CyU3PSpiSetSsnLine (CyTrue);
+
+	//CyU3PThreadSleep (0.1);
+
+	data[0] = 0x08; //Trigger capture
+	data[1] = 0xBF; //GLOB_CMD 2nd
+	CyU3PSpiSetSsnLine (CyFalse);
+	status = CyU3PSpiTransmitWords(data, 2);
+	CyU3PSpiSetSsnLine (CyTrue);
+
+	CyU3PThreadSleep (12);
+
+	// WRITE TO TRIGGER DATA IN RTS MODE ////////////////////// END
+
+	// RECORD DATA IN RTS MODE ////////////////////////////// START
+
+	//Sending all 200 in the CyU3PSpiTransmitWords function, the execution time is much more immediate (seems to be similar to how the GUI does it)
+	int i;
+	uint8_t data_for_sampling[200] = {0x00};
+	for (i = 0; i < 150; i++) { //150 is an arbitrary amount of times - I would like to do it 4096 times, but it seems to take much longer than the GUI in execution time
+		CyU3PSpiSetSsnLine (CyFalse);
+		status = CyU3PSpiTransmitWords(data_for_sampling, 200);
+		CyU3PSpiSetSsnLine (CyTrue);
+	}
+
+	/*
+	//Option 2 - using the "built-in" DMA functions to wait for responses
+	CyU3PMemSet (glEp0Buffer, 0, sizeof (glEp0Buffer));
+	CyU3PDmaBuffer_t buf_p;
+	buf_p.buffer = glEp0Buffer;
+	buf_p.status = 0;
+	buf_p.size  = 0x70;
+	buf_p.count = 0x70;
+	CyU3PSpiSetSsnLine (CyFalse);
+	CyU3PSpiSetBlockXfer (0, 0x64);
+
+	//receives buffer
+	status = CyU3PDmaChannelSetupRecvBuffer (&glSpiRxHandle, &buf_p);
 	if (status != CY_U3P_SUCCESS) {
-		CyU3PDebugPrint (2, "SPI WRITE command failed\r\n");
-		 CyU3PSpiSetSsnLine (CyTrue);
+		CyU3PDebugPrint (2, "CyU3PDmaChannelSetupRecvBuffer failed\r\n");
+		CyU3PSpiSetSsnLine (CyTrue);
+		return status;
+	}
+	status = CyU3PDmaChannelWaitForCompletion (&glSpiRxHandle, CY_FX_USB_SPI_TIMEOUT);
+	if (status != CY_U3P_SUCCESS) {
+		CyU3PDebugPrint (2, "CyU3PDmaChannelWaitForCompletion failed\r\n");
+		CyU3PSpiSetSsnLine (CyTrue);
+		return status;
 	}
 
 	CyU3PSpiSetSsnLine (CyTrue);
+	CyU3PSpiDisableBlockXfer (CyFalse, CyTrue);
+	*/
+
+	// RECORD DATA IN RTS MODE //////////////////////////////// END
+
+	CyU3PDebugPrint (2, "End of RTS-mode sampling\r\n");
+
 	return status;
 }
 
+// Attempt at MTC mode
+CyU3PReturnStatus_t start_sampling_MTC() {
+	CyU3PReturnStatus_t status = CY_U3P_SUCCESS;
+
+	uint8_t data1[2], data2[2], data3[2], data4[2];
+	data1[0] = 0x00;
+	data1[1] = 0x80;
+	data2[0] = 0x00;
+	data2[1] = 0x81;
+	data3[0] = 0x00;
+	data3[1] = 0x1E;
+	data4[0] = 0x00;
+	data4[1] = 0x00;
+
+	CyU3PSpiSetSsnLine (CyFalse);
+
+	CyU3PThreadSleep (1);
+	status = CyU3PSpiTransmitWords(data1, 2);
+	if (status != CY_U3P_SUCCESS) {
+		CyU3PDebugPrint (2, "SPI WRITE command failed1\r\n");
+		CyU3PSpiSetSsnLine (CyTrue);
+		return status;
+	}
+
+	CyU3PThreadSleep (1);
+	status = CyU3PSpiTransmitWords(data2, 2);
+	if (status != CY_U3P_SUCCESS) {
+		CyU3PDebugPrint (2, "SPI WRITE command failed2\r\n");
+		CyU3PSpiSetSsnLine (CyTrue);
+		return status;
+	}
+
+	CyU3PThreadSleep (1);
+	status = CyU3PSpiTransmitWords(data3, 2);
+	if (status != CY_U3P_SUCCESS) {
+		CyU3PDebugPrint (2, "SPI WRITE command failed3\r\n");
+		CyU3PSpiSetSsnLine (CyTrue);
+		return status;
+	}
+
+	CyU3PThreadSleep (1);
+	status = CyU3PSpiTransmitWords(data4, 2);
+	if (status != CY_U3P_SUCCESS) {
+		CyU3PDebugPrint (2, "SPI WRITE command failed3\r\n");
+		CyU3PSpiSetSsnLine (CyTrue);
+		return status;
+	}
+
+	CyU3PSpiSetSsnLine (CyTrue);
+
+	CyU3PThreadSleep (120);
+
+	data1[0] = 0x00;
+	data1[1] = 0x80;
+	data2[0] = 0x00;
+	data2[1] = 0xBE;
+	data3[0] = 0x08;
+	data3[1] = 0xBF;
+	//data4[0] = 0x00; //not present
+	//data4[1] = 0x00; //not present
+
+	CyU3PSpiSetSsnLine (CyFalse);
+
+	CyU3PThreadSleep (1);
+	status = CyU3PSpiTransmitWords(data1, 2);
+	if (status != CY_U3P_SUCCESS) {
+		CyU3PDebugPrint (2, "SPI WRITE command failed1\r\n");
+		CyU3PSpiSetSsnLine (CyTrue);
+		return status;
+	}
+
+	CyU3PThreadSleep (1);
+	status = CyU3PSpiTransmitWords(data2, 2);
+	if (status != CY_U3P_SUCCESS) {
+		CyU3PDebugPrint (2, "SPI WRITE command failed2\r\n");
+		CyU3PSpiSetSsnLine (CyTrue);
+		return status;
+	}
+
+	CyU3PThreadSleep (1);
+	status = CyU3PSpiTransmitWords(data3, 2);
+	if (status != CY_U3P_SUCCESS) {
+		CyU3PDebugPrint (2, "SPI WRITE command failed3\r\n");
+		CyU3PSpiSetSsnLine (CyTrue);
+		return status;
+	}
+
+	/*CyU3PThreadSleep (1);
+	status = CyU3PSpiTransmitWords(data4, 2);
+	if (status != CY_U3P_SUCCESS) {
+		CyU3PDebugPrint (2, "SPI WRITE command failed3\r\n");
+		CyU3PSpiSetSsnLine (CyTrue);
+		return status;
+	}*/
+
+	CyU3PThreadSleep (120);
+
+	data1[0] = 0x00;
+	data1[1] = 0x80;
+	data2[0] = 0x00;
+	data2[1] = 0x81;
+	data3[0] = 0x00;
+	data3[1] = 0x66;
+	data4[0] = 0x00; // Maybe we have to delete these two lines because Saleae Logic indicates its the
+	data4[1] = 0x00; // solely a return signal from MISCO. The same is apparant for the following signals.
+
+	CyU3PThreadSleep (1);
+	status = CyU3PSpiTransmitWords(data1, 2);
+	if (status != CY_U3P_SUCCESS) {
+		CyU3PDebugPrint (2, "SPI WRITE command failed1\r\n");
+		CyU3PSpiSetSsnLine (CyTrue);
+		return status;
+	}
+
+	CyU3PThreadSleep (1);
+	status = CyU3PSpiTransmitWords(data2, 2);
+	if (status != CY_U3P_SUCCESS) {
+		CyU3PDebugPrint (2, "SPI WRITE command failed2\r\n");
+		CyU3PSpiSetSsnLine (CyTrue);
+		return status;
+	}
+
+	CyU3PThreadSleep (1);
+	status = CyU3PSpiTransmitWords(data3, 2);
+	if (status != CY_U3P_SUCCESS) {
+		CyU3PDebugPrint (2, "SPI WRITE command failed3\r\n");
+		CyU3PSpiSetSsnLine (CyTrue);
+		return status;
+	}
+
+	CyU3PThreadSleep (1);
+	status = CyU3PSpiTransmitWords(data4, 2);
+	if (status != CY_U3P_SUCCESS) {
+		CyU3PDebugPrint (2, "SPI WRITE command failed3\r\n");
+		CyU3PSpiSetSsnLine (CyTrue);
+		return status;
+	}
+
+	CyU3PThreadSleep (40);
+
+	data1[0] = 0x00;
+	data1[1] = 0x80;
+	data2[0] = 0x00;
+	data2[1] = 0x81;
+	data3[0] = 0x00;
+	data3[1] = 0x68;
+	data4[0] = 0x00;
+	data4[1] = 0x00;
+
+	CyU3PThreadSleep (1);
+	status = CyU3PSpiTransmitWords(data1, 2);
+	if (status != CY_U3P_SUCCESS) {
+		CyU3PDebugPrint (2, "SPI WRITE command failed1\r\n");
+		CyU3PSpiSetSsnLine (CyTrue);
+		return status;
+	}
+
+	CyU3PThreadSleep (1);
+	status = CyU3PSpiTransmitWords(data2, 2);
+	if (status != CY_U3P_SUCCESS) {
+		CyU3PDebugPrint (2, "SPI WRITE command failed2\r\n");
+		CyU3PSpiSetSsnLine (CyTrue);
+		return status;
+	}
+
+	CyU3PThreadSleep (1);
+	status = CyU3PSpiTransmitWords(data3, 2);
+	if (status != CY_U3P_SUCCESS) {
+		CyU3PDebugPrint (2, "SPI WRITE command failed3\r\n");
+		CyU3PSpiSetSsnLine (CyTrue);
+		return status;
+	}
+
+	CyU3PThreadSleep (1);
+	status = CyU3PSpiTransmitWords(data4, 2);
+	if (status != CY_U3P_SUCCESS) {
+		CyU3PDebugPrint (2, "SPI WRITE command failed3\r\n");
+		CyU3PSpiSetSsnLine (CyTrue);
+		return status;
+	}
+
+	CyU3PThreadSleep (4);
+
+	data1[0] = 0x00;
+	data1[1] = 0x80;
+	data2[0] = 0x00;
+	data2[1] = 0x8A;
+	data3[0] = 0x00;
+	data3[1] = 0x8B;
+	//data4[0] = 0x00; //not present
+	//data4[1] = 0x00; //not present
+
+	CyU3PThreadSleep (1);
+	status = CyU3PSpiTransmitWords(data1, 2);
+	if (status != CY_U3P_SUCCESS) {
+		CyU3PDebugPrint (2, "SPI WRITE command failed1\r\n");
+		CyU3PSpiSetSsnLine (CyTrue);
+		return status;
+	}
+
+	CyU3PThreadSleep (1);
+	status = CyU3PSpiTransmitWords(data2, 2);
+	if (status != CY_U3P_SUCCESS) {
+		CyU3PDebugPrint (2, "SPI WRITE command failed2\r\n");
+		CyU3PSpiSetSsnLine (CyTrue);
+		return status;
+	}
+
+	CyU3PThreadSleep (1);
+	status = CyU3PSpiTransmitWords(data3, 2);
+	if (status != CY_U3P_SUCCESS) {
+		CyU3PDebugPrint (2, "SPI WRITE command failed3\r\n");
+		CyU3PSpiSetSsnLine (CyTrue);
+		return status;
+	}
+
+	/*CyU3PThreadSleep (1);
+	status = CyU3PSpiTransmitWords(data4, 2);
+	if (status != CY_U3P_SUCCESS) {
+		CyU3PDebugPrint (2, "SPI WRITE command failed3\r\n");
+		CyU3PSpiSetSsnLine (CyTrue);
+		return status;
+	}*/
+
+	CyU3PThreadSleep (4);
+
+	// -------------START HERE TO SAMPLE-------------
+
+	//Start sampling indicator
+	CyU3PThreadSleep (12);
+	uint8_t data_min1[2];
+	data_min1[0] = 0x00;
+	data_min1[1] = 0x80;
+	status = CyU3PSpiTransmitWords(data_min1, 2);
+	if (status != CY_U3P_SUCCESS) {
+		CyU3PDebugPrint (2, "SPI WRITE command failed3\r\n");
+		CyU3PSpiSetSsnLine (CyTrue);
+		return status;
+	}
+
+	//CyU3PSpiSetSsnLine (CyTrue);
+
+	CyU3PThreadSleep (40);
+
+	//CyU3PSpiSetSsnLine (CyFalse);
+
+	//Actual sampling - WE MIGHT NOT TO SLEEP FOR 12MS BETWEEN EVERY RECORDING, AS IT IS NOT INDICATED BY THE DIAGRAM (FIGURE 4) IN THE DATASHEET
+	int i;
+	uint8_t data[2];
+	data[0] = 0x00;
+	data[1] = 0x0E;
+	for (i = 0; i < 200; i++) {
+		CyU3PThreadSleep (0.1);
+		status = CyU3PSpiTransmitWords(data, 2);
+		if (status != CY_U3P_SUCCESS) {
+			CyU3PDebugPrint (2, "SPI WRITE command failed3\r\n");
+			CyU3PSpiSetSsnLine (CyTrue);
+			return status;
+		}
+	}
+
+	//End sampling indicator
+	CyU3PThreadSleep (0.1);
+	uint8_t data_min2[2];
+	data_min2[0] = 0x00;
+	data_min2[1] = 0x00;
+	status = CyU3PSpiTransmitWords(data_min2, 2);
+	if (status != CY_U3P_SUCCESS) {
+		CyU3PDebugPrint (2, "SPI WRITE command failed3\r\n");
+		CyU3PSpiSetSsnLine (CyTrue);
+		return status;
+	}
+
+	CyU3PSpiSetSsnLine (CyTrue);
+
+	// ----------------END SAMPLE HERE---------------
+
+	CyU3PDebugPrint (2, "End of sampling\r\n");
+	return status;
+
+}
 
 
+CyU3PReturnStatus_t turnOnOrOffADcmXL3021() {
+	CyU3PReturnStatus_t status = CY_U3P_SUCCESS;
 
+	uint8_t data1[2], data2[2], data3[2];
+	data1[0] = 0x00;
+	data1[1] = 0x80;
+	data2[0] = 0x02;
+	data2[1] = 0xBE;
+	data3[0] = 0x00;
+	data3[1] = 0xBF;
 
+	//CyU3PSpiSetSsnLine (CyFalse);
 
+	CyU3PThreadSleep (20);
+	CyU3PSpiSetSsnLine (CyFalse);
+	status = CyU3PSpiTransmitWords(data1, 2);
+	CyU3PSpiSetSsnLine (CyTrue);
+	if (status != CY_U3P_SUCCESS) {
+		CyU3PDebugPrint (2, "SPI WRITE command failed1\r\n");
+		return status;
+	}
 
+	CyU3PThreadSleep (20);
+	CyU3PSpiSetSsnLine (CyFalse);
+	status = CyU3PSpiTransmitWords(data2, 2);
+	CyU3PSpiSetSsnLine (CyTrue);
+	if (status != CY_U3P_SUCCESS) {
+		CyU3PDebugPrint (2, "SPI WRITE command failed2\r\n");
+		return status;
+	}
+
+	CyU3PThreadSleep (20);
+	CyU3PSpiSetSsnLine (CyFalse);
+	status = CyU3PSpiTransmitWords(data3, 2);
+	CyU3PSpiSetSsnLine (CyTrue);
+	if (status != CY_U3P_SUCCESS) {
+		CyU3PDebugPrint (2, "SPI WRITE command failed3\r\n");
+		return status;
+	}
+
+	//CyU3PSpiSetSsnLine (CyTrue);
+
+	return status;
+}
 
 /*
  * Entry function for the application thread. This function performs
  * the initialization of the Debug, SPI and USB modules and then
  * executes in a loop printing out heartbeat messages through the UART.
  */
+// This is the main function of the program, where the infinite while-loop should be placed
 void
 AppThread_Entry (
         uint32_t input)
 {
     uint8_t count = 0;
     CyU3PReturnStatus_t status = CY_U3P_SUCCESS;
-    //uint8_t databuffer[200];
 
     /* Initialize the debug interface. */
     status = CyFxDebugInit ();
-    if (status != CY_U3P_SUCCESS)
-    {
-        goto handle_error;
+    if (status != CY_U3P_SUCCESS) {
+    	CyU3PDebugPrint (4, "%x: Application failed to initialize. Error code: %d.\r\n", status);
+		while(1);
     }
 
     /* Initialize the application. */
     status = CyFxUsbSpiInit ();
-    if (status != CY_U3P_SUCCESS)
-    {
-        goto handle_error;
+    if (status != CY_U3P_SUCCESS) {
+    	CyU3PDebugPrint (4, "%x: Application failed to initialize. Error code: %d.\r\n", status);
+    	while(1);
     }
 
+    turnOnOrOffADcmXL3021();
+    //start_sampling_MTC();
+    //start_sampling_RTS();
 
-    CyU3PMemSet (glEp0Buffer, 0, sizeof (glEp0Buffer));
-	status = readData (glEp0Buffer);
-	if (status == CY_U3P_SUCCESS){
-		status = CyU3PUsbSendEP0Data (200, glEp0Buffer);
-	}
+    CyU3PThreadSleep (3000);
+    turnOnOrOffADcmXL3021();
 
+    CyU3PDebugPrint (4, "%x: Device initialized. Firmware ID: %x %x %x %x %x %x %x %x\r\n",
+		count++, glFirmwareID[3], glFirmwareID[2], glFirmwareID[1], glFirmwareID[0],
+		glFirmwareID[7], glFirmwareID[6], glFirmwareID[5], glFirmwareID[4]);
+	CyU3PThreadSleep (1000);
 
-    for (;;)
-    {
-        CyU3PDebugPrint (4, "%x: Device initialized. Firmware ID: %x %x %x %x %x %x %x %x\r\n",
-                count++, glFirmwareID[3], glFirmwareID[2], glFirmwareID[1], glFirmwareID[0],
-                glFirmwareID[7], glFirmwareID[6], glFirmwareID[5], glFirmwareID[4]);
-        CyU3PThreadSleep (1000);
+	uint8_t random_data[6]; uint8_t random_data2[6];
+	random_data[0] = 0; random_data[1] = 5; random_data[2] = 9; random_data[3] = 2; random_data[4] = 13; random_data[5] = 11;
+	random_data2[0] = 5; random_data2[1] = 4; random_data2[2] = 3; random_data2[3] = 2; random_data2[4] = 1; random_data2[5] = 0;
+	size_t n = sizeof(random_data)/sizeof(random_data[0]);
+	size_t n2 = sizeof(random_data2)/sizeof(random_data2[0]);
+	int k;
+	int i;
+    for (;;) {
+    	if (k % 2 == 0) {
+    		for (i = 0; i < n; i++) {
+				char toPrint = random_data[i] + '0';
+				CyU3PDebugPrint (2, " %x \r\n", toPrint);
 
-    }
+			}
+    	} else {
+    		for (i = 0; i < n2; i++) {
+				char toPrint = random_data2[i];
+				CyU3PDebugPrint (2, " %x \r\n", toPrint);
 
-handle_error:
-    CyU3PDebugPrint (4, "%x: Application failed to initialize. Error code: %d.\r\n", status);
-    while (1);
-}
+			}
+    	}
 
+		CyU3PDebugPrint (4, "----------\r\n");
 
-
-
-
-
-/* Application error handler. */
-void
-CyFxAppErrorHandler (
-        CyU3PReturnStatus_t apiRetStatus    /* API return status */
-        )
-{
-    /* Application failed with the error code apiRetStatus */
-
-    /* Add custom debug or recovery actions here */
-
-    /* Loop indefinitely */
-    for (;;)
-    {
-        /* Thread sleep : 100 ms */
-        //CyU3PThreadSleep (100);
+		k++;
+		CyU3PThreadSleep (2500);
     }
 }
 
-
-
-
-void CyFxGpioIntrCb (
-        uint8_t gpioId /* Indicates the pin that triggered the interrupt */
-        )
-{
+void CyFxGpioIntrCb (uint8_t gpioId) { /* Indicates the pin that triggered the interrupt */
     CyBool_t gpioValue = CyFalse;
     CyU3PReturnStatus_t apiRetStatus = CY_U3P_SUCCESS;
 
     /* Get the status of the pin */
     apiRetStatus = CyU3PGpioGetValue (gpioId, &gpioValue);
-    if (apiRetStatus == CY_U3P_SUCCESS)
-    {
+    if (apiRetStatus == CY_U3P_SUCCESS) {
         /* Check status of the pin */
-        if (gpioValue == CyTrue)
-        {
+        if (gpioValue == CyTrue) {
             /* Set GPIO high event */
-            CyU3PEventSet(&glFxGpioAppEvent, CY_FX_GPIOAPP_GPIO_HIGH_EVENT,
-                    CYU3P_EVENT_OR);
+            CyU3PEventSet(&glFxGpioAppEvent, CY_FX_GPIOAPP_GPIO_HIGH_EVENT, CYU3P_EVENT_OR);
         }
-        else
-        {
+        else {
             /* Set GPIO low Event */
-            CyU3PEventSet(&glFxGpioAppEvent, CY_FX_GPIOAPP_GPIO_LOW_EVENT,
-                    CYU3P_EVENT_OR);
+            CyU3PEventSet(&glFxGpioAppEvent, CY_FX_GPIOAPP_GPIO_LOW_EVENT, CYU3P_EVENT_OR);
         }
     }
 }
 
 
-void
-CyFxGpioInit (void)
-{
+void CyFxGpioInit (void) {
     CyU3PGpioClock_t gpioClock;
     CyU3PGpioSimpleConfig_t gpioConfig;
     CyU3PReturnStatus_t apiRetStatus = CY_U3P_SUCCESS;
@@ -692,11 +1070,10 @@ CyFxGpioInit (void)
     gpioClock.halfDiv = 0;
 
     apiRetStatus = CyU3PGpioInit(&gpioClock, CyFxGpioIntrCb);
-    if (apiRetStatus != 0)
-    {
+    if (apiRetStatus != 0) {
         /* Error Handling */
         CyU3PDebugPrint (4, "CyU3PGpioInit failed, error code = %d\n", apiRetStatus);
-        CyFxAppErrorHandler(apiRetStatus);
+        for (;;) {}
     }
 
     /* Configure GPIO 45 as input with interrupt enabled for both edges */
@@ -706,12 +1083,11 @@ CyFxGpioInit (void)
     gpioConfig.driveHighEn = CyFalse;
     gpioConfig.intrMode = CY_U3P_GPIO_INTR_BOTH_EDGE;
     apiRetStatus = CyU3PGpioSetSimpleConfig(45, &gpioConfig);
-    if (apiRetStatus != CY_U3P_SUCCESS)
-    {
+    if (apiRetStatus != CY_U3P_SUCCESS) {
         /* Error handling */
-        CyU3PDebugPrint (4, "CyU3PGpioSetSimpleConfig failed, error code = %d\n",
-                apiRetStatus);
-        CyFxAppErrorHandler(apiRetStatus);
+        CyU3PDebugPrint (4, "CyU3PGpioSetSimpleConfig failed, error code = %d\n", apiRetStatus);
+        for (;;) {}
+
     }
 
     /* Override GPIO 21 as this pin is associated with GPIF Control signal.
@@ -722,12 +1098,10 @@ CyFxGpioInit (void)
      * then the line will no longer behave as a GPIF IO.. Here CTL4 line is
      * not used and so it is safe to override.  */
     apiRetStatus = CyU3PDeviceGpioOverride (5, CyTrue);
-    if (apiRetStatus != 0)
-    {
+    if (apiRetStatus != 0) {
         /* Error Handling */
-        CyU3PDebugPrint (4, "CyU3PDeviceGpioOverride failed, error code = %d\n",
-                apiRetStatus);
-        CyFxAppErrorHandler(apiRetStatus);
+        CyU3PDebugPrint (4, "CyU3PDeviceGpioOverride failed, error code = %d\n", apiRetStatus);
+        for (;;) {}
     }
 
     /* Configure GPIO 21 as output */
@@ -737,73 +1111,46 @@ CyFxGpioInit (void)
     gpioConfig.inputEn = CyFalse;
     gpioConfig.intrMode = CY_U3P_GPIO_NO_INTR;
     apiRetStatus = CyU3PGpioSetSimpleConfig(5, &gpioConfig);
-    if (apiRetStatus != CY_U3P_SUCCESS)
-    {
+    if (apiRetStatus != CY_U3P_SUCCESS) {
         /* Error handling */
-        CyU3PDebugPrint (4, "CyU3PGpioSetSimpleConfig failed, error code = %d\n",
-                apiRetStatus);
-        CyFxAppErrorHandler(apiRetStatus);
+        CyU3PDebugPrint (4, "CyU3PGpioSetSimpleConfig failed, error code = %d\n", apiRetStatus);
+        for (;;) {}
     }
-
 }
 
-
-
-
-
-
-
 /* Entry function for the gpioOutputThread */
-void
-GpioOutputThread_Entry (
-        uint32_t input)
-{
+void GpioOutputThread_Entry (uint32_t input) {
     CyU3PReturnStatus_t apiRetStatus = CY_U3P_SUCCESS;
-
     /* Initialize GPIO module. */
     CyFxGpioInit ();
-
-    for (;;)
-    {
-
+    for (;;) {
     	/* Set the GPIO 5 to high */
         apiRetStatus = CyU3PGpioSetValue (5, CyTrue);
-        if (apiRetStatus != CY_U3P_SUCCESS)
-        {
+        if (apiRetStatus != CY_U3P_SUCCESS) {
             /* Error handling */
-            CyU3PDebugPrint (4, "CyU3PGpioSetValue failed, error code = %d\n",
-                    apiRetStatus);
-            CyFxAppErrorHandler(apiRetStatus);
+            CyU3PDebugPrint (4, "CyU3PGpioSetValue failed, error code = %d\n", apiRetStatus);
+            for (;;) {}
         }
 
-        /* Wait for two seconds */
         CyU3PThreadSleep(1000);
 
         /* Set the GPIO 5 to low */
         apiRetStatus = CyU3PGpioSetValue (5, CyFalse);
-        if (apiRetStatus != CY_U3P_SUCCESS)
-        {
+        if (apiRetStatus != CY_U3P_SUCCESS) {
             /* Error handling */
-            CyU3PDebugPrint (4, "CyU3PGpioSetValue failed, error code = %d\n",
-                    apiRetStatus);
-            CyFxAppErrorHandler(apiRetStatus);
+            CyU3PDebugPrint (4, "CyU3PGpioSetValue failed, error code = %d\n", apiRetStatus);
+            for (;;) {}
         }
 
-        /* Wait for two seconds */
         CyU3PThreadSleep(1000);
     }
 }
 
 /* Entry function for the gpioInputThread */
-void
-GpioInputThread_Entry (
-        uint32_t input)
-{
+void GpioInputThread_Entry (uint32_t input) {
     uint32_t eventFlag;
     CyU3PReturnStatus_t txApiRetStatus = CY_U3P_SUCCESS;
-
-    for (;;)
-    {
+    for (;;) {
     	//CyU3PDebugPrint (4, "Here2\r\n");
     	/* Wait for a GPIO event */
         txApiRetStatus = CyU3PEventGet (&glFxGpioAppEvent,
@@ -828,21 +1175,8 @@ GpioInputThread_Entry (
     }
 }
 
-
-
-
-
-
-
-
-
-
-
 /* Application define function which creates the application threads. */
-void
-CyFxApplicationDefine (
-        void)
-{
+void CyFxApplicationDefine (void) {
     void *ptr = NULL;
     uint32_t retThrdCreate = CY_U3P_SUCCESS;
 
@@ -861,25 +1195,15 @@ CyFxApplicationDefine (
                                                       thread gets active. */
             CYU3P_AUTO_START                       /* Start the thread immediately. */
             );
-
     /* Check the return code */
-    if (retThrdCreate != 0)
-    {
-        /* Thread creation failed with the error code retThrdCreate */
-
-        /* Add custom recovery or debug actions here */
-
-        /* Application cannot continue. Loop indefinitely */
+    if (retThrdCreate != 0) {
+        // Thread creation failed with the error code retThrdCreate
+        // Add custom recovery or debug actions here
+        // Application cannot continue. Loop indefinitely
         while(1);
     }
 
-
-
-
-
-
-
-    /* Allocate the memory for the threads */
+    // Allocate the memory for the threads
 	ptr = CyU3PMemAlloc (CY_FX_GPIOAPP_THREAD_STACK);
 
 	/* Create the thread for the application */
@@ -895,22 +1219,17 @@ CyFxApplicationDefine (
 						  CYU3P_AUTO_START                       /* Start the Thread immediately */
 						  );
 
-	/* Check the return code */
-	if (retThrdCreate != 0)
-	{
-		/* Thread creation failed with the error code retThrdCreate */
-
-		/* Add custom recovery or debug actions here */
-
-		/* Application cannot continue */
-		/* Loop indefinitely */
+	// Check the return code
+	if (retThrdCreate != 0)	{
+		// Thread creation failed with the error code retThrdCreate
+		// Add custom recovery or debug actions here
+		// Application cannot continue
+		// Loop indefinitely
 		while(1);
 	}
 
-
-
 //	//-------------MAYBE COMMENT THIS PART OUT-------
-//
+//			//THIS WAS TO ENABLE THE BUTTON, WHEN CLICKING, IT SHOULD TRIGGER AN ACTION
 //	/* Allocate the memory for the threads */
 //	ptr = CyU3PMemAlloc (CY_FX_GPIOAPP_THREAD_STACK);
 //
@@ -941,38 +1260,31 @@ CyFxApplicationDefine (
 //
 //	//-------------MAYBE COMMENT THIS PART OUT-------
 
-
-
-
-
-
-
 }
 
-/*
- * Main function
- */
-int
-main (void)
-{
+
+
+
+// Main function
+int main (void) {
     CyU3PIoMatrixConfig_t io_cfg;
     CyU3PReturnStatus_t status = CY_U3P_SUCCESS;
 
     /* Initialize the device */
     status = CyU3PDeviceInit (NULL);
-    if (status != CY_U3P_SUCCESS)
-    {
-        goto handle_fatal_error;
+    if (status != CY_U3P_SUCCESS) {
+    	/* Cannot recover from this error. */
+		while (1);
     }
 
     /* Initialize the caches. Enable both Instruction and Data Caches. */
     status = CyU3PDeviceCacheControl (CyTrue, CyTrue, CyTrue);
-    if (status != CY_U3P_SUCCESS)
-    {
-        goto handle_fatal_error;
+    if (status != CY_U3P_SUCCESS) {
+    	/* Cannot recover from this error. */
+		while (1);
     }
 
-    /* Configure the IO matrix for the device. On the FX3 DVK board, the COM port 
+    /* Configure the IO matrix for the device. On the FX3 DVK board, the COM port
      * is connected to the IO(53:56). So since we need to use SPI, we will have to
      * either not use UART or use an external UART controller on the IO(46:49). */
     CyU3PMemSet ((uint8_t *)&io_cfg, 0, sizeof(io_cfg));
@@ -990,9 +1302,9 @@ main (void)
     io_cfg.gpioComplexEn[0] = 0;
     io_cfg.gpioComplexEn[1] = 0;
     status = CyU3PDeviceConfigureIOMatrix (&io_cfg);
-    if (status != CY_U3P_SUCCESS)
-    {
-        goto handle_fatal_error;
+    if (status != CY_U3P_SUCCESS) {
+    	/* Cannot recover from this error. */
+		while (1);
     }
 
     /* This is a non returnable call for initializing the RTOS kernel */
@@ -1000,12 +1312,4 @@ main (void)
 
     /* Dummy return to make the compiler happy */
     return 0;
-
-handle_fatal_error:
-
-    /* Cannot recover from this error. */
-    while (1);
 }
-
-/* [ ] */
-
