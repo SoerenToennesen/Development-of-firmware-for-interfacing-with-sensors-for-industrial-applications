@@ -8,6 +8,12 @@ RM := cs-rm -rf
 
 # All of the sources participating in the build are defined here
 -include sources.mk
+-include UART/subdir.mk
+-include SPI/subdir.mk
+-include GPIO/subdir.mk
+-include CyFxFiles/subdir.mk
+-include Application/subdir.mk
+-include ADcmXL3021/subdir.mk
 -include subdir.mk
 -include objects.mk
 
@@ -28,25 +34,25 @@ endif
 # Add inputs and outputs from these tool invocations to the build variables 
 
 # All Target
-all: UsbSpiDmaMode4.elf secondary-outputs
+all: BScProjectVaerksSensorInterfacing.elf secondary-outputs
 
 # Tool invocations
-UsbSpiDmaMode4.elf: $(OBJS) $(USER_OBJS)
+BScProjectVaerksSensorInterfacing.elf: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: Cross ARM C Linker'
-	arm-none-eabi-gcc -mcpu=arm926ej-s -marm -mthumb-interwork -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -Wall  -g3 -T "C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_build/fx3_fw/fx3.ld" -nostartfiles -Xlinker --gc-sections -L"C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug" -L"C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\ARM GCC\/lib/gcc/arm-none-eabi/4.8.1" -L"C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\ARM GCC\/arm-none-eabi/lib" -Wl,-Map,"UsbSpiDmaMode4.map" -Wl,-d  -Wl,--no-wchar-size-warning -Wl,--entry,CyU3PFirmwareEntry -o "UsbSpiDmaMode4.elf" $(OBJS) $(USER_OBJS) $(LIBS)
+	arm-none-eabi-gcc -mcpu=arm926ej-s -marm -mthumb-interwork -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -Wall  -g3 -T "C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_build/fx3_fw/fx3.ld" -nostartfiles -Xlinker --gc-sections -L"C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug" -L"C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\ARM GCC\/lib/gcc/arm-none-eabi/4.8.1" -L"C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\ARM GCC\/arm-none-eabi/lib" -Wl,-Map,"BScProjectVaerksSensorInterfacing.map" -Wl,-d  -Wl,--no-wchar-size-warning -Wl,--entry,CyU3PFirmwareEntry -o "BScProjectVaerksSensorInterfacing.elf" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 	$(MAKE) --no-print-directory post-build
 
 # Other Targets
 clean:
-	-$(RM) $(OBJS)$(C_DEPS)$(ASM_DEPS)$(S_UPPER_DEPS) UsbSpiDmaMode4.elf
+	-$(RM) $(OBJS)$(C_DEPS)$(ASM_DEPS)$(S_UPPER_DEPS) BScProjectVaerksSensorInterfacing.elf
 	-@echo ' '
 
 post-build:
 	-@echo 'Generate boot-loadable binary image'
-	-elf2img.exe -i UsbSpiDmaMode4.elf -o UsbSpiDmaMode4.img -v
+	-elf2img.exe -i BScProjectVaerksSensorInterfacing.elf -o BScProjectVaerksSensorInterfacing.img -v
 	-@echo ' '
 
 secondary-outputs:
