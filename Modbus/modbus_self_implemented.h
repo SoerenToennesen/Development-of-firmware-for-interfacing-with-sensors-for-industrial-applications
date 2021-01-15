@@ -11,7 +11,7 @@ uint16_t ModRTU_CRC(byte buf[], int len);
 struct response entry_func_dmamode(uint8_t **RTS_code, uint8_t count);
 struct response entry_func_regmode(uint8_t *RTS_code, uint8_t count);
 
-extern volatile uint16_t HoldingRegister[256];
+extern volatile uint16_t HoldingRegister[1000];
 
 
 

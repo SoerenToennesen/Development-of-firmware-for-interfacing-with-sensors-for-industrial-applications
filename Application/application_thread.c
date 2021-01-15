@@ -14,6 +14,7 @@
 #include "../SPI/spi.h"
 #include "../UART/uart.h"
 #include "../ADcmXL3021/adcmxl3021.h"
+#include "../Modbus/modbus_self_implemented.h"
 
 #define NULL ((void *)0)
 
@@ -54,7 +55,8 @@ void AppThread_Entry (uint32_t input) {
 
     //turnOnOrOffADcmXL3021();
     //start_sampling_MTC();
-    //start_sampling_RTS();
+    start_sampling_RTS();
+
 
 
 //	uint8_t random_data[6]; uint8_t random_data2[6];
@@ -138,8 +140,7 @@ void CyFxApplicationDefine (void) {
 		while(1);
 	}
 
-//	//-------------MAYBE COMMENT THIS PART OUT-------
-//	//SHOULD BE USED FOR INVOKING THE BUTTON, BUT COULDN'T GET IT TO WORK!!
+//	//SHOULD BE USED FOR INVOKING THE BUTTON ON THE BOARD, BUT COULDN'T GET IT TO WORK!!
 //			//THIS WAS TO ENABLE THE BUTTON, WHEN CLICKING, IT SHOULD TRIGGER AN ACTION
 //	/* Allocate the memory for the threads */
 //	ptr = CyU3PMemAlloc (CY_FX_GPIOAPP_THREAD_STACK);
@@ -168,64 +169,64 @@ void CyFxApplicationDefine (void) {
 //		/* Loop indefinitely */
 //		while(1);
 //	}
-//
-//	//-------------MAYBE COMMENT THIS PART OUT-------
 
-//	/* Allocate the memory for the threads */
-//	ptr = CyU3PMemAlloc (CY_FX_UARTLP_THREAD_STACK);
-//
-//	/* Create the thread for the application */
-//	retThrdCreate = CyU3PThreadCreate (&UartLpAppThread,           /* UART Example App Thread structure */
-//						  "21:UART_loopback_DMA_mode",             /* Thread ID and Thread name */
-//						  UartLpAppThread_Entry,                   /* UART Example App Thread Entry function */
-//						  0,                                       /* No input parameter to thread */
-//						  ptr,                                     /* Pointer to the allocated thread stack */
-//						  CY_FX_UARTLP_THREAD_STACK,               /* UART Example App Thread stack size */
-//						  CY_FX_UARTLP_THREAD_PRIORITY,            /* UART Example App Thread priority */
-//						  CY_FX_UARTLP_THREAD_PRIORITY,            /* UART Example App Thread priority */
-//						  CYU3P_NO_TIME_SLICE,                     /* No time slice for the application thread */
-//						  CYU3P_AUTO_START                         /* Start the Thread immediately */
-//						  );
-//
-//	/* Check the return code */
-//	if (retThrdCreate != 0)
-//	{
-//		/* Thread Creation failed with the error code retThrdCreate */
-//
-//		/* Add custom recovery or debug actions here */
-//
-//		/* Application cannot continue */
-//		/* Loop indefinitely */
-//		while(1);
-//	}
-
-
-
-	// THIS THREAD IS ONLY TO TEST IF REGISTER MODE CAN RUN PARALLEL WITH DMA MODE THREADS
-	/* Create the event flag used for receive data signaling. */
-	retThrdCreate = CyU3PEventCreate (&UartLpAppEvent);
-	if (retThrdCreate != CY_U3P_SUCCESS) while (1);
-
-	/* Allocate the memory for the thread stack. */
+	/* Allocate the memory for the threads */
 	ptr = CyU3PMemAlloc (CY_FX_UARTLP_THREAD_STACK);
-	if (ptr == 0) while (1);
 
 	/* Create the thread for the application */
-	retThrdCreate = CyU3PThreadCreate (&UartLpAppThread2,                  /* UART Example App Thread structure */
-						  "21:UART_loopback_register_mode",     /* Thread ID and Thread name */
-						  UartLpAppThread_Entry2,                /* UART Example App Thread Entry function */
-						  0,                                    /* No input parameter to thread */
-						  ptr,                                  /* Pointer to the allocated thread stack */
-						  CY_FX_UARTLP_THREAD_STACK,            /* UART Example App Thread stack size */
-						  CY_FX_UARTLP_THREAD_PRIORITY,         /* UART Example App Thread priority */
-						  CY_FX_UARTLP_THREAD_PRIORITY,         /* UART Example App Thread priority */
-						  CYU3P_NO_TIME_SLICE,                  /* No time slice for the application thread */
-						  CYU3P_AUTO_START                      /* Start the Thread immediately */
+	retThrdCreate = CyU3PThreadCreate (&UartLpAppThread,           /* UART Example App Thread structure */
+						  "21:UART_loopback_DMA_mode",             /* Thread ID and Thread name */
+						  UartLpAppThread_Entry,                   /* UART Example App Thread Entry function */
+						  0,                                       /* No input parameter to thread */
+						  ptr,                                     /* Pointer to the allocated thread stack */
+						  CY_FX_UARTLP_THREAD_STACK,               /* UART Example App Thread stack size */
+						  CY_FX_UARTLP_THREAD_PRIORITY,            /* UART Example App Thread priority */
+						  CY_FX_UARTLP_THREAD_PRIORITY,            /* UART Example App Thread priority */
+						  CYU3P_NO_TIME_SLICE,                     /* No time slice for the application thread */
+						  CYU3P_AUTO_START                         /* Start the Thread immediately */
 						  );
 
-	if (retThrdCreate != CY_U3P_SUCCESS) {
-			while(1);
+	/* Check the return code */
+	if (retThrdCreate != 0)
+	{
+		/* Thread Creation failed with the error code retThrdCreate */
+
+		/* Add custom recovery or debug actions here */
+
+		/* Application cannot continue */
+		/* Loop indefinitely */
+		while(1);
 	}
+
+
+
+//	// THIS THREAD IS USED TO INVOKE UART REGISTER MODE IF THAT IS PREFERRED
+//	// (CURRENTLY ONLY WORKS FOR RTU, AS THEY ARE CONSTANTLY SENT AS 8 BYTES).
+//	// IN OUR CASE WE USE DMA.
+//	/* Create the event flag used for receive data signaling. */
+//	retThrdCreate = CyU3PEventCreate (&UartLpAppEvent);
+//	if (retThrdCreate != CY_U3P_SUCCESS) while (1);
+//
+//	/* Allocate the memory for the thread stack. */
+//	ptr = CyU3PMemAlloc (CY_FX_UARTLP_THREAD_STACK);
+//	if (ptr == 0) while (1);
+//
+//	/* Create the thread for the application */
+//	retThrdCreate = CyU3PThreadCreate (&UartLpAppThread2,                  /* UART Example App Thread structure */
+//						  "21:UART_loopback_register_mode",     /* Thread ID and Thread name */
+//						  UartLpAppThread_Entry2,                /* UART Example App Thread Entry function */
+//						  0,                                    /* No input parameter to thread */
+//						  ptr,                                  /* Pointer to the allocated thread stack */
+//						  CY_FX_UARTLP_THREAD_STACK,            /* UART Example App Thread stack size */
+//						  CY_FX_UARTLP_THREAD_PRIORITY,         /* UART Example App Thread priority */
+//						  CY_FX_UARTLP_THREAD_PRIORITY,         /* UART Example App Thread priority */
+//						  CYU3P_NO_TIME_SLICE,                  /* No time slice for the application thread */
+//						  CYU3P_AUTO_START                      /* Start the Thread immediately */
+//						  );
+//
+//	if (retThrdCreate != CY_U3P_SUCCESS) {
+//			while(1);
+//	}
 
 
 

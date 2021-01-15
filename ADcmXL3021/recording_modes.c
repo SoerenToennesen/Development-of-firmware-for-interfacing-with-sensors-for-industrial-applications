@@ -173,68 +173,61 @@ CyU3PReturnStatus_t start_sampling_RTS() {
 
 	// RECORD DATA IN RTS MODE ////////////////////////////// START
 
+	//Sending all 200 in the CyU3PSpiTransmitWords/CyU3PSpiReceiveWords function,
+	// the execution time is much more immediate (seems to be similar to how the GUI does it)
+	int i, ii;
+	uint8_t  spi_data[200];
+	//uint8_t data_for_sampling[200] = {0x00};
+	for (i = 0; i < 150; i++) { // This should be an infinite while-loop, but this is just for testing purposes so we can get on with the application.
+		CyU3PSpiSetSsnLine (CyFalse);
+		//status = CyU3PSpiTransmitWords(data_for_sampling, 200);
+		status = CyU3PSpiReceiveWords (spi_data, 0xC8); //0xC8 for 200, data should be stored in rxData
+		CyU3PSpiSetSsnLine (CyTrue);
+		for (ii = 0; ii < 100; ii++) {
+			HoldingRegister[ii] = (spi_data[ii * 2] << 8) | (spi_data[ii * 2 + 1]);
+			//HoldingRegister[600] = 0x03E8; //testing purposes
+			//HoldingRegister[601] = 0x1388;
+		}
+		CyU3PThreadSleep (12);
+	}
+
+//	//Option 2 - using the "built-in" DMA functions to wait for responses
+//	CyU3PMemSet (glEp0Buffer, 0, sizeof (glEp0Buffer));
 //	CyU3PDmaBuffer_t buf_p;
 //	buf_p.buffer = glEp0Buffer;
 //	buf_p.status = 0;
-//	buf_p.size  = 0x70;
+//	buf_p.size  = 0x70; //0xC8 = 200, 0x64 = 100
 //	buf_p.count = 0x70;
+//
+//	int i, ii;
+//	for (i = 0; i < 150; i++) {
+//		CyU3PSpiSetSsnLine (CyFalse);
+//		CyU3PSpiSetBlockXfer (0, 0x64); //Probably should be 0xC8
+//
+//		//receives buffer
+//		status = CyU3PDmaChannelSetupRecvBuffer (&glSpiRxHandle, &buf_p);
+//		if (status != CY_U3P_SUCCESS) {
+//			CyU3PSpiSetSsnLine (CyTrue);
+//			return status;
+//		}
+//		status = CyU3PDmaChannelWaitForCompletion (&glSpiRxHandle, 2000);
+//		/*if (status != CY_U3P_SUCCESS) {
+//			CyU3PSpiSetSsnLine (CyTrue);
+//			return status;
+//		}*/
+//
+//		CyU3PSpiSetSsnLine (CyTrue);
+//		CyU3PSpiDisableBlockXfer (CyFalse, CyTrue);
+//		for (ii = 0; ii < 50; ii++) {
+//			HoldingRegister[ii] = (buf_p.buffer[ii * 2] << 8) | (buf_p.buffer[ii * 2 + 1]);//buf_p.buffer[ii];
+//			//HoldingRegister[600] = 0x03E8; //hard coding 1000 for testing purposes in reg 600
+//			//HoldingRegister[601] = 0x1388; // -||- 5000
+//		}
+//		CyU3PThreadSleep (12);
+//	}
 
-	//Sending all 200 in the CyU3PSpiTransmitWords function, the execution time is much more immediate (seems to be similar to how the GUI does it)
-	int i, ii;
-	uint8_t  spi_data[200];
-	uint8_t data_for_sampling[200] = {0x00};
-	for (i = 0; i < 10; i++) { // This should be an infinite while-loop, but this is just for testing purposes so we can get on with the application.
-		CyU3PSpiSetSsnLine (CyFalse);
-		status = CyU3PSpiTransmitWords(data_for_sampling, 200);
-		status = CyU3PSpiReceiveWords (spi_data, 0xC8); //0xC8 for 200, data should be stored in rxData
-		CyU3PSpiSetSsnLine (CyTrue);
-		for (ii = 0; i < 100; i++) {
-			HoldingRegister[ii] = spi_data[ii];
-		}
-		CyU3PThreadSleep (1000);
-	}
-
-//	CyU3PSpiSetSsnLine (CyFalse);
-//	CyU3PSpiSetBlockXfer (0, 0x64);
-//	//status = CyU3PSpiTransmitWords(data_for_sampling, 200);
-//	status = CyU3PDmaChannelSetupRecvBuffer (&glSpiRxHandle, &buf_p);
-//	CyU3PDmaChannelWaitForCompletion (&glSpiRxHandle, CY_FX_USB_SPI_TIMEOUT);
-//	CyU3PSpiDisableBlockXfer (CyFalse, CyTrue);
-//	CyU3PSpiSetSsnLine (CyTrue);
-
-
-	/*
-	//Option 2 - using the "built-in" DMA functions to wait for responses
-	CyU3PMemSet (glEp0Buffer, 0, sizeof (glEp0Buffer));
-	CyU3PDmaBuffer_t buf_p;
-	buf_p.buffer = glEp0Buffer;
-	buf_p.status = 0;
-	buf_p.size  = 0x70;
-	buf_p.count = 0x70;
-	CyU3PSpiSetSsnLine (CyFalse);
-	CyU3PSpiSetBlockXfer (0, 0x64);
-
-	//receives buffer
-	status = CyU3PDmaChannelSetupRecvBuffer (&glSpiRxHandle, &buf_p);
-	if (status != CY_U3P_SUCCESS) {
-		CyU3PDebugPrint (2, "CyU3PDmaChannelSetupRecvBuffer failed\r\n");
-		CyU3PSpiSetSsnLine (CyTrue);
-		return status;
-	}
-	status = CyU3PDmaChannelWaitForCompletion (&glSpiRxHandle, CY_FX_USB_SPI_TIMEOUT);
-	if (status != CY_U3P_SUCCESS) {
-		CyU3PDebugPrint (2, "CyU3PDmaChannelWaitForCompletion failed\r\n");
-		CyU3PSpiSetSsnLine (CyTrue);
-		return status;
-	}
-
-	CyU3PSpiSetSsnLine (CyTrue);
-	CyU3PSpiDisableBlockXfer (CyFalse, CyTrue);
-	*/
 
 	// RECORD DATA IN RTS MODE //////////////////////////////// END
-
-	//CyU3PDebugPrint (2, "End of RTS-mode sampling\r\n");
 
 	return status;
 }

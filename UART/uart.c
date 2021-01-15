@@ -41,69 +41,20 @@ void CyFxUartLpDmaCallback (
          * received upon reception of every buffer. The buffer will not be sent
          * out unless it is explicitly committed. The call shall fail if there
          * is any application error. */
-    	response_buffer_dma = entry_func_dmamode(&(input->buffer_p.buffer), input->buffer_p.count);
-    	// response_buffer_dma needs to be sent out through the UART.´
-    	// Has size response_buffer_dma.response_size
-    	// Has array response_buffer_dma.response_array
-    	// response_buffer_dma.response_array can vary in size, but we just need to send it all out at once through UART
-
-    	//original code:
-    	status = CyU3PDmaChannelCommitBuffer (chHandle, input->buffer_p.count, 0);
-
-//    	//initial thought:
-//    	input->buffer_p.count = response_buffer_dma.response_size;
-//    	int j;
-//    	for (j = 0; j < response_buffer_dma.response_size; j++) {
-//    		input->buffer_p.buffer[j] = response_buffer_dma.response_array[j];
-//    	}
-//
-//    	status = CyU3PDmaChannelCommitBuffer (chHandle, input->buffer_p.count, 0);
-//		if (status != CY_U3P_SUCCESS) while(1);
-//		glPktsPending++;
-
-		//second thought (create a new channel buffer and send it through, but problem still persists!)
-//		status = CyU3PDmaChannelGetBuffer(&glUartLpChHandle, &response_buffer_new, 0);
-//		if (status != CY_U3P_SUCCESS) while(1);
-//		//Test data
-//		response_buffer.count = 9;
-//		response_buffer.buffer[0] = 0x01;
-//		response_buffer.buffer[1] = 0x03;
-//		response_buffer.buffer[2] = 0x04;
-//		response_buffer.buffer[3] = 0x03;
-//		response_buffer.buffer[4] = 0xE8;
-//		response_buffer.buffer[5] = 0x13;
-//		response_buffer.buffer[6] = 0x88;
-//		response_buffer.buffer[7] = 0x77;
-//		response_buffer.buffer[8] = 0x15;
-//		status = CyU3PDmaChannelCommitBuffer (chHandle, response_buffer.count, 0);
-
-//		//Attempts at erasing whatever is contained in the buffer
-//		status = CyU3PDmaChannelDiscardBuffer (chHandle);
-//		if (status != CY_U3P_SUCCESS) while(1);
-//		status = CyU3PDmaChannelReset (&glUartLpChHandle);
-//		if (status != CY_U3P_SUCCESS) while(1);
-
-
-    	//Understanding Modbus RTU requests:
-    	//Example for holding register request:
-    	//01 03 02 58 00 02 44 60
-    	// 1. Unit address
-    	//1. 01: slave address
-    	// 2-6. PDU message. This can vary in size according to the request
-    	//2. 03: function code for holding registers
-    	//3&4. 02 58: Hex for 600
-    	//5&6. 00 02: Hex for amount of registers to read (in this case 2)
-    	// 7-8. CRC
-    	//7. 44: check of address field (CRC code 1st)
-    	//8. 60: check of message field (CRC code 2nd)
-    	//Response: 01 03 04 03 E8 13 88 77 15
-    	//1. Slave address
-    	//2. Function code for holding registers
-    	//3. Byte count , or in other words: register count * 2
-    	// Actual register data values, size depends on how many registers to read. 2 bytes for each register value (I think - check this!)
-    	//4&5. 03 E8: Value 1000 in register 600
-    	//6&7. 13 88: Value 5000 in register 601
-    	// https://www.fernhillsoftware.com/help/drivers/modbus/modbus-protocol.html
+    	if (input->buffer_p.count != 0) {
+			response_buffer_dma = entry_func_dmamode(&(input->buffer_p.buffer), input->buffer_p.count);
+			input->buffer_p.count = response_buffer_dma.response_size;
+			int j;
+			for (j = 0; j < response_buffer_dma.response_size; j++) {
+				input->buffer_p.buffer[j] = response_buffer_dma.response_array[j];
+			}
+			status = CyU3PDmaChannelCommitBuffer (chHandle, input->buffer_p.count, 0);
+			if (status != CY_U3P_SUCCESS) while(1);
+			glPktsPending++;
+    	} else {
+    		status = CyU3PDmaChannelDiscardBuffer (chHandle);
+			if (status != CY_U3P_SUCCESS) while(1);
+    	}
     }
 }
 

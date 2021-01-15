@@ -24,7 +24,8 @@ Application/application_thread.o: ../Application/application_thread.c \
  C:\Program\ Files\ (x86)\Cypress\EZ-USB\ FX3\ SDK\1.3\/fw_lib/1_3_4/inc/cyu3externcstart.h \
  C:\Program\ Files\ (x86)\Cypress\EZ-USB\ FX3\ SDK\1.3\/fw_lib/1_3_4/inc/cyu3externcend.h \
  ../Application/../GPIO/gpio.h ../Application/../SPI/spi.h \
- ../Application/../UART/uart.h ../Application/../ADcmXL3021/adcmxl3021.h
+ ../Application/../UART/uart.h ../Application/../ADcmXL3021/adcmxl3021.h \
+ ../Application/../Modbus/modbus_self_implemented.h
 
 C:\Program\ Files\ (x86)\Cypress\EZ-USB\ FX3\ SDK\1.3\/fw_lib/1_3_4/inc/cyu3system.h:
 
@@ -81,3 +82,5 @@ C:\Program\ Files\ (x86)\Cypress\EZ-USB\ FX3\ SDK\1.3\/fw_lib/1_3_4/inc/cyu3exte
 ../Application/../UART/uart.h:
 
 ../Application/../ADcmXL3021/adcmxl3021.h:
+
+../Application/../Modbus/modbus_self_implemented.h:

@@ -33,12 +33,31 @@ int iiii;
 
 struct response ans;
 
-volatile uint16_t HoldingRegister[256];
+volatile uint16_t HoldingRegister[1000];
 
+//Understanding Modbus RTU requests:
+//Example for holding register request:
+//01 03 02 58 00 02 44 60
+// 1. Unit address
+//1. 01: slave address
+// 2-6. PDU message. This can vary in size according to the request
+//2. 03: function code for holding registers
+//3&4. 02 58: Hex for 600
+//5&6. 00 02: Hex for amount of registers to read (in this case 2)
+// 7-8. CRC
+//7. 44: check of address field (CRC code 1st)
+//8. 60: check of message field (CRC code 2nd)
+//Response: 01 03 04 03 E8 13 88 77 15
+//1. Slave address
+//2. Function code for holding registers
+//3. Byte count , or in other words: register count * 2
+// Actual register data values, size depends on how many registers to read. 2 bytes for each register value (I think - check this!)
+//4&5. 03 E8: Value 1000 in register 600
+//6&7. 13 88: Value 5000 in register 601
+// https://www.fernhillsoftware.com/help/drivers/modbus/modbus-protocol.html
 
 uint16_t ModRTU_CRC(byte buf[], int len) {
   uint16_t crc = 0xFFFF;
-
   for (int pos = 0; pos < len; pos++) {
 	crc ^= (uint16_t)buf[pos];          // XOR byte into least sig. byte of crc
 
@@ -54,27 +73,14 @@ uint16_t ModRTU_CRC(byte buf[], int len) {
   uint8_t hibyte = (crc & 0xff00) >> 8;
   uint8_t lobyte = (crc & 0xff);
   crc = lobyte << 8 | hibyte;
-
   return crc;
 }
 
 //*RTS_code needs to be **RTS_code in the input parameter when using DMA-mode
 struct response entry_func_dmamode(uint8_t **RTS_code, uint8_t count) {
-
-	if (1) {
-		ans.response_array[0] = 0x01;
-		ans.response_array[1] = 0x02;
-		ans.response_array[2] = 0x03;
-		ans.response_array[3] = 0x04;
-		ans.response_array[4] = 0x05;
-		ans.response_array[5] = 0x06;
-		ans.response_array[6] = 0x07;
-		ans.response_array[7] = 0x08;
-		ans.response_array[8] = 0x09;
-		ans.response_array[9] = 0x0A;
-		ans.response_size = 10;
-		return ans;
-	}
+	//Testing purposes, reading from register 600 for 2 registers will return 1000 and 5000 for 600 and 601 respectively.
+	//HoldingRegister[600] = 0x03E8;
+	//HoldingRegister[601] = 0x1388;
 
 	ans.response_size = 0;
 	temp_buf = *RTS_code; //Needs to be *RTS_code when using DMA-mode
