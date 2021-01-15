@@ -56,10 +56,13 @@
 							<tool id="ilg.gnuarmeclipse.managedbuild.cross.tool.c.compiler.2132901529" name="Cross ARM C Compiler" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.c.compiler">
 								<option id="ilg.gnuarmeclipse.managedbuild.cross.option.c.compiler.include.paths.1638257854" name="Include paths (-I)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.c.compiler.include.paths" useByScannerDiscovery="false" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${FX3_INSTALL_PATH}/fw_lib/${FX3SDKVERSION}/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;C:\Users\soren\Workspace\BScProjectVaerksSensorInterfacing\Dependencies\libmodbus\win32&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;C:\Users\soren\Workspace\BScProjectVaerksSensorInterfacing\Dependencies\libmodbus&quot;"/>
 								</option>
 								<option id="ilg.gnuarmeclipse.managedbuild.cross.option.c.compiler.defs.591090420" name="Defined symbols (-D)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.c.compiler.defs" useByScannerDiscovery="false" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="__CYU3P_TX__=1"/>
 								</option>
+								<option id="ilg.gnuarmeclipse.managedbuild.cross.option.c.compiler.include.files.599845667" name="Include files (-include)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.c.compiler.include.files" useByScannerDiscovery="false" valueType="includeFiles"/>
 								<inputType id="ilg.gnuarmeclipse.managedbuild.cross.tool.c.compiler.input.1924002698" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.c.compiler.input"/>
 							</tool>
 							<tool id="ilg.gnuarmeclipse.managedbuild.cross.tool.cpp.compiler.1376932643" name="Cross ARM C++ Compiler" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.cpp.compiler"/>
@@ -514,5 +517,18 @@
 		</scannerConfigBuildInfo>
 	</storageModule>
 	<storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
-	<storageModule moduleId="refreshScope"/>
+	<storageModule moduleId="refreshScope" versionNumber="2">
+		<configuration configurationName="Release">
+			<resource resourceType="PROJECT" workspacePath="/BScProjectVaerksSensorInterfacing"/>
+		</configuration>
+		<configuration configurationName="ProfileRelease">
+			<resource resourceType="PROJECT" workspacePath="/BScProjectVaerksSensorInterfacing"/>
+		</configuration>
+		<configuration configurationName="Debug">
+			<resource resourceType="PROJECT" workspacePath="/BScProjectVaerksSensorInterfacing"/>
+		</configuration>
+		<configuration configurationName="ProfileDebug">
+			<resource resourceType="PROJECT" workspacePath="/BScProjectVaerksSensorInterfacing"/>
+		</configuration>
+	</storageModule>
 </cproject>

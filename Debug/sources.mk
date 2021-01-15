@@ -17,6 +17,7 @@ SUBDIRS := \
 . \
 UART \
 SPI \
+Modbus \
 GPIO \
 CyFxFiles \
 Application \

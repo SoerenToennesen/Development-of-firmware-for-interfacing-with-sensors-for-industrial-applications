@@ -24,7 +24,7 @@ SPI/spi_config.o: ../SPI/spi_config.c \
  C:\Program\ Files\ (x86)\Cypress\EZ-USB\ FX3\ SDK\1.3\/fw_lib/1_3_4/inc/cyu3externcstart.h \
  C:\Program\ Files\ (x86)\Cypress\EZ-USB\ FX3\ SDK\1.3\/fw_lib/1_3_4/inc/cyu3externcend.h \
  ../SPI/../GPIO/gpio.h ../SPI/../Application/application.h \
- ../SPI/../UART/uart.h ../SPI/spi.h
+ ../SPI/../UART/uart.h ../SPI/../ADcmXL3021/adcmxl3021.h ../SPI/spi.h
 
 C:\Program\ Files\ (x86)\Cypress\EZ-USB\ FX3\ SDK\1.3\/fw_lib/1_3_4/inc/cyu3system.h:
 
@@ -79,5 +79,7 @@ C:\Program\ Files\ (x86)\Cypress\EZ-USB\ FX3\ SDK\1.3\/fw_lib/1_3_4/inc/cyu3exte
 ../SPI/../Application/application.h:
 
 ../SPI/../UART/uart.h:
+
+../SPI/../ADcmXL3021/adcmxl3021.h:
 
 ../SPI/spi.h:

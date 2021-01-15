@@ -12,6 +12,7 @@
 #include "../GPIO/gpio.h"
 #include "../SPI/spi.h"
 #include "../UART/uart.h"
+#include "../Modbus/modbus_self_implemented.h"
 
 
 
@@ -172,14 +173,35 @@ CyU3PReturnStatus_t start_sampling_RTS() {
 
 	// RECORD DATA IN RTS MODE ////////////////////////////// START
 
+//	CyU3PDmaBuffer_t buf_p;
+//	buf_p.buffer = glEp0Buffer;
+//	buf_p.status = 0;
+//	buf_p.size  = 0x70;
+//	buf_p.count = 0x70;
+
 	//Sending all 200 in the CyU3PSpiTransmitWords function, the execution time is much more immediate (seems to be similar to how the GUI does it)
-	int i;
+	int i, ii;
+	uint8_t  spi_data[200];
 	uint8_t data_for_sampling[200] = {0x00};
-	for (i = 0; i < 150; i++) { //150 is an arbitrary amount of times - I would like to do it 4096 times, but it seems to take much longer than the GUI in execution time
+	for (i = 0; i < 10; i++) { // This should be an infinite while-loop, but this is just for testing purposes so we can get on with the application.
 		CyU3PSpiSetSsnLine (CyFalse);
 		status = CyU3PSpiTransmitWords(data_for_sampling, 200);
+		status = CyU3PSpiReceiveWords (spi_data, 0xC8); //0xC8 for 200, data should be stored in rxData
 		CyU3PSpiSetSsnLine (CyTrue);
+		for (ii = 0; i < 100; i++) {
+			HoldingRegister[ii] = spi_data[ii];
+		}
+		CyU3PThreadSleep (1000);
 	}
+
+//	CyU3PSpiSetSsnLine (CyFalse);
+//	CyU3PSpiSetBlockXfer (0, 0x64);
+//	//status = CyU3PSpiTransmitWords(data_for_sampling, 200);
+//	status = CyU3PDmaChannelSetupRecvBuffer (&glSpiRxHandle, &buf_p);
+//	CyU3PDmaChannelWaitForCompletion (&glSpiRxHandle, CY_FX_USB_SPI_TIMEOUT);
+//	CyU3PSpiDisableBlockXfer (CyFalse, CyTrue);
+//	CyU3PSpiSetSsnLine (CyTrue);
+
 
 	/*
 	//Option 2 - using the "built-in" DMA functions to wait for responses
@@ -212,7 +234,7 @@ CyU3PReturnStatus_t start_sampling_RTS() {
 
 	// RECORD DATA IN RTS MODE //////////////////////////////// END
 
-	CyU3PDebugPrint (2, "End of RTS-mode sampling\r\n");
+	//CyU3PDebugPrint (2, "End of RTS-mode sampling\r\n");
 
 	return status;
 }
@@ -236,7 +258,7 @@ CyU3PReturnStatus_t start_sampling_MTC() {
 	CyU3PThreadSleep (1);
 	status = CyU3PSpiTransmitWords(data1, 2);
 	if (status != CY_U3P_SUCCESS) {
-		CyU3PDebugPrint (2, "SPI WRITE command failed1\r\n");
+		//CyU3PDebugPrint (2, "SPI WRITE command failed1\r\n");
 		CyU3PSpiSetSsnLine (CyTrue);
 		return status;
 	}
@@ -244,7 +266,7 @@ CyU3PReturnStatus_t start_sampling_MTC() {
 	CyU3PThreadSleep (1);
 	status = CyU3PSpiTransmitWords(data2, 2);
 	if (status != CY_U3P_SUCCESS) {
-		CyU3PDebugPrint (2, "SPI WRITE command failed2\r\n");
+		//CyU3PDebugPrint (2, "SPI WRITE command failed2\r\n");
 		CyU3PSpiSetSsnLine (CyTrue);
 		return status;
 	}
@@ -252,7 +274,7 @@ CyU3PReturnStatus_t start_sampling_MTC() {
 	CyU3PThreadSleep (1);
 	status = CyU3PSpiTransmitWords(data3, 2);
 	if (status != CY_U3P_SUCCESS) {
-		CyU3PDebugPrint (2, "SPI WRITE command failed3\r\n");
+		//CyU3PDebugPrint (2, "SPI WRITE command failed3\r\n");
 		CyU3PSpiSetSsnLine (CyTrue);
 		return status;
 	}
@@ -260,7 +282,7 @@ CyU3PReturnStatus_t start_sampling_MTC() {
 	CyU3PThreadSleep (1);
 	status = CyU3PSpiTransmitWords(data4, 2);
 	if (status != CY_U3P_SUCCESS) {
-		CyU3PDebugPrint (2, "SPI WRITE command failed3\r\n");
+		//CyU3PDebugPrint (2, "SPI WRITE command failed3\r\n");
 		CyU3PSpiSetSsnLine (CyTrue);
 		return status;
 	}
@@ -283,7 +305,7 @@ CyU3PReturnStatus_t start_sampling_MTC() {
 	CyU3PThreadSleep (1);
 	status = CyU3PSpiTransmitWords(data1, 2);
 	if (status != CY_U3P_SUCCESS) {
-		CyU3PDebugPrint (2, "SPI WRITE command failed1\r\n");
+		//CyU3PDebugPrint (2, "SPI WRITE command failed1\r\n");
 		CyU3PSpiSetSsnLine (CyTrue);
 		return status;
 	}
@@ -291,7 +313,7 @@ CyU3PReturnStatus_t start_sampling_MTC() {
 	CyU3PThreadSleep (1);
 	status = CyU3PSpiTransmitWords(data2, 2);
 	if (status != CY_U3P_SUCCESS) {
-		CyU3PDebugPrint (2, "SPI WRITE command failed2\r\n");
+		//CyU3PDebugPrint (2, "SPI WRITE command failed2\r\n");
 		CyU3PSpiSetSsnLine (CyTrue);
 		return status;
 	}
@@ -299,7 +321,7 @@ CyU3PReturnStatus_t start_sampling_MTC() {
 	CyU3PThreadSleep (1);
 	status = CyU3PSpiTransmitWords(data3, 2);
 	if (status != CY_U3P_SUCCESS) {
-		CyU3PDebugPrint (2, "SPI WRITE command failed3\r\n");
+		//CyU3PDebugPrint (2, "SPI WRITE command failed3\r\n");
 		CyU3PSpiSetSsnLine (CyTrue);
 		return status;
 	}
@@ -326,7 +348,6 @@ CyU3PReturnStatus_t start_sampling_MTC() {
 	CyU3PThreadSleep (1);
 	status = CyU3PSpiTransmitWords(data1, 2);
 	if (status != CY_U3P_SUCCESS) {
-		CyU3PDebugPrint (2, "SPI WRITE command failed1\r\n");
 		CyU3PSpiSetSsnLine (CyTrue);
 		return status;
 	}
@@ -334,7 +355,6 @@ CyU3PReturnStatus_t start_sampling_MTC() {
 	CyU3PThreadSleep (1);
 	status = CyU3PSpiTransmitWords(data2, 2);
 	if (status != CY_U3P_SUCCESS) {
-		CyU3PDebugPrint (2, "SPI WRITE command failed2\r\n");
 		CyU3PSpiSetSsnLine (CyTrue);
 		return status;
 	}
@@ -342,7 +362,6 @@ CyU3PReturnStatus_t start_sampling_MTC() {
 	CyU3PThreadSleep (1);
 	status = CyU3PSpiTransmitWords(data3, 2);
 	if (status != CY_U3P_SUCCESS) {
-		CyU3PDebugPrint (2, "SPI WRITE command failed3\r\n");
 		CyU3PSpiSetSsnLine (CyTrue);
 		return status;
 	}
@@ -350,7 +369,6 @@ CyU3PReturnStatus_t start_sampling_MTC() {
 	CyU3PThreadSleep (1);
 	status = CyU3PSpiTransmitWords(data4, 2);
 	if (status != CY_U3P_SUCCESS) {
-		CyU3PDebugPrint (2, "SPI WRITE command failed3\r\n");
 		CyU3PSpiSetSsnLine (CyTrue);
 		return status;
 	}
@@ -369,7 +387,6 @@ CyU3PReturnStatus_t start_sampling_MTC() {
 	CyU3PThreadSleep (1);
 	status = CyU3PSpiTransmitWords(data1, 2);
 	if (status != CY_U3P_SUCCESS) {
-		CyU3PDebugPrint (2, "SPI WRITE command failed1\r\n");
 		CyU3PSpiSetSsnLine (CyTrue);
 		return status;
 	}
@@ -377,7 +394,6 @@ CyU3PReturnStatus_t start_sampling_MTC() {
 	CyU3PThreadSleep (1);
 	status = CyU3PSpiTransmitWords(data2, 2);
 	if (status != CY_U3P_SUCCESS) {
-		CyU3PDebugPrint (2, "SPI WRITE command failed2\r\n");
 		CyU3PSpiSetSsnLine (CyTrue);
 		return status;
 	}
@@ -385,7 +401,6 @@ CyU3PReturnStatus_t start_sampling_MTC() {
 	CyU3PThreadSleep (1);
 	status = CyU3PSpiTransmitWords(data3, 2);
 	if (status != CY_U3P_SUCCESS) {
-		CyU3PDebugPrint (2, "SPI WRITE command failed3\r\n");
 		CyU3PSpiSetSsnLine (CyTrue);
 		return status;
 	}
@@ -393,7 +408,6 @@ CyU3PReturnStatus_t start_sampling_MTC() {
 	CyU3PThreadSleep (1);
 	status = CyU3PSpiTransmitWords(data4, 2);
 	if (status != CY_U3P_SUCCESS) {
-		CyU3PDebugPrint (2, "SPI WRITE command failed3\r\n");
 		CyU3PSpiSetSsnLine (CyTrue);
 		return status;
 	}
@@ -412,7 +426,6 @@ CyU3PReturnStatus_t start_sampling_MTC() {
 	CyU3PThreadSleep (1);
 	status = CyU3PSpiTransmitWords(data1, 2);
 	if (status != CY_U3P_SUCCESS) {
-		CyU3PDebugPrint (2, "SPI WRITE command failed1\r\n");
 		CyU3PSpiSetSsnLine (CyTrue);
 		return status;
 	}
@@ -420,7 +433,6 @@ CyU3PReturnStatus_t start_sampling_MTC() {
 	CyU3PThreadSleep (1);
 	status = CyU3PSpiTransmitWords(data2, 2);
 	if (status != CY_U3P_SUCCESS) {
-		CyU3PDebugPrint (2, "SPI WRITE command failed2\r\n");
 		CyU3PSpiSetSsnLine (CyTrue);
 		return status;
 	}
@@ -428,7 +440,6 @@ CyU3PReturnStatus_t start_sampling_MTC() {
 	CyU3PThreadSleep (1);
 	status = CyU3PSpiTransmitWords(data3, 2);
 	if (status != CY_U3P_SUCCESS) {
-		CyU3PDebugPrint (2, "SPI WRITE command failed3\r\n");
 		CyU3PSpiSetSsnLine (CyTrue);
 		return status;
 	}
@@ -436,7 +447,6 @@ CyU3PReturnStatus_t start_sampling_MTC() {
 	/*CyU3PThreadSleep (1);
 	status = CyU3PSpiTransmitWords(data4, 2);
 	if (status != CY_U3P_SUCCESS) {
-		CyU3PDebugPrint (2, "SPI WRITE command failed3\r\n");
 		CyU3PSpiSetSsnLine (CyTrue);
 		return status;
 	}*/
@@ -452,7 +462,6 @@ CyU3PReturnStatus_t start_sampling_MTC() {
 	data_min1[1] = 0x80;
 	status = CyU3PSpiTransmitWords(data_min1, 2);
 	if (status != CY_U3P_SUCCESS) {
-		CyU3PDebugPrint (2, "SPI WRITE command failed3\r\n");
 		CyU3PSpiSetSsnLine (CyTrue);
 		return status;
 	}
@@ -472,7 +481,6 @@ CyU3PReturnStatus_t start_sampling_MTC() {
 		CyU3PThreadSleep (0.1);
 		status = CyU3PSpiTransmitWords(data, 2);
 		if (status != CY_U3P_SUCCESS) {
-			CyU3PDebugPrint (2, "SPI WRITE command failed3\r\n");
 			CyU3PSpiSetSsnLine (CyTrue);
 			return status;
 		}
@@ -485,7 +493,6 @@ CyU3PReturnStatus_t start_sampling_MTC() {
 	data_min2[1] = 0x00;
 	status = CyU3PSpiTransmitWords(data_min2, 2);
 	if (status != CY_U3P_SUCCESS) {
-		CyU3PDebugPrint (2, "SPI WRITE command failed3\r\n");
 		CyU3PSpiSetSsnLine (CyTrue);
 		return status;
 	}
@@ -494,7 +501,7 @@ CyU3PReturnStatus_t start_sampling_MTC() {
 
 	// ----------------END SAMPLE HERE---------------
 
-	CyU3PDebugPrint (2, "End of sampling\r\n");
+	//CyU3PDebugPrint (2, "End of sampling\r\n");
 	return status;
 
 }
@@ -518,7 +525,6 @@ CyU3PReturnStatus_t turnOnOrOffADcmXL3021() {
 	status = CyU3PSpiTransmitWords(data1, 2);
 	CyU3PSpiSetSsnLine (CyTrue);
 	if (status != CY_U3P_SUCCESS) {
-		CyU3PDebugPrint (2, "SPI WRITE command failed1\r\n");
 		return status;
 	}
 
@@ -527,7 +533,6 @@ CyU3PReturnStatus_t turnOnOrOffADcmXL3021() {
 	status = CyU3PSpiTransmitWords(data2, 2);
 	CyU3PSpiSetSsnLine (CyTrue);
 	if (status != CY_U3P_SUCCESS) {
-		CyU3PDebugPrint (2, "SPI WRITE command failed2\r\n");
 		return status;
 	}
 
@@ -536,7 +541,6 @@ CyU3PReturnStatus_t turnOnOrOffADcmXL3021() {
 	status = CyU3PSpiTransmitWords(data3, 2);
 	CyU3PSpiSetSsnLine (CyTrue);
 	if (status != CY_U3P_SUCCESS) {
-		CyU3PDebugPrint (2, "SPI WRITE command failed3\r\n");
 		return status;
 	}
 

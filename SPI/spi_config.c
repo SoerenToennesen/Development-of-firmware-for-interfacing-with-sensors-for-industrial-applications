@@ -13,6 +13,7 @@
 #include "../GPIO/gpio.h"
 #include "../Application/application.h"
 #include "../UART/uart.h"
+#include "../ADcmXL3021/adcmxl3021.h"
 #include "spi.h"
 
 #define NULL ((void *)0)

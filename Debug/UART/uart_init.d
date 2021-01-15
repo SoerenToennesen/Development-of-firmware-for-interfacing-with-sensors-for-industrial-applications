@@ -24,7 +24,7 @@ UART/uart_init.o: ../UART/uart_init.c \
  C:\Program\ Files\ (x86)\Cypress\EZ-USB\ FX3\ SDK\1.3\/fw_lib/1_3_4/inc/cyu3externcstart.h \
  C:\Program\ Files\ (x86)\Cypress\EZ-USB\ FX3\ SDK\1.3\/fw_lib/1_3_4/inc/cyu3externcend.h \
  ../UART/../GPIO/gpio.h ../UART/../Application/application.h \
- ../UART/../SPI/spi.h
+ ../UART/../SPI/spi.h ../UART/../ADcmXL3021/adcmxl3021.h
 
 C:\Program\ Files\ (x86)\Cypress\EZ-USB\ FX3\ SDK\1.3\/fw_lib/1_3_4/inc/cyu3system.h:
 
@@ -79,3 +79,5 @@ C:\Program\ Files\ (x86)\Cypress\EZ-USB\ FX3\ SDK\1.3\/fw_lib/1_3_4/inc/cyu3exte
 ../UART/../Application/application.h:
 
 ../UART/../SPI/spi.h:
+
+../UART/../ADcmXL3021/adcmxl3021.h:

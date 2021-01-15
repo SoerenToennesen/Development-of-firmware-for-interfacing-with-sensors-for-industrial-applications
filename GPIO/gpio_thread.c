@@ -7,6 +7,7 @@
 #include "../SPI/spi.h"
 #include "../Application/application.h"
 #include "../UART/uart.h"
+#include "../ADcmXL3021/adcmxl3021.h"
 
 #define CY_FX_GPIOAPP_GPIO_HIGH_EVENT    (1 << 0)   /* GPIO high event */
 #define CY_FX_GPIOAPP_GPIO_LOW_EVENT     (1 << 1)   /* GPIO low event */
@@ -25,7 +26,7 @@ void GpioOutputThread_Entry (uint32_t input) {
         apiRetStatus = CyU3PGpioSetValue (5, CyTrue);
         if (apiRetStatus != CY_U3P_SUCCESS) {
             /* Error handling */
-            CyU3PDebugPrint (4, "CyU3PGpioSetValue failed, error code = %d\n", apiRetStatus);
+            //CyU3PDebugPrint (4, "CyU3PGpioSetValue failed, error code = %d\n", apiRetStatus);
             for (;;) {}
         }
 
@@ -35,7 +36,7 @@ void GpioOutputThread_Entry (uint32_t input) {
         apiRetStatus = CyU3PGpioSetValue (5, CyFalse);
         if (apiRetStatus != CY_U3P_SUCCESS) {
             /* Error handling */
-            CyU3PDebugPrint (4, "CyU3PGpioSetValue failed, error code = %d\n", apiRetStatus);
+            //CyU3PDebugPrint (4, "CyU3PGpioSetValue failed, error code = %d\n", apiRetStatus);
             for (;;) {}
         }
 
@@ -61,12 +62,12 @@ void GpioInputThread_Entry (uint32_t input) {
         	if (eventFlag & CY_FX_GPIOAPP_GPIO_HIGH_EVENT)
             {
                 /* Print the status of the pin */
-                CyU3PDebugPrint (4, "GPIO 45 is set to high\r\n");
+                //CyU3PDebugPrint (4, "GPIO 45 is set to high\r\n");
             }
             else
             {
                 /* Print the status of the pin */
-                CyU3PDebugPrint (4, "GPIO 45 is set to low\r\n");
+                //CyU3PDebugPrint (4, "GPIO 45 is set to low\r\n");
             }
         }
     }

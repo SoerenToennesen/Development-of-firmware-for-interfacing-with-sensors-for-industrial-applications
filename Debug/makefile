@@ -10,6 +10,7 @@ RM := cs-rm -rf
 -include sources.mk
 -include UART/subdir.mk
 -include SPI/subdir.mk
+-include Modbus/subdir.mk
 -include GPIO/subdir.mk
 -include CyFxFiles/subdir.mk
 -include Application/subdir.mk

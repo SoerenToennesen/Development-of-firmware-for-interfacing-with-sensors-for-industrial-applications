@@ -13,6 +13,7 @@
 #include "../GPIO/gpio.h"
 #include "../Application/application.h"
 #include "../UART/uart.h"
+#include "../ADcmXL3021/adcmxl3021.h"
 #include "spi.h"
 
 
@@ -20,7 +21,7 @@ uint8_t glEp0Buffer[4096] __attribute__ ((aligned (32)));
 
 
 
-CyBool_t glIsApplnActive = CyFalse;
+//CyBool_t glIsApplnActive = CyFalse;
 const uint8_t glFirmwareID[32] __attribute__ ((aligned (32))) = { 'F', 'X', '3', ' ', 'S', 'P', 'I', '\0' };
 CyU3PDmaChannel glSpiTxHandle;   /* SPI Tx channel handle */
 CyU3PDmaChannel glSpiRxHandle;   /* SPI Rx channel handle */

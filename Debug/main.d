@@ -25,7 +25,8 @@ main.o: ../main.c \
  C:\Program\ Files\ (x86)\Cypress\EZ-USB\ FX3\ SDK\1.3\/fw_lib/1_3_4/inc/cyu3externcend.h \
  C:\Program\ Files\ (x86)\Cypress\EZ-USB\ FX3\ SDK\1.3\/fw_lib/1_3_4/inc/cyu3gpio.h \
  C:\Program\ Files\ (x86)\Cypress\EZ-USB\ FX3\ SDK\1.3\/fw_lib/1_3_4/inc/cyu3system.h \
- ../GPIO/gpio.h ../Application/application.h ../SPI/spi.h ../UART/uart.h
+ ../GPIO/gpio.h ../Application/application.h ../SPI/spi.h ../UART/uart.h \
+ ../ADcmXL3021/adcmxl3021.h
 
 C:\Program\ Files\ (x86)\Cypress\EZ-USB\ FX3\ SDK\1.3\/fw_lib/1_3_4/inc/cyu3system.h:
 
@@ -86,3 +87,5 @@ C:\Program\ Files\ (x86)\Cypress\EZ-USB\ FX3\ SDK\1.3\/fw_lib/1_3_4/inc/cyu3syst
 ../SPI/spi.h:
 
 ../UART/uart.h:
+
+../ADcmXL3021/adcmxl3021.h:

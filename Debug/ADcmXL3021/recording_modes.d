@@ -24,7 +24,8 @@ ADcmXL3021/recording_modes.o: ../ADcmXL3021/recording_modes.c \
  C:\Program\ Files\ (x86)\Cypress\EZ-USB\ FX3\ SDK\1.3\/fw_lib/1_3_4/inc/cyu3externcstart.h \
  C:\Program\ Files\ (x86)\Cypress\EZ-USB\ FX3\ SDK\1.3\/fw_lib/1_3_4/inc/cyu3externcend.h \
  ../ADcmXL3021/../GPIO/gpio.h ../ADcmXL3021/../SPI/spi.h \
- ../ADcmXL3021/../UART/uart.h
+ ../ADcmXL3021/../UART/uart.h \
+ ../ADcmXL3021/../Modbus/modbus_self_implemented.h
 
 C:\Program\ Files\ (x86)\Cypress\EZ-USB\ FX3\ SDK\1.3\/fw_lib/1_3_4/inc/cyu3system.h:
 
@@ -79,3 +80,5 @@ C:\Program\ Files\ (x86)\Cypress\EZ-USB\ FX3\ SDK\1.3\/fw_lib/1_3_4/inc/cyu3exte
 ../ADcmXL3021/../SPI/spi.h:
 
 ../ADcmXL3021/../UART/uart.h:
+
+../ADcmXL3021/../Modbus/modbus_self_implemented.h:

@@ -6,6 +6,7 @@
 #include "../SPI/spi.h"
 #include "../Application/application.h"
 #include "../UART/uart.h"
+#include "../ADcmXL3021/adcmxl3021.h"
 
 #define CY_FX_GPIOAPP_GPIO_HIGH_EVENT    (1 << 0)   /* GPIO high event */
 #define CY_FX_GPIOAPP_GPIO_LOW_EVENT     (1 << 1)   /* GPIO low event */
@@ -47,7 +48,7 @@ void CyFxGpioInit (void) {
     apiRetStatus = CyU3PGpioInit(&gpioClock, CyFxGpioIntrCb);
     if (apiRetStatus != 0) {
         /* Error Handling */
-        CyU3PDebugPrint (4, "CyU3PGpioInit failed, error code = %d\n", apiRetStatus);
+        //CyU3PDebugPrint (4, "CyU3PGpioInit failed, error code = %d\n", apiRetStatus);
         for (;;) {}
     }
 
@@ -60,7 +61,7 @@ void CyFxGpioInit (void) {
     apiRetStatus = CyU3PGpioSetSimpleConfig(45, &gpioConfig);
     if (apiRetStatus != CY_U3P_SUCCESS) {
         /* Error handling */
-        CyU3PDebugPrint (4, "CyU3PGpioSetSimpleConfig failed, error code = %d\n", apiRetStatus);
+        //CyU3PDebugPrint (4, "CyU3PGpioSetSimpleConfig failed, error code = %d\n", apiRetStatus);
         for (;;) {}
 
     }
@@ -75,7 +76,7 @@ void CyFxGpioInit (void) {
     apiRetStatus = CyU3PDeviceGpioOverride (5, CyTrue);
     if (apiRetStatus != 0) {
         /* Error Handling */
-        CyU3PDebugPrint (4, "CyU3PDeviceGpioOverride failed, error code = %d\n", apiRetStatus);
+        //CyU3PDebugPrint (4, "CyU3PDeviceGpioOverride failed, error code = %d\n", apiRetStatus);
         for (;;) {}
     }
 
@@ -88,7 +89,7 @@ void CyFxGpioInit (void) {
     apiRetStatus = CyU3PGpioSetSimpleConfig(5, &gpioConfig);
     if (apiRetStatus != CY_U3P_SUCCESS) {
         /* Error handling */
-        CyU3PDebugPrint (4, "CyU3PGpioSetSimpleConfig failed, error code = %d\n", apiRetStatus);
+        //CyU3PDebugPrint (4, "CyU3PGpioSetSimpleConfig failed, error code = %d\n", apiRetStatus);
         for (;;) {}
     }
 }

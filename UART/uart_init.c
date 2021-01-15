@@ -13,6 +13,7 @@
 #include "../GPIO/gpio.h"
 #include "../Application/application.h"
 #include "../SPI/spi.h"
+#include "../ADcmXL3021/adcmxl3021.h"
 
 
 #define NULL ((void *)0)
@@ -36,8 +37,8 @@ CyU3PReturnStatus_t CyFxDebugInit (void) {
     uartConfig.parity   = CY_U3P_UART_NO_PARITY;
     uartConfig.txEnable = CyTrue;
     uartConfig.rxEnable = CyTrue;
-    uartConfig.flowCtrl = CyFalse;
-    uartConfig.isDma    = CyTrue;
+    uartConfig.flowCtrl = CyTrue; //previously false
+    uartConfig.isDma    = CyTrue; //Block-based transfer.
     status = CyU3PUartSetConfig (&uartConfig, NULL);
     if (status != CY_U3P_SUCCESS)
     {
@@ -51,8 +52,18 @@ CyU3PReturnStatus_t CyFxDebugInit (void) {
         return status;
     }
 
+    // Sets DMA for infinite recieve bytes
+    status = CyU3PUartRxSetBlockXfer (0xFFFFFFFF);
+	if (status != CY_U3P_SUCCESS)
+	{
+		return status;
+	}
+
+
     /* Start the debug module for printing log messages. */
-    status = CyU3PDebugInit (CY_U3P_LPP_SOCKET_UART_CONS, 8);
+    //status = CyU3PDebugInit (CY_U3P_LPP_SOCKET_UART_CONS, 8);
+
+    //CyU3PDmaChannelGetBuffer();
 
     return status;
 }

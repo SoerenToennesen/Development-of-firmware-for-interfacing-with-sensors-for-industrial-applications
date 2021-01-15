@@ -22,7 +22,8 @@ GPIO/gpio_init.o: ../GPIO/gpio_init.c \
  C:\Program\ Files\ (x86)\Cypress\EZ-USB\ FX3\ SDK\1.3\/fw_lib/1_3_4/inc/cyu3lpp.h \
  C:\Program\ Files\ (x86)\Cypress\EZ-USB\ FX3\ SDK\1.3\/fw_lib/1_3_4/inc/cyu3spi.h \
  C:\Program\ Files\ (x86)\Cypress\EZ-USB\ FX3\ SDK\1.3\/fw_lib/1_3_4/inc/cyu3uart.h \
- ../GPIO/../Application/application.h ../GPIO/../UART/uart.h
+ ../GPIO/../Application/application.h ../GPIO/../UART/uart.h \
+ ../GPIO/../ADcmXL3021/adcmxl3021.h
 
 C:\Program\ Files\ (x86)\Cypress\EZ-USB\ FX3\ SDK\1.3\/fw_lib/1_3_4/inc/cyu3gpio.h:
 
@@ -73,3 +74,5 @@ C:\Program\ Files\ (x86)\Cypress\EZ-USB\ FX3\ SDK\1.3\/fw_lib/1_3_4/inc/cyu3uart
 ../GPIO/../Application/application.h:
 
 ../GPIO/../UART/uart.h:
+
+../GPIO/../ADcmXL3021/adcmxl3021.h:

@@ -47,6 +47,7 @@
 #include "Application/application.h"
 #include "SPI/spi.h"
 #include "UART/uart.h"
+#include "ADcmXL3021/adcmxl3021.h"
 
 
 // Main function
@@ -80,7 +81,10 @@ int main (void) {
     io_cfg.useI2S    = CyFalse;
     io_cfg.useSpi    = CyTrue;
     io_cfg.lppMode   = CY_U3P_IO_MATRIX_LPP_DEFAULT;
-    /* No GPIOs are enabled. */
+    /* GPIO 45 is used as input pin. GPIO 21 is also used but cannot
+         * be selected here as it is part of the GPIF IOs (CTL4). Since
+         * this IO is not used, it can be overridden to become a GPIO by
+         * invoking the CyU3PDeviceGpioOverride call. */
     io_cfg.gpioSimpleEn[0]  = 0;
     io_cfg.gpioSimpleEn[1]  = (1 << (45 - 32));
     io_cfg.gpioComplexEn[0] = 0;
