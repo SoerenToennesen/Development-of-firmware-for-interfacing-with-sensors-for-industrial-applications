@@ -15,6 +15,7 @@ extern CyBool_t glIsApplnActive;
 extern uint16_t glSpiPageSize;
 extern const uint8_t glFirmwareID[32] __attribute__ ((aligned (32)));
 extern uint8_t glEp0Buffer[4096] __attribute__ ((aligned (32)));
+extern uint8_t glEp0Buffer2[4096] __attribute__ ((aligned (32)));
 
 
 

@@ -18,6 +18,7 @@
 
 
 uint8_t glEp0Buffer[4096] __attribute__ ((aligned (32)));
+uint8_t glEp0Buffer2[4096] __attribute__ ((aligned (32)));
 
 
 

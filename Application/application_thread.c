@@ -54,8 +54,10 @@ void AppThread_Entry (uint32_t input) {
     if (status != CY_U3P_SUCCESS) while(1);
 
     //turnOnOrOffADcmXL3021();
-    //start_sampling_MTC();
-    start_sampling_RTS();
+    //start_sampling_RTS();
+    start_sampling_MTC();
+    //start_sampling_MFFT();
+    //start_sampling_AFFT();
 
 
 
