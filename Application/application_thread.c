@@ -53,38 +53,11 @@ void AppThread_Entry (uint32_t input) {
     status = CyFxUsbSpiInit ();
     if (status != CY_U3P_SUCCESS) while(1);
 
-    //turnOnOrOffADcmXL3021();
-    //start_sampling_RTS();
-    start_sampling_MTC();
-    //start_sampling_MFFT();
-    //start_sampling_AFFT();
-
-
-
-//	uint8_t random_data[6]; uint8_t random_data2[6];
-//	random_data[0] = 0; random_data[1] = 5; random_data[2] = 9; random_data[3] = 2; random_data[4] = 13; random_data[5] = 11;
-//	random_data2[0] = 5; random_data2[1] = 4; random_data2[2] = 3; random_data2[3] = 2; random_data2[4] = 1; random_data2[5] = 0;
-//	size_t n = sizeof(random_data)/sizeof(random_data[0]);
-//	size_t n2 = sizeof(random_data2)/sizeof(random_data2[0]);
-//	int k;
-//	int i;
-//    for (;;) {
-//    	if (k % 2 == 0) {
-//    		for (i = 0; i < n; i++) {
-//				//char toPrint = random_data[i] + '0';
-//				//CyU3PDebugPrint (2, " %x \r\n", toPrint);
-//
-//			}
-//    	} else {
-//    		for (i = 0; i < n2; i++) {
-//				//char toPrint = random_data2[i];
-//				//CyU3PDebugPrint (2, " %x \r\n", toPrint);
-//
-//			}
-//    	}
-//		k++;
-//		CyU3PThreadSleep (2500);
-//    }
+    //turnOnOrOffADcmXL3021(); //Currently, this runs forever, turning the ADcmXL3021 on and off again.
+    //start_sampling_RTS(); //This runs forever but only writes to the holding registers once. If you want to configure it such that it writes continously, you would have to put the data collection into a while loop.
+    //start_sampling_MTC(); //This runs once and only writes to the holding registers once. If you want to configure it such that it writes continously, you would have to put invoking data collection and the data collection into a while loop.
+    //start_sampling_MFFT(); //This runs once and only writes to the holding registers once. If you want to configure it such that it writes continously, you would have to put invoking data collection and the data collection into a while loop.
+    start_sampling_AFFT(); //This runs forever and writes to the holding registers continously.
 }
 
 

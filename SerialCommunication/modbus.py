@@ -1,4 +1,6 @@
 
+#This is just a test python script for when implementign modbus
+
 from pymodbus.client.sync import ModbusSerialClient as ModbusClient
 #from pymodbus.register_read_message import ReadInputRegisterResponse
 

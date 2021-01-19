@@ -8,6 +8,62 @@ from pymodbus.pdu import ModbusRequest
 from pymodbus.client.sync import ModbusSerialClient as ModbusClient
 from pymodbus.transaction import ModbusRtuFramer
 
+
+from pymodbus.client.sync import ModbusSerialClient
+
+client = ModbusSerialClient(
+    method='rtu',
+    port='COM4',
+    baudrate=9600,
+    timeout=1,
+    parity='N',
+    stopbits=1,
+    bytesize=8
+)
+connection = client.connect()
+print("Connected = " + str(connection))
+
+x = 0
+while x < 20:
+    x=x+1
+    try:
+        res  = client.read_holding_registers(address=1,count=2,unit=1) # start_address, count, slave_id
+        
+        if not res.isError():
+            print(res.registers)
+        else:
+            print("")
+    except:
+        print("Found an error")
+
+#res  = client.read_holding_registers(address=1,count=2,unit=1) # start_address, count, slave_id
+#print(res.registers)
+#print(res)
+
+
+
+'''
+if client.connect():  # Trying for connect to Modbus Server/Slave
+    #Reading from a holding register with the below content.
+    
+    print("connected")
+    
+    res = client.read_holding_registers(address=1, count=1, unit=1)
+    if not res.isError():
+        print(res.registers)
+    else:
+        print(res)
+else:
+    print('Cannot connect to the Modbus Server/Slave')
+'''
+
+
+
+
+
+
+
+'''
 client = ModbusClient(method = 'rtu', port='com4', baudrate=9600, parity = 'O', timeout=1)
 connection = client.connect()
 print(connection) # returns true, but cannot have the below "serialport" open as well...
@@ -15,7 +71,7 @@ registers  = client.read_holding_registers(0,100,unit=1) # start_address, count,
 print (registers.registers)
 
 #write = client.write_register(1,425,unit=1) # address = 1, value to set = 425, slave ID = 1
-
+'''
 
 '''
 

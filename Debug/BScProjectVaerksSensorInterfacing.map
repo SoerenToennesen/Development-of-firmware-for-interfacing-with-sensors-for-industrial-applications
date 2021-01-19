@@ -1035,11 +1035,11 @@ Discarded input sections
  .data          0x00000000        0x0 ./ADcmXL3021/recording_modes.o
  .bss           0x00000000        0x0 ./ADcmXL3021/recording_modes.o
  .text.start_sampling_RTS
-                0x00000000      0x56c ./ADcmXL3021/recording_modes.o
+                0x00000000      0x4fc ./ADcmXL3021/recording_modes.o
+ .text.start_sampling_MTC
+                0x00000000      0xc04 ./ADcmXL3021/recording_modes.o
  .text.start_sampling_MFFT
-                0x00000000      0xaa0 ./ADcmXL3021/recording_modes.o
- .text.start_sampling_AFFT
-                0x00000000     0x14dc ./ADcmXL3021/recording_modes.o
+                0x00000000      0xc68 ./ADcmXL3021/recording_modes.o
  .text.turnOnOrOffADcmXL3021
                 0x00000000      0x114 ./ADcmXL3021/recording_modes.o
  .debug_macro   0x00000000      0x826 ./ADcmXL3021/recording_modes.o
@@ -11738,7 +11738,7 @@ END GROUP
  .text.__stub   0x00002590       0x98 linker stubs
                 0x00002628                . = ALIGN (0x4)
 
-.text           0x40003000     0x3c80
+.text           0x40003000     0x4640
  *(.text*)
  .text.CyFxUartLpDmaCallback
                 0x40003000      0x164 ./UART/uart.o
@@ -11824,1992 +11824,1993 @@ END GROUP
  .text.CyFxApplicationDefine
                 0x400051d4      0x18c ./Application/application_thread.o
                 0x400051d4                CyFxApplicationDefine
- .text.start_sampling_MTC
-                0x40005360      0xc8c ./ADcmXL3021/recording_modes.o
-                0x40005360                start_sampling_MTC
- .text.main     0x40005fec       0xfc ./main.o
-                0x40005fec                main
- .text          0x400060e8       0x50 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_system_return.o)
-                0x400060e8                _tx_thread_system_return
- .text          0x40006138       0x74 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_schedule.o)
-                0x40006138                _tx_thread_schedule
- .text          0x400061ac       0xf0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_timer_interrupt.o)
-                0x400061ac                _tx_timer_interrupt
- .text          0x4000629c       0x3c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_initialize_low_level.o)
-                0x4000629c                _tx_initialize_low_level
- .text          0x400062d8       0x78 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_stack_build.o)
-                0x400062d8                _tx_thread_stack_build
- .text          0x40006350       0xf0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\ARM GCC\/arm-none-eabi/lib\libc.a(lib_a-memcpy-stub.o)
-                0x40006350                memcpy
- .text          0x40006440      0x114 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\ARM GCC\/lib/gcc/arm-none-eabi/4.8.1\libgcc.a(_udivsi3.o)
-                0x40006440                __aeabi_uidiv
-                0x40006440                __udivsi3
-                0x40006534                __aeabi_uidivmod
- .text          0x40006554      0x148 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\ARM GCC\/lib/gcc/arm-none-eabi/4.8.1\libgcc.a(_divsi3.o)
-                0x40006554                __divsi3
-                0x40006554                __aeabi_idiv
-                0x4000667c                __aeabi_idivmod
- .text          0x4000669c        0x4 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\ARM GCC\/lib/gcc/arm-none-eabi/4.8.1\libgcc.a(_dvmd_tls.o)
-                0x4000669c                __aeabi_idiv0
-                0x4000669c                __aeabi_ldiv0
+ .text.start_sampling_AFFT
+                0x40005360     0x163c ./ADcmXL3021/recording_modes.o
+                0x40005360                start_sampling_AFFT
+ .text.main     0x4000699c       0xfc ./main.o
+                0x4000699c                main
+ .text          0x40006a98       0x50 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_system_return.o)
+                0x40006a98                _tx_thread_system_return
+ .text          0x40006ae8       0x74 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_schedule.o)
+                0x40006ae8                _tx_thread_schedule
+ .text          0x40006b5c       0xf0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_timer_interrupt.o)
+                0x40006b5c                _tx_timer_interrupt
+ .text          0x40006c4c       0x3c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_initialize_low_level.o)
+                0x40006c4c                _tx_initialize_low_level
+ .text          0x40006c88       0x78 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_stack_build.o)
+                0x40006c88                _tx_thread_stack_build
+ .text          0x40006d00       0xf0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\ARM GCC\/arm-none-eabi/lib\libc.a(lib_a-memcpy-stub.o)
+                0x40006d00                memcpy
+ .text          0x40006df0      0x114 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\ARM GCC\/lib/gcc/arm-none-eabi/4.8.1\libgcc.a(_udivsi3.o)
+                0x40006df0                __aeabi_uidiv
+                0x40006df0                __udivsi3
+                0x40006ee4                __aeabi_uidivmod
+ .text          0x40006f04      0x148 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\ARM GCC\/lib/gcc/arm-none-eabi/4.8.1\libgcc.a(_divsi3.o)
+                0x40006f04                __divsi3
+                0x40006f04                __aeabi_idiv
+                0x4000702c                __aeabi_idivmod
+ .text          0x4000704c        0x4 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\ARM GCC\/lib/gcc/arm-none-eabi/4.8.1\libgcc.a(_dvmd_tls.o)
+                0x4000704c                __aeabi_idiv0
+                0x4000704c                __aeabi_ldiv0
  *(.rodata*)
+ *fill*         0x40007050       0x10 
  .rodata.glFirmwareID
-                0x400066a0       0x20 ./SPI/spi_init.o
-                0x400066a0                glFirmwareID
+                0x40007060       0x20 ./SPI/spi_init.o
+                0x40007060                glFirmwareID
  .rodata.CyFxUSB30DeviceDscr
-                0x400066c0       0x20 ./CyFxFiles/cyfxusbenumdscr.o
-                0x400066c0                CyFxUSB30DeviceDscr
+                0x40007080       0x20 ./CyFxFiles/cyfxusbenumdscr.o
+                0x40007080                CyFxUSB30DeviceDscr
  .rodata.CyFxUSB20DeviceDscr
-                0x400066e0       0x20 ./CyFxFiles/cyfxusbenumdscr.o
-                0x400066e0                CyFxUSB20DeviceDscr
+                0x400070a0       0x20 ./CyFxFiles/cyfxusbenumdscr.o
+                0x400070a0                CyFxUSB20DeviceDscr
  .rodata.CyFxUSBBOSDscr
-                0x40006700       0x20 ./CyFxFiles/cyfxusbenumdscr.o
-                0x40006700                CyFxUSBBOSDscr
+                0x400070c0       0x20 ./CyFxFiles/cyfxusbenumdscr.o
+                0x400070c0                CyFxUSBBOSDscr
  .rodata.CyFxUSBDeviceQualDscr
-                0x40006720       0x20 ./CyFxFiles/cyfxusbenumdscr.o
-                0x40006720                CyFxUSBDeviceQualDscr
+                0x400070e0       0x20 ./CyFxFiles/cyfxusbenumdscr.o
+                0x400070e0                CyFxUSBDeviceQualDscr
  .rodata.CyFxUSBSSConfigDscr
-                0x40006740       0x20 ./CyFxFiles/cyfxusbenumdscr.o
-                0x40006740                CyFxUSBSSConfigDscr
+                0x40007100       0x20 ./CyFxFiles/cyfxusbenumdscr.o
+                0x40007100                CyFxUSBSSConfigDscr
  .rodata.CyFxUSBHSConfigDscr
-                0x40006760       0x20 ./CyFxFiles/cyfxusbenumdscr.o
-                0x40006760                CyFxUSBHSConfigDscr
+                0x40007120       0x20 ./CyFxFiles/cyfxusbenumdscr.o
+                0x40007120                CyFxUSBHSConfigDscr
  .rodata.CyFxUSBFSConfigDscr
-                0x40006780       0x20 ./CyFxFiles/cyfxusbenumdscr.o
-                0x40006780                CyFxUSBFSConfigDscr
+                0x40007140       0x20 ./CyFxFiles/cyfxusbenumdscr.o
+                0x40007140                CyFxUSBFSConfigDscr
  .rodata.CyFxUSBStringLangIDDscr
-                0x400067a0       0x20 ./CyFxFiles/cyfxusbenumdscr.o
-                0x400067a0                CyFxUSBStringLangIDDscr
+                0x40007160       0x20 ./CyFxFiles/cyfxusbenumdscr.o
+                0x40007160                CyFxUSBStringLangIDDscr
  .rodata.CyFxUSBManufactureDscr
-                0x400067c0       0x20 ./CyFxFiles/cyfxusbenumdscr.o
-                0x400067c0                CyFxUSBManufactureDscr
+                0x40007180       0x20 ./CyFxFiles/cyfxusbenumdscr.o
+                0x40007180                CyFxUSBManufactureDscr
  .rodata.CyFxUSBProductDscr
-                0x400067e0       0x20 ./CyFxFiles/cyfxusbenumdscr.o
-                0x400067e0                CyFxUSBProductDscr
- .rodata        0x40006800       0x44 ./Application/application_thread.o
+                0x400071a0       0x20 ./CyFxFiles/cyfxusbenumdscr.o
+                0x400071a0                CyFxUSBProductDscr
+ .rodata        0x400071c0       0x44 ./Application/application_thread.o
  *(.constdata)
- .constdata     0x40006844       0x48 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usbpp.o)
-                0x40006844                glUsbMaxPacketSize
-                0x40006868                glUsb3CompliancePatterns
- .constdata     0x4000688c      0x108 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(fx3_dev.o)
+ .constdata     0x40007204       0x48 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usbpp.o)
+                0x40007204                glUsbMaxPacketSize
+                0x40007228                glUsb3CompliancePatterns
+ .constdata     0x4000724c      0x108 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(fx3_dev.o)
  *(.emb_text)
- .emb_text      0x40006994      0x2a0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3mmu.o)
-                0x40006994                CyU3PSysDisableDCache
-                0x400069ac                CyU3PSysDisableCacheMMU
-                0x400069d8                CyU3PSysCleanDCache
-                0x400069e4                CyU3PSysClearDCache
-                0x400069f0                CyU3PSysFlushIRegion
-                0x40006a28                CyU3PSysClearDRegion
-                0x40006a60                CyU3PSysCleanDRegion
-                0x40006a98                CyU3PSysFlushDRegion
-                0x40006ad0                CyU3PSysCacheIRegion
-                0x40006b74                CyU3PSysCacheDRegion
-                0x40006c14                CyU3PSysUnlockICache
-                0x40006c24                CyU3PSysUnlockDCache
+ .emb_text      0x40007354      0x2a0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3mmu.o)
+                0x40007354                CyU3PSysDisableDCache
+                0x4000736c                CyU3PSysDisableCacheMMU
+                0x40007398                CyU3PSysCleanDCache
+                0x400073a4                CyU3PSysClearDCache
+                0x400073b0                CyU3PSysFlushIRegion
+                0x400073e8                CyU3PSysClearDRegion
+                0x40007420                CyU3PSysCleanDRegion
+                0x40007458                CyU3PSysFlushDRegion
+                0x40007490                CyU3PSysCacheIRegion
+                0x40007534                CyU3PSysCacheDRegion
+                0x400075d4                CyU3PSysUnlockICache
+                0x400075e4                CyU3PSysUnlockDCache
  *(CYU3P_EXCEPTION_VECTORS)
  CYU3P_EXCEPTION_VECTORS
-                0x40006c34       0x4c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3entry_armcc.o)
-                0x40006c34                __cyu3p_exception_vectors
-                0x40006c54                __CyU3PSWIHandler
-                0x40006c58                __CyU3PReservedHandler
-                0x40006c5c                __CyU3PFiqHandler
-                0x40006c60                CyU3PJumpToAddress
-                0x40006c80                _etext = .
-                0x40006c80                . = ALIGN (0x4)
+                0x400075f4       0x4c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3entry_armcc.o)
+                0x400075f4                __cyu3p_exception_vectors
+                0x40007614                __CyU3PSWIHandler
+                0x40007618                __CyU3PReservedHandler
+                0x4000761c                __CyU3PFiqHandler
+                0x40007620                CyU3PJumpToAddress
+                0x40007640                _etext = .
+                0x40007640                . = ALIGN (0x4)
 
-.glue_7         0x40006c80        0x0
+.glue_7         0x40007640        0x0
  .glue_7        0x00000000        0x0 linker stubs
 
-.glue_7t        0x40006c80        0x0
+.glue_7t        0x40007640        0x0
  .glue_7t       0x00000000        0x0 linker stubs
 
-.vfp11_veneer   0x40006c80        0x0
+.vfp11_veneer   0x40007640        0x0
  .vfp11_veneer  0x00000000        0x0 linker stubs
 
-.v4_bx          0x40006c80        0x0
+.v4_bx          0x40007640        0x0
  .v4_bx         0x00000000        0x0 linker stubs
 
-.iplt           0x40006c80        0x0
+.iplt           0x40007640        0x0
  .iplt          0x00000000        0x0 ./UART/uart.o
 
 i.CyU3PGpioGetValue
-                0x40006c80       0xe4
+                0x40007640       0xe4
  i.CyU3PGpioGetValue
-                0x40006c80       0xe4 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3lpp.a(cyu3gpio.o)
-                0x40006c80                CyU3PGpioGetValue
+                0x40007640       0xe4 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3lpp.a(cyu3gpio.o)
+                0x40007640                CyU3PGpioGetValue
 
 i.CyU3PGpioInit
-                0x40006d64      0x14c
+                0x40007724      0x14c
  i.CyU3PGpioInit
-                0x40006d64      0x14c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3lpp.a(cyu3gpio.o)
-                0x40006d64                CyU3PGpioInit
+                0x40007724      0x14c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3lpp.a(cyu3gpio.o)
+                0x40007724                CyU3PGpioInit
 
 i.CyU3PGpioInt_Handler
-                0x40006eb0      0x1c4
+                0x40007870      0x1c4
  i.CyU3PGpioInt_Handler
-                0x40006eb0      0x1c4 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3lpp.a(cyu3gpio.o)
-                0x40006eb0                CyU3PGpioInt_Handler
+                0x40007870      0x1c4 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3lpp.a(cyu3gpio.o)
+                0x40007870                CyU3PGpioInt_Handler
 
 i.CyU3PGpioSetSimpleConfig
-                0x40007074       0xf0
+                0x40007a34       0xf0
  i.CyU3PGpioSetSimpleConfig
-                0x40007074       0xf0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3lpp.a(cyu3gpio.o)
-                0x40007074                CyU3PGpioSetSimpleConfig
+                0x40007a34       0xf0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3lpp.a(cyu3gpio.o)
+                0x40007a34                CyU3PGpioSetSimpleConfig
 
 i.CyU3PGpioSetValue
-                0x40007164       0xd8
+                0x40007b24       0xd8
  i.CyU3PGpioSetValue
-                0x40007164       0xd8 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3lpp.a(cyu3gpio.o)
-                0x40007164                CyU3PGpioSetValue
+                0x40007b24       0xd8 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3lpp.a(cyu3gpio.o)
+                0x40007b24                CyU3PGpioSetValue
 
 i.CyU3PRegisterGpioCallBack
-                0x4000723c       0x10
+                0x40007bfc       0x10
  i.CyU3PRegisterGpioCallBack
-                0x4000723c       0x10 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3lpp.a(cyu3gpio.o)
-                0x4000723c                CyU3PRegisterGpioCallBack
+                0x40007bfc       0x10 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3lpp.a(cyu3gpio.o)
+                0x40007bfc                CyU3PRegisterGpioCallBack
 
 i.CyU3PRegisterUartCallBack
-                0x4000724c       0x10
+                0x40007c0c       0x10
  i.CyU3PRegisterUartCallBack
-                0x4000724c       0x10 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3lpp.a(cyu3uart.o)
-                0x4000724c                CyU3PRegisterUartCallBack
+                0x40007c0c       0x10 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3lpp.a(cyu3uart.o)
+                0x40007c0c                CyU3PRegisterUartCallBack
 
 i.CyU3PUartGetLock
-                0x4000725c       0x5c
+                0x40007c1c       0x5c
  i.CyU3PUartGetLock
-                0x4000725c       0x5c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3lpp.a(cyu3uart.o)
+                0x40007c1c       0x5c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3lpp.a(cyu3uart.o)
 
 i.CyU3PUartInit
-                0x400072b8       0xe8
+                0x40007c78       0xe8
  i.CyU3PUartInit
-                0x400072b8       0xe8 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3lpp.a(cyu3uart.o)
-                0x400072b8                CyU3PUartInit
+                0x40007c78       0xe8 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3lpp.a(cyu3uart.o)
+                0x40007c78                CyU3PUartInit
 
 i.CyU3PUartInt_ThreadHandler
-                0x400073a0       0xd4
+                0x40007d60       0xd4
  i.CyU3PUartInt_ThreadHandler
-                0x400073a0       0xd4 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3lpp.a(cyu3uart.o)
-                0x400073a0                CyU3PUartInt_ThreadHandler
+                0x40007d60       0xd4 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3lpp.a(cyu3uart.o)
+                0x40007d60                CyU3PUartInt_ThreadHandler
 
 i.CyU3PUartReleaseLock
-                0x40007474       0x44
+                0x40007e34       0x44
  i.CyU3PUartReleaseLock
-                0x40007474       0x44 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3lpp.a(cyu3uart.o)
+                0x40007e34       0x44 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3lpp.a(cyu3uart.o)
 
 i.CyU3PUartRxSetBlockXfer
-                0x400074b8       0x50
+                0x40007e78       0x50
  i.CyU3PUartRxSetBlockXfer
-                0x400074b8       0x50 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3lpp.a(cyu3uart.o)
-                0x400074b8                CyU3PUartRxSetBlockXfer
+                0x40007e78       0x50 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3lpp.a(cyu3uart.o)
+                0x40007e78                CyU3PUartRxSetBlockXfer
 
 i.CyU3PUartSetConfig
-                0x40007508      0x218
+                0x40007ec8      0x218
  i.CyU3PUartSetConfig
-                0x40007508      0x218 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3lpp.a(cyu3uart.o)
-                0x40007508                CyU3PUartSetConfig
+                0x40007ec8      0x218 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3lpp.a(cyu3uart.o)
+                0x40007ec8                CyU3PUartSetConfig
 
 i.CyU3PUartTxSetBlockXfer
-                0x40007720       0x50
+                0x400080e0       0x50
  i.CyU3PUartTxSetBlockXfer
-                0x40007720       0x50 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3lpp.a(cyu3uart.o)
-                0x40007720                CyU3PUartTxSetBlockXfer
+                0x400080e0       0x50 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3lpp.a(cyu3uart.o)
+                0x400080e0                CyU3PUartTxSetBlockXfer
 
 i.CyU3PRegisterSpiCallBack
-                0x40007770       0x10
+                0x40008130       0x10
  i.CyU3PRegisterSpiCallBack
-                0x40007770       0x10 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3lpp.a(cyu3spi.o)
-                0x40007770                CyU3PRegisterSpiCallBack
+                0x40008130       0x10 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3lpp.a(cyu3spi.o)
+                0x40008130                CyU3PRegisterSpiCallBack
 
 i.CyU3PSpiGetLock
-                0x40007780       0x5c
+                0x40008140       0x5c
  i.CyU3PSpiGetLock
-                0x40007780       0x5c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3lpp.a(cyu3spi.o)
+                0x40008140       0x5c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3lpp.a(cyu3spi.o)
 
-i.CyU3PSpiInit  0x400077dc      0x108
+i.CyU3PSpiInit  0x4000819c      0x108
  i.CyU3PSpiInit
-                0x400077dc      0x108 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3lpp.a(cyu3spi.o)
-                0x400077dc                CyU3PSpiInit
+                0x4000819c      0x108 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3lpp.a(cyu3spi.o)
+                0x4000819c                CyU3PSpiInit
 
 i.CyU3PSpiInt_ThreadHandler
-                0x400078e4       0xb8
+                0x400082a4       0xb8
  i.CyU3PSpiInt_ThreadHandler
-                0x400078e4       0xb8 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3lpp.a(cyu3spi.o)
-                0x400078e4                CyU3PSpiInt_ThreadHandler
+                0x400082a4       0xb8 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3lpp.a(cyu3spi.o)
+                0x400082a4                CyU3PSpiInt_ThreadHandler
 
 i.CyU3PSpiReceiveWords
-                0x4000799c      0x264
+                0x4000835c      0x264
  i.CyU3PSpiReceiveWords
-                0x4000799c      0x264 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3lpp.a(cyu3spi.o)
-                0x4000799c                CyU3PSpiReceiveWords
+                0x4000835c      0x264 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3lpp.a(cyu3spi.o)
+                0x4000835c                CyU3PSpiReceiveWords
 
 i.CyU3PSpiReleaseLock
-                0x40007c00       0x44
+                0x400085c0       0x44
  i.CyU3PSpiReleaseLock
-                0x40007c00       0x44 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3lpp.a(cyu3spi.o)
+                0x400085c0       0x44 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3lpp.a(cyu3spi.o)
 
 i.CyU3PSpiResetFifo
-                0x40007c44       0xe4
+                0x40008604       0xe4
  i.CyU3PSpiResetFifo
-                0x40007c44       0xe4 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3lpp.a(cyu3spi.o)
+                0x40008604       0xe4 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3lpp.a(cyu3spi.o)
 
 i.CyU3PSpiSetConfig
-                0x40007d28      0x29c
+                0x400086e8      0x29c
  i.CyU3PSpiSetConfig
-                0x40007d28      0x29c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3lpp.a(cyu3spi.o)
-                0x40007d28                CyU3PSpiSetConfig
+                0x400086e8      0x29c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3lpp.a(cyu3spi.o)
+                0x400086e8                CyU3PSpiSetConfig
 
 i.CyU3PSpiSetSsnLine
-                0x40007fc4       0x88
+                0x40008984       0x88
  i.CyU3PSpiSetSsnLine
-                0x40007fc4       0x88 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3lpp.a(cyu3spi.o)
-                0x40007fc4                CyU3PSpiSetSsnLine
+                0x40008984       0x88 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3lpp.a(cyu3spi.o)
+                0x40008984                CyU3PSpiSetSsnLine
 
 i.CyU3PSpiTransferWords
-                0x4000804c      0x39c
+                0x40008a0c      0x39c
  i.CyU3PSpiTransferWords
-                0x4000804c      0x39c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3lpp.a(cyu3spi.o)
-                0x4000804c                CyU3PSpiTransferWords
+                0x40008a0c      0x39c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3lpp.a(cyu3spi.o)
+                0x40008a0c                CyU3PSpiTransferWords
 
 i.CyU3PSpiTransmitWords
-                0x400083e8      0x250
+                0x40008da8      0x250
  i.CyU3PSpiTransmitWords
-                0x400083e8      0x250 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3lpp.a(cyu3spi.o)
-                0x400083e8                CyU3PSpiTransmitWords
+                0x40008da8      0x250 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3lpp.a(cyu3spi.o)
+                0x40008da8                CyU3PSpiTransmitWords
 
 i.CyU3PDmaChannelAcquireLock
-                0x40008638       0x84
+                0x40008ff8       0x84
  i.CyU3PDmaChannelAcquireLock
-                0x40008638       0x84 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3channel.o)
+                0x40008ff8       0x84 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3channel.o)
 
 i.CyU3PDmaChannelCacheControl
-                0x400086bc       0x54
+                0x4000907c       0x54
  i.CyU3PDmaChannelCacheControl
-                0x400086bc       0x54 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3channel.o)
-                0x400086bc                CyU3PDmaChannelCacheControl
+                0x4000907c       0x54 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3channel.o)
+                0x4000907c                CyU3PDmaChannelCacheControl
 
 i.CyU3PDmaChannelCommitBuffer
-                0x40008710      0x2f0
+                0x400090d0      0x2f0
  i.CyU3PDmaChannelCommitBuffer
-                0x40008710      0x2f0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3channel.o)
-                0x40008710                CyU3PDmaChannelCommitBuffer
+                0x400090d0      0x2f0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3channel.o)
+                0x400090d0                CyU3PDmaChannelCommitBuffer
 
 i.CyU3PDmaChannelConfigure_TypeAuto
-                0x40008a00       0x98
+                0x400093c0       0x98
  i.CyU3PDmaChannelConfigure_TypeAuto
-                0x40008a00       0x98 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3channel.o)
+                0x400093c0       0x98 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3channel.o)
 
 i.CyU3PDmaChannelConfigure_TypeManual
-                0x40008a98      0x26c
+                0x40009458      0x26c
  i.CyU3PDmaChannelConfigure_TypeManual
-                0x40008a98      0x26c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3channel.o)
+                0x40009458      0x26c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3channel.o)
 
 i.CyU3PDmaChannelCreate
-                0x40008d04      0x3f8
+                0x400096c4      0x3f8
  i.CyU3PDmaChannelCreate
-                0x40008d04      0x3f8 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3channel.o)
-                0x40008d04                CyU3PDmaChannelCreate
+                0x400096c4      0x3f8 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3channel.o)
+                0x400096c4                CyU3PDmaChannelCreate
 
 i.CyU3PDmaChannelDestroy
-                0x400090fc       0xb4
+                0x40009abc       0xb4
  i.CyU3PDmaChannelDestroy
-                0x400090fc       0xb4 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3channel.o)
-                0x400090fc                CyU3PDmaChannelDestroy
+                0x40009abc       0xb4 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3channel.o)
+                0x40009abc                CyU3PDmaChannelDestroy
 
 i.CyU3PDmaChannelDestroy_TypeAuto
-                0x400091b0       0xd4
+                0x40009b70       0xd4
  i.CyU3PDmaChannelDestroy_TypeAuto
-                0x400091b0       0xd4 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3channel.o)
+                0x40009b70       0xd4 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3channel.o)
 
 i.CyU3PDmaChannelDestroy_TypeManual
-                0x40009284      0x1b4
+                0x40009c44      0x1b4
  i.CyU3PDmaChannelDestroy_TypeManual
-                0x40009284      0x1b4 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3channel.o)
+                0x40009c44      0x1b4 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3channel.o)
 
 i.CyU3PDmaChannelDiscardBuffer
-                0x40009438      0x350
+                0x40009df8      0x350
  i.CyU3PDmaChannelDiscardBuffer
-                0x40009438      0x350 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3channel.o)
-                0x40009438                CyU3PDmaChannelDiscardBuffer
+                0x40009df8      0x350 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3channel.o)
+                0x40009df8                CyU3PDmaChannelDiscardBuffer
 
 i.CyU3PDmaChannelGetBuffer
-                0x40009788      0x334
+                0x4000a148      0x334
  i.CyU3PDmaChannelGetBuffer
-                0x40009788      0x334 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3channel.o)
-                0x40009788                CyU3PDmaChannelGetBuffer
+                0x4000a148      0x334 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3channel.o)
+                0x4000a148                CyU3PDmaChannelGetBuffer
 
 i.CyU3PDmaChannelReset
-                0x40009abc      0x120
+                0x4000a47c      0x120
  i.CyU3PDmaChannelReset
-                0x40009abc      0x120 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3channel.o)
-                0x40009abc                CyU3PDmaChannelReset
+                0x4000a47c      0x120 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3channel.o)
+                0x4000a47c                CyU3PDmaChannelReset
 
 i.CyU3PDmaChannelReset_TypeAuto
-                0x40009bdc       0x8c
+                0x4000a59c       0x8c
  i.CyU3PDmaChannelReset_TypeAuto
-                0x40009bdc       0x8c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3channel.o)
+                0x4000a59c       0x8c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3channel.o)
 
 i.CyU3PDmaChannelReset_TypeManual
-                0x40009c68       0xf8
+                0x4000a628       0xf8
  i.CyU3PDmaChannelReset_TypeManual
-                0x40009c68       0xf8 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3channel.o)
+                0x4000a628       0xf8 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3channel.o)
 
 i.CyU3PDmaChannelResumeUsbConsumer
-                0x40009d60       0x64
+                0x4000a720       0x64
  i.CyU3PDmaChannelResumeUsbConsumer
-                0x40009d60       0x64 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3channel.o)
-                0x40009d60                CyU3PDmaChannelResumeUsbConsumer
+                0x4000a720       0x64 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3channel.o)
+                0x4000a720                CyU3PDmaChannelResumeUsbConsumer
 
 i.CyU3PDmaChannelSendData
-                0x40009dc4      0x1b4
+                0x4000a784      0x1b4
  i.CyU3PDmaChannelSendData
-                0x40009dc4      0x1b4 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3channel.o)
-                0x40009dc4                CyU3PDmaChannelSendData
+                0x4000a784      0x1b4 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3channel.o)
+                0x4000a784                CyU3PDmaChannelSendData
 
 i.CyU3PDmaChannelSetWrapUp
-                0x40009f78       0x74
+                0x4000a938       0x74
  i.CyU3PDmaChannelSetWrapUp
-                0x40009f78       0x74 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3channel.o)
-                0x40009f78                CyU3PDmaChannelSetWrapUp
+                0x4000a938       0x74 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3channel.o)
+                0x4000a938                CyU3PDmaChannelSetWrapUp
 
 i.CyU3PDmaChannelSetXfer
-                0x40009fec       0xdc
+                0x4000a9ac       0xdc
  i.CyU3PDmaChannelSetXfer
-                0x40009fec       0xdc C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3channel.o)
-                0x40009fec                CyU3PDmaChannelSetXfer
+                0x4000a9ac       0xdc C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3channel.o)
+                0x4000a9ac                CyU3PDmaChannelSetXfer
 
 i.CyU3PDmaChannelSetXfer_TypeAuto
-                0x4000a0c8      0x1a0
+                0x4000aa88      0x1a0
  i.CyU3PDmaChannelSetXfer_TypeAuto
-                0x4000a0c8      0x1a0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3channel.o)
+                0x4000aa88      0x1a0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3channel.o)
 
 i.CyU3PDmaChannelSetXfer_TypeManual
-                0x4000a268      0x1ec
+                0x4000ac28      0x1ec
  i.CyU3PDmaChannelSetXfer_TypeManual
-                0x4000a268      0x1ec C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3channel.o)
+                0x4000ac28      0x1ec C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3channel.o)
 
 i.CyU3PDmaChannelSetupRecvBuffer
-                0x4000a454      0x220
+                0x4000ae14      0x220
  i.CyU3PDmaChannelSetupRecvBuffer
-                0x4000a454      0x220 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3channel.o)
-                0x4000a454                CyU3PDmaChannelSetupRecvBuffer
+                0x4000ae14      0x220 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3channel.o)
+                0x4000ae14                CyU3PDmaChannelSetupRecvBuffer
 
 i.CyU3PDmaChannelSuspendUsbConsumer
-                0x4000a674       0xec
+                0x4000b034       0xec
  i.CyU3PDmaChannelSuspendUsbConsumer
-                0x4000a674       0xec C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3channel.o)
-                0x4000a674                CyU3PDmaChannelSuspendUsbConsumer
+                0x4000b034       0xec C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3channel.o)
+                0x4000b034                CyU3PDmaChannelSuspendUsbConsumer
 
 i.CyU3PDmaChannelWaitForCompletion
-                0x4000a760      0x130
+                0x4000b120      0x130
  i.CyU3PDmaChannelWaitForCompletion
-                0x4000a760      0x130 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3channel.o)
-                0x4000a760                CyU3PDmaChannelWaitForCompletion
+                0x4000b120      0x130 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3channel.o)
+                0x4000b120                CyU3PDmaChannelWaitForCompletion
 
 i.CyU3PDmaChannelWaitForRecvBuffer
-                0x4000a890      0x1a4
+                0x4000b250      0x1a4
  i.CyU3PDmaChannelWaitForRecvBuffer
-                0x4000a890      0x1a4 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3channel.o)
-                0x4000a890                CyU3PDmaChannelWaitForRecvBuffer
+                0x4000b250      0x1a4 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3channel.o)
+                0x4000b250                CyU3PDmaChannelWaitForRecvBuffer
 
 i.CyU3PDmaConfigureSockets_TypeAuto
-                0x4000aa34      0x10c
+                0x4000b3f4      0x10c
  i.CyU3PDmaConfigureSockets_TypeAuto
-                0x4000aa34      0x10c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3channel.o)
+                0x4000b3f4      0x10c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3channel.o)
 
 i.CyU3PDmaConfigureSockets_TypeManual
-                0x4000ab40      0x114
+                0x4000b500      0x114
  i.CyU3PDmaConfigureSockets_TypeManual
-                0x4000ab40      0x114 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3channel.o)
+                0x4000b500      0x114 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3channel.o)
 
 i.CyU3PDmaDscrGetConfig
-                0x4000ac54       0x6c
+                0x4000b614       0x6c
  i.CyU3PDmaDscrGetConfig
-                0x4000ac54       0x6c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3descriptor.o)
-                0x4000ac54                CyU3PDmaDscrGetConfig
+                0x4000b614       0x6c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3descriptor.o)
+                0x4000b614                CyU3PDmaDscrGetConfig
 
 i.CyU3PDmaDscrSetConfig
-                0x4000acc0       0x98
+                0x4000b680       0x98
  i.CyU3PDmaDscrSetConfig
-                0x4000acc0       0x98 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3descriptor.o)
-                0x4000acc0                CyU3PDmaDscrSetConfig
+                0x4000b680       0x98 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3descriptor.o)
+                0x4000b680                CyU3PDmaDscrSetConfig
 
 i.CyU3PDevCheckDevStateStruct
-                0x4000ad58      0x150
+                0x4000b718      0x150
  i.CyU3PDevCheckDevStateStruct
-                0x4000ad58      0x150 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3device.o)
+                0x4000b718      0x150 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3device.o)
 
 i.CyU3PDeviceCacheControl
-                0x4000aea8       0x98
+                0x4000b868       0x98
  i.CyU3PDeviceCacheControl
-                0x4000aea8       0x98 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3device.o)
-                0x4000aea8                CyU3PDeviceCacheControl
+                0x4000b868       0x98 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3device.o)
+                0x4000b868                CyU3PDeviceCacheControl
 
 i.CyU3PDeviceInit
-                0x4000af40      0x490
+                0x4000b900      0x490
  i.CyU3PDeviceInit
-                0x4000af40      0x490 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3device.o)
-                0x4000af40                CyU3PDeviceInit
+                0x4000b900      0x490 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3device.o)
+                0x4000b900                CyU3PDeviceInit
 
 i.CyU3PSysSetupMMU
-                0x4000b3d0       0x2c
+                0x4000bd90       0x2c
  i.CyU3PSysSetupMMU
-                0x4000b3d0       0x2c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3device.o)
-                0x4000b3d0                CyU3PSysSetupMMU
+                0x4000bd90       0x2c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3device.o)
+                0x4000bd90                CyU3PSysSetupMMU
 
 i.CyU3PSysWatchDogConfigure
-                0x4000b3fc       0xf4
+                0x4000bdbc       0xf4
  i.CyU3PSysWatchDogConfigure
-                0x4000b3fc       0xf4 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3device.o)
-                0x4000b3fc                CyU3PSysWatchDogConfigure
+                0x4000bdbc       0xf4 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3device.o)
+                0x4000bdbc                CyU3PSysWatchDogConfigure
 
 i.CyU3PDmaApplicationDefine
-                0x4000b4f0       0xc0
+                0x4000beb0       0xc0
  i.CyU3PDmaApplicationDefine
-                0x4000b4f0       0xc0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3dma.o)
-                0x4000b4f0                CyU3PDmaApplicationDefine
+                0x4000beb0       0xc0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3dma.o)
+                0x4000beb0                CyU3PDmaApplicationDefine
 
 i.CyU3PDmaChannelHandleError
-                0x4000b5b0       0x9c
+                0x4000bf70       0x9c
  i.CyU3PDmaChannelHandleError
-                0x4000b5b0       0x9c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3dma.o)
+                0x4000bf70       0x9c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3dma.o)
 
 i.CyU3PDmaChannelIsValid
-                0x4000b64c       0x40
+                0x4000c00c       0x40
  i.CyU3PDmaChannelIsValid
-                0x4000b64c       0x40 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3dma.o)
-                0x4000b64c                CyU3PDmaChannelIsValid
+                0x4000c00c       0x40 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3dma.o)
+                0x4000c00c                CyU3PDmaChannelIsValid
 
-i.CyU3PDmaInit  0x4000b68c       0x9c
+i.CyU3PDmaInit  0x4000c04c       0x9c
  i.CyU3PDmaInit
-                0x4000b68c       0x9c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3dma.o)
-                0x4000b68c                CyU3PDmaInit
+                0x4000c04c       0x9c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3dma.o)
+                0x4000c04c                CyU3PDmaInit
 
 i.CyU3PDmaIntHandler_TypeAuto
-                0x4000b728      0x3c0
+                0x4000c0e8      0x3c0
  i.CyU3PDmaIntHandler_TypeAuto
-                0x4000b728      0x3c0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3dma.o)
+                0x4000c0e8      0x3c0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3dma.o)
 
 i.CyU3PDmaIntHandler_TypeManual
-                0x4000bae8      0x600
+                0x4000c4a8      0x600
  i.CyU3PDmaIntHandler_TypeManual
-                0x4000bae8      0x600 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3dma.o)
+                0x4000c4a8      0x600 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3dma.o)
 
 i.CyU3PDmaIntHandler_TypeManyToOne
-                0x4000c0e8      0x5ec
+                0x4000caa8      0x5ec
  i.CyU3PDmaIntHandler_TypeManyToOne
-                0x4000c0e8      0x5ec C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3dma.o)
+                0x4000caa8      0x5ec C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3dma.o)
 
 i.CyU3PDmaIntHandler_TypeOneToMany
-                0x4000c6d4      0x694
+                0x4000d094      0x694
  i.CyU3PDmaIntHandler_TypeOneToMany
-                0x4000c6d4      0x694 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3dma.o)
+                0x4000d094      0x694 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3dma.o)
 
 i.CyU3PDmaMsgSend
-                0x4000cd68       0x50
+                0x4000d728       0x50
  i.CyU3PDmaMsgSend
-                0x4000cd68       0x50 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3dma.o)
-                0x4000cd68                CyU3PDmaMsgSend
+                0x4000d728       0x50 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3dma.o)
+                0x4000d728                CyU3PDmaMsgSend
 
 i.CyU3PDmaMultiChannelHandleError
-                0x4000cdb8       0xf8
+                0x4000d778       0xf8
  i.CyU3PDmaMultiChannelHandleError
-                0x4000cdb8       0xf8 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3dma.o)
-                0x4000cdb8                CyU3PDmaMultiChannelHandleError
+                0x4000d778       0xf8 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3dma.o)
+                0x4000d778                CyU3PDmaMultiChannelHandleError
 
 i.CyU3PDmaMultiChannelIsValid
-                0x4000ceb0       0x40
+                0x4000d870       0x40
  i.CyU3PDmaMultiChannelIsValid
-                0x4000ceb0       0x40 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3dma.o)
-                0x4000ceb0                CyU3PDmaMultiChannelIsValid
+                0x4000d870       0x40 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3dma.o)
+                0x4000d870                CyU3PDmaMultiChannelIsValid
 
 i.CyU3PDmaThreadEntry
-                0x4000cef0      0x114
+                0x4000d8b0      0x114
  i.CyU3PDmaThreadEntry
-                0x4000cef0      0x114 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3dma.o)
-                0x4000cef0                CyU3PDmaThreadEntry
+                0x4000d8b0      0x114 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3dma.o)
+                0x4000d8b0                CyU3PDmaThreadEntry
 
 i.CyU3PDmaUsbInEpGetChannel
-                0x4000d004       0x3c
+                0x4000d9c4       0x3c
  i.CyU3PDmaUsbInEpGetChannel
-                0x4000d004       0x3c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3dma.o)
-                0x4000d004                CyU3PDmaUsbInEpGetChannel
+                0x4000d9c4       0x3c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3dma.o)
+                0x4000d9c4                CyU3PDmaUsbInEpGetChannel
 
 i.CyU3PDmaUsbInEpGetMultiChannel
-                0x4000d040       0x3c
+                0x4000da00       0x3c
  i.CyU3PDmaUsbInEpGetMultiChannel
-                0x4000d040       0x3c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3dma.o)
-                0x4000d040                CyU3PDmaUsbInEpGetMultiChannel
+                0x4000da00       0x3c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3dma.o)
+                0x4000da00                CyU3PDmaUsbInEpGetMultiChannel
 
 i.CyU3PDmaUsbSockSetAvlEn
-                0x4000d07c       0x70
+                0x4000da3c       0x70
  i.CyU3PDmaUsbSockSetAvlEn
-                0x4000d07c       0x70 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3dma.o)
-                0x4000d07c                CyU3PDmaUsbSockSetAvlEn
+                0x4000da3c       0x70 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3dma.o)
+                0x4000da3c                CyU3PDmaUsbSockSetAvlEn
 
 i.CyU3PDmaDscrChainCreate
-                0x4000d0ec      0x150
+                0x4000daac      0x150
  i.CyU3PDmaDscrChainCreate
-                0x4000d0ec      0x150 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3dscrpool.o)
-                0x4000d0ec                CyU3PDmaDscrChainCreate
+                0x4000daac      0x150 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3dscrpool.o)
+                0x4000daac                CyU3PDmaDscrChainCreate
 
 i.CyU3PDmaDscrChainDestroy
-                0x4000d23c       0x8c
+                0x4000dbfc       0x8c
  i.CyU3PDmaDscrChainDestroy
-                0x4000d23c       0x8c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3dscrpool.o)
-                0x4000d23c                CyU3PDmaDscrChainDestroy
+                0x4000dbfc       0x8c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3dscrpool.o)
+                0x4000dbfc                CyU3PDmaDscrChainDestroy
 
 i.CyU3PDmaDscrGet
-                0x4000d2c8       0xe0
+                0x4000dc88       0xe0
  i.CyU3PDmaDscrGet
-                0x4000d2c8       0xe0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3dscrpool.o)
-                0x4000d2c8                CyU3PDmaDscrGet
+                0x4000dc88       0xe0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3dscrpool.o)
+                0x4000dc88                CyU3PDmaDscrGet
 
 i.CyU3PDmaDscrGetFreeCount
-                0x4000d3a8       0x10
+                0x4000dd68       0x10
  i.CyU3PDmaDscrGetFreeCount
-                0x4000d3a8       0x10 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3dscrpool.o)
-                0x4000d3a8                CyU3PDmaDscrGetFreeCount
+                0x4000dd68       0x10 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3dscrpool.o)
+                0x4000dd68                CyU3PDmaDscrGetFreeCount
 
 i.CyU3PDmaDscrListCreate
-                0x4000d3b8       0x54
+                0x4000dd78       0x54
  i.CyU3PDmaDscrListCreate
-                0x4000d3b8       0x54 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3dscrpool.o)
-                0x4000d3b8                CyU3PDmaDscrListCreate
+                0x4000dd78       0x54 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3dscrpool.o)
+                0x4000dd78                CyU3PDmaDscrListCreate
 
 i.CyU3PDmaDscrPut
-                0x4000d40c       0x9c
+                0x4000ddcc       0x9c
  i.CyU3PDmaDscrPut
-                0x4000d40c       0x9c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3dscrpool.o)
-                0x4000d40c                CyU3PDmaDscrPut
+                0x4000ddcc       0x9c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3dscrpool.o)
+                0x4000ddcc                CyU3PDmaDscrPut
 
-FX3FWINIT       0x4000d4a8      0x100
-                0x4000d4a8                PROVIDE (__start_FX3FWINIT, .)
- FX3FWINIT      0x4000d4a8      0x100 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3entry_armcc.o)
-                0x4000d4a8                CyU3PSetupStackPtrs
-                0x4000d564                CyU3PFirmwareEntry
-                0x4000d5a8                PROVIDE (__stop_FX3FWINIT, .)
+FX3FWINIT       0x4000de68      0x100
+                0x4000de68                PROVIDE (__start_FX3FWINIT, .)
+ FX3FWINIT      0x4000de68      0x100 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3entry_armcc.o)
+                0x4000de68                CyU3PSetupStackPtrs
+                0x4000df24                CyU3PFirmwareEntry
+                0x4000df68                PROVIDE (__stop_FX3FWINIT, .)
 
 i.CyU3PDeviceConfigureIOMatrix
-                0x4000d5a8       0x38
+                0x4000df68       0x38
  i.CyU3PDeviceConfigureIOMatrix
-                0x4000d5a8       0x38 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3iocfg.o)
-                0x4000d5a8                CyU3PDeviceConfigureIOMatrix
+                0x4000df68       0x38 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3iocfg.o)
+                0x4000df68                CyU3PDeviceConfigureIOMatrix
 
 i.CyU3PDeviceGpioOverride
-                0x4000d5e0       0x34
+                0x4000dfa0       0x34
  i.CyU3PDeviceGpioOverride
-                0x4000d5e0       0x34 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3iocfg.o)
-                0x4000d5e0                CyU3PDeviceGpioOverride
+                0x4000dfa0       0x34 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3iocfg.o)
+                0x4000dfa0                CyU3PDeviceGpioOverride
 
 i.CyU3PIsGpioComplexIOConfigured
-                0x4000d614       0x18
+                0x4000dfd4       0x18
  i.CyU3PIsGpioComplexIOConfigured
-                0x4000d614       0x18 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3iocfg.o)
-                0x4000d614                CyU3PIsGpioComplexIOConfigured
+                0x4000dfd4       0x18 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3iocfg.o)
+                0x4000dfd4                CyU3PIsGpioComplexIOConfigured
 
 i.CyU3PIsGpioSimpleIOConfigured
-                0x4000d62c       0x18
+                0x4000dfec       0x18
  i.CyU3PIsGpioSimpleIOConfigured
-                0x4000d62c       0x18 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3iocfg.o)
-                0x4000d62c                CyU3PIsGpioSimpleIOConfigured
+                0x4000dfec       0x18 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3iocfg.o)
+                0x4000dfec                CyU3PIsGpioSimpleIOConfigured
 
 i.CyU3PIsGpioValid
-                0x4000d644       0x1c
+                0x4000e004       0x1c
  i.CyU3PIsGpioValid
-                0x4000d644       0x1c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3iocfg.o)
-                0x4000d644                CyU3PIsGpioValid
+                0x4000e004       0x1c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3iocfg.o)
+                0x4000e004                CyU3PIsGpioValid
 
 i.CyU3PIsLppIOConfigured
-                0x4000d660       0x84
+                0x4000e020       0x84
  i.CyU3PIsLppIOConfigured
-                0x4000d660       0x84 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3iocfg.o)
-                0x4000d660                CyU3PIsLppIOConfigured
+                0x4000e020       0x84 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3iocfg.o)
+                0x4000e020                CyU3PIsLppIOConfigured
 
 i.CyU3PGpioSetClock
-                0x4000d6e4       0xfc
+                0x4000e0a4       0xfc
  i.CyU3PGpioSetClock
-                0x4000d6e4       0xfc C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3lpp.o)
-                0x4000d6e4                CyU3PGpioSetClock
+                0x4000e0a4       0xfc C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3lpp.o)
+                0x4000e0a4                CyU3PGpioSetClock
 
 i.CyU3PLppApplicationDefine
-                0x4000d7e0       0x8c
+                0x4000e1a0       0x8c
  i.CyU3PLppApplicationDefine
-                0x4000d7e0       0x8c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3lpp.o)
-                0x4000d7e0                CyU3PLppApplicationDefine
+                0x4000e1a0       0x8c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3lpp.o)
+                0x4000e1a0                CyU3PLppApplicationDefine
 
 i.CyU3PLppEventSend
-                0x4000d86c       0x28
+                0x4000e22c       0x28
  i.CyU3PLppEventSend
-                0x4000d86c       0x28 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3lpp.o)
-                0x4000d86c                CyU3PLppEventSend
+                0x4000e22c       0x28 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3lpp.o)
+                0x4000e22c                CyU3PLppEventSend
 
 i.CyU3PLppGpioBlockIsOn
-                0x4000d894       0x10
+                0x4000e254       0x10
  i.CyU3PLppGpioBlockIsOn
-                0x4000d894       0x10 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3lpp.o)
-                0x4000d894                CyU3PLppGpioBlockIsOn
+                0x4000e254       0x10 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3lpp.o)
+                0x4000e254                CyU3PLppGpioBlockIsOn
 
-i.CyU3PLppInit  0x4000d8a4      0x1a0
+i.CyU3PLppInit  0x4000e264      0x1a0
  i.CyU3PLppInit
-                0x4000d8a4      0x1a0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3lpp.o)
-                0x4000d8a4                CyU3PLppInit
+                0x4000e264      0x1a0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3lpp.o)
+                0x4000e264                CyU3PLppInit
 
 i.CyU3PLppRestoreState
-                0x4000da44      0x128
+                0x4000e404      0x128
  i.CyU3PLppRestoreState
-                0x4000da44      0x128 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3lpp.o)
-                0x4000da44                CyU3PLppRestoreState
+                0x4000e404      0x128 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3lpp.o)
+                0x4000e404                CyU3PLppRestoreState
 
 i.CyU3PLppSocketInit
-                0x4000db6c       0x50
+                0x4000e52c       0x50
  i.CyU3PLppSocketInit
-                0x4000db6c       0x50 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3lpp.o)
+                0x4000e52c       0x50 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3lpp.o)
 
 i.CyU3PLppThreadEntry
-                0x4000dbbc      0x130
+                0x4000e57c      0x130
  i.CyU3PLppThreadEntry
-                0x4000dbbc      0x130 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3lpp.o)
-                0x4000dbbc                CyU3PLppThreadEntry
+                0x4000e57c      0x130 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3lpp.o)
+                0x4000e57c                CyU3PLppThreadEntry
 
 i.CyU3PSpiSetClock
-                0x4000dcec       0xb0
+                0x4000e6ac       0xb0
  i.CyU3PSpiSetClock
-                0x4000dcec       0xb0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3lpp.o)
-                0x4000dcec                CyU3PSpiSetClock
+                0x4000e6ac       0xb0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3lpp.o)
+                0x4000e6ac                CyU3PSpiSetClock
 
 i.CyU3PUartSetClock
-                0x4000dd9c       0xd8
+                0x4000e75c       0xd8
  i.CyU3PUartSetClock
-                0x4000dd9c       0xd8 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3lpp.o)
-                0x4000dd9c                CyU3PUartSetClock
+                0x4000e75c       0xd8 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3lpp.o)
+                0x4000e75c                CyU3PUartSetClock
 
 i.CyU3UpdateLppActiveInfo
-                0x4000de74       0x84
+                0x4000e834       0x84
  i.CyU3UpdateLppActiveInfo
-                0x4000de74       0x84 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3lpp.o)
+                0x4000e834       0x84 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3lpp.o)
 
 i.CyU3PInitPageTable
-                0x4000def8        0xc
+                0x4000e8b8        0xc
  i.CyU3PInitPageTable
-                0x4000def8        0xc C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3mmu.o)
-                0x4000def8                CyU3PInitPageTable
+                0x4000e8b8        0xc C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3mmu.o)
+                0x4000e8b8                CyU3PInitPageTable
 
 i.CyU3PSysBarrierSync
-                0x4000df04        0xc
+                0x4000e8c4        0xc
  i.CyU3PSysBarrierSync
-                0x4000df04        0xc C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3mmu.o)
-                0x4000df04                CyU3PSysBarrierSync
+                0x4000e8c4        0xc C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3mmu.o)
+                0x4000e8c4                CyU3PSysBarrierSync
 
 i.CyU3PSysDisableICache
-                0x4000df10       0x10
+                0x4000e8d0       0x10
  i.CyU3PSysDisableICache
-                0x4000df10       0x10 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3mmu.o)
-                0x4000df10                CyU3PSysDisableICache
+                0x4000e8d0       0x10 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3mmu.o)
+                0x4000e8d0                CyU3PSysDisableICache
 
 i.CyU3PSysEnableDCache
-                0x4000df20       0x10
+                0x4000e8e0       0x10
  i.CyU3PSysEnableDCache
-                0x4000df20       0x10 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3mmu.o)
-                0x4000df20                CyU3PSysEnableDCache
+                0x4000e8e0       0x10 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3mmu.o)
+                0x4000e8e0                CyU3PSysEnableDCache
 
 i.CyU3PSysEnableICache
-                0x4000df30       0x14
+                0x4000e8f0       0x14
  i.CyU3PSysEnableICache
-                0x4000df30       0x14 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3mmu.o)
-                0x4000df30                CyU3PSysEnableICache
+                0x4000e8f0       0x14 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3mmu.o)
+                0x4000e8f0                CyU3PSysEnableICache
 
 i.CyU3PSysEnableMMU
-                0x4000df44       0x10
+                0x4000e904       0x10
  i.CyU3PSysEnableMMU
-                0x4000df44       0x10 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3mmu.o)
-                0x4000df44                CyU3PSysEnableMMU
+                0x4000e904       0x10 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3mmu.o)
+                0x4000e904                CyU3PSysEnableMMU
 
 i.CyU3PSysFlushICache
-                0x4000df54        0xc
+                0x4000e914        0xc
  i.CyU3PSysFlushICache
-                0x4000df54        0xc C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3mmu.o)
-                0x4000df54                CyU3PSysFlushICache
+                0x4000e914        0xc C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3mmu.o)
+                0x4000e914                CyU3PSysFlushICache
 
 i.CyU3PSysInitTCMs
-                0x4000df60       0x14
+                0x4000e920       0x14
  i.CyU3PSysInitTCMs
-                0x4000df60       0x14 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3mmu.o)
-                0x4000df60                CyU3PSysInitTCMs
+                0x4000e920       0x14 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3mmu.o)
+                0x4000e920                CyU3PSysInitTCMs
 
 i.CyU3PSysLoadTLB
-                0x4000df74       0x3c
+                0x4000e934       0x3c
  i.CyU3PSysLoadTLB
-                0x4000df74       0x3c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3mmu.o)
-                0x4000df74                CyU3PSysLoadTLB
+                0x4000e934       0x3c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3mmu.o)
+                0x4000e934                CyU3PSysLoadTLB
 
 i.CyU3PSysLockTLBEntry
-                0x4000dfb0       0x28
+                0x4000e970       0x28
  i.CyU3PSysLockTLBEntry
-                0x4000dfb0       0x28 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3mmu.o)
-                0x4000dfb0                CyU3PSysLockTLBEntry
+                0x4000e970       0x28 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3mmu.o)
+                0x4000e970                CyU3PSysLockTLBEntry
 
 i.CyU3PDmaSocketDisable
-                0x4000dfd8       0x60
+                0x4000e998       0x60
  i.CyU3PDmaSocketDisable
-                0x4000dfd8       0x60 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3socket.o)
-                0x4000dfd8                CyU3PDmaSocketDisable
+                0x4000e998       0x60 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3socket.o)
+                0x4000e998                CyU3PDmaSocketDisable
 
 i.CyU3PDmaSocketGetConfig
-                0x4000e038       0xa0
+                0x4000e9f8       0xa0
  i.CyU3PDmaSocketGetConfig
-                0x4000e038       0xa0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3socket.o)
-                0x4000e038                CyU3PDmaSocketGetConfig
+                0x4000e9f8       0xa0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3socket.o)
+                0x4000e9f8                CyU3PDmaSocketGetConfig
 
 i.CyU3PDmaSocketIsValidConsumer
-                0x4000e0d8       0xe0
+                0x4000ea98       0xe0
  i.CyU3PDmaSocketIsValidConsumer
-                0x4000e0d8       0xe0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3socket.o)
-                0x4000e0d8                CyU3PDmaSocketIsValidConsumer
+                0x4000ea98       0xe0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3socket.o)
+                0x4000ea98                CyU3PDmaSocketIsValidConsumer
 
 i.CyU3PDmaSocketIsValidProducer
-                0x4000e1b8       0xe0
+                0x4000eb78       0xe0
  i.CyU3PDmaSocketIsValidProducer
-                0x4000e1b8       0xe0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3socket.o)
-                0x4000e1b8                CyU3PDmaSocketIsValidProducer
+                0x4000eb78       0xe0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3socket.o)
+                0x4000eb78                CyU3PDmaSocketIsValidProducer
 
 i.CyU3PDmaSocketSendEvent
-                0x4000e298       0x48
+                0x4000ec58       0x48
  i.CyU3PDmaSocketSendEvent
-                0x4000e298       0x48 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3socket.o)
-                0x4000e298                CyU3PDmaSocketSendEvent
+                0x4000ec58       0x48 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3socket.o)
+                0x4000ec58                CyU3PDmaSocketSendEvent
 
 i.CyU3PDmaSocketSetConfig
-                0x4000e2e0       0xac
+                0x4000eca0       0xac
  i.CyU3PDmaSocketSetConfig
-                0x4000e2e0       0xac C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3socket.o)
-                0x4000e2e0                CyU3PDmaSocketSetConfig
+                0x4000eca0       0xac C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3socket.o)
+                0x4000eca0                CyU3PDmaSocketSetConfig
 
 i.CyU3PDmaSocketSetWrapUp
-                0x4000e38c       0x44
+                0x4000ed4c       0x44
  i.CyU3PDmaSocketSetWrapUp
-                0x4000e38c       0x44 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3socket.o)
-                0x4000e38c                CyU3PDmaSocketSetWrapUp
+                0x4000ed4c       0x44 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3socket.o)
+                0x4000ed4c                CyU3PDmaSocketSetWrapUp
 
 i.CyU3PDmaSocketUpdateStatus
-                0x4000e3d0       0x74
+                0x4000ed90       0x74
  i.CyU3PDmaSocketUpdateStatus
-                0x4000e3d0       0x74 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3socket.o)
+                0x4000ed90       0x74 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3socket.o)
 
 i.CyU3PDmaUpdateSocketResume
-                0x4000e444       0xd4
+                0x4000ee04       0xd4
  i.CyU3PDmaUpdateSocketResume
-                0x4000e444       0xd4 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3socket.o)
-                0x4000e444                CyU3PDmaUpdateSocketResume
+                0x4000ee04       0xd4 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3socket.o)
+                0x4000ee04                CyU3PDmaUpdateSocketResume
 
 i.CyU3PDmaUpdateSocketSuspendOption
-                0x4000e518      0x164
+                0x4000eed8      0x164
  i.CyU3PDmaUpdateSocketSuspendOption
-                0x4000e518      0x164 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3socket.o)
-                0x4000e518                CyU3PDmaUpdateSocketSuspendOption
+                0x4000eed8      0x164 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3socket.o)
+                0x4000eed8                CyU3PDmaUpdateSocketSuspendOption
 
 i.CyU3PApplicationDefine
-                0x4000e67c       0xc8
+                0x4000f03c       0xc8
  i.CyU3PApplicationDefine
-                0x4000e67c       0xc8 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3system.o)
-                0x4000e67c                CyU3PApplicationDefine
+                0x4000f03c       0xc8 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3system.o)
+                0x4000f03c                CyU3PApplicationDefine
 
 i.CyU3PSysCheckBootState
-                0x4000e744       0xa0
+                0x4000f104       0xa0
  i.CyU3PSysCheckBootState
-                0x4000e744       0xa0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3system.o)
-                0x4000e744                CyU3PSysCheckBootState
+                0x4000f104       0xa0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3system.o)
+                0x4000f104                CyU3PSysCheckBootState
 
 i.CyU3PSysGetRegBkpAddr
-                0x4000e7e4       0x10
+                0x4000f1a4       0x10
  i.CyU3PSysGetRegBkpAddr
-                0x4000e7e4       0x10 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3system.o)
-                0x4000e7e4                CyU3PSysGetRegBkpAddr
+                0x4000f1a4       0x10 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3system.o)
+                0x4000f1a4                CyU3PSysGetRegBkpAddr
 
 i.CyU3PSysModuleInitCompleteEvt
-                0x4000e7f4       0x24
+                0x4000f1b4       0x24
  i.CyU3PSysModuleInitCompleteEvt
-                0x4000e7f4       0x24 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3system.o)
-                0x4000e7f4                CyU3PSysModuleInitCompleteEvt
+                0x4000f1b4       0x24 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3system.o)
+                0x4000f1b4                CyU3PSysModuleInitCompleteEvt
 
 i.CyU3PSysThreadEntry
-                0x4000e818       0x68
+                0x4000f1d8       0x68
  i.CyU3PSysThreadEntry
-                0x4000e818       0x68 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3system.o)
-                0x4000e818                CyU3PSysThreadEntry
+                0x4000f1d8       0x68 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3system.o)
+                0x4000f1d8                CyU3PSysThreadEntry
 
 i.CyU3PSystemRegisterDriver
-                0x4000e880        0x4
+                0x4000f240        0x4
  i.CyU3PSystemRegisterDriver
-                0x4000e880        0x4 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3system.o)
-                0x4000e880                CyU3PSystemRegisterDriver
+                0x4000f240        0x4 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3system.o)
+                0x4000f240                CyU3PSystemRegisterDriver
 
 i.CyU3PConnectState
-                0x4000e884      0x248
+                0x4000f244      0x248
  i.CyU3PConnectState
-                0x4000e884      0x248 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usb.o)
-                0x4000e884                CyU3PConnectState
+                0x4000f244      0x248 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usb.o)
+                0x4000f244                CyU3PConnectState
 
 i.CyU3POtgGetMode
-                0x4000eacc       0x10
+                0x4000f48c       0x10
  i.CyU3POtgGetMode
-                0x4000eacc       0x10 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usb.o)
-                0x4000eacc                CyU3POtgGetMode
+                0x4000f48c       0x10 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usb.o)
+                0x4000f48c                CyU3POtgGetMode
 
 i.CyU3POtgIsDeviceMode
-                0x4000eadc       0xcc
+                0x4000f49c       0xcc
  i.CyU3POtgIsDeviceMode
-                0x4000eadc       0xcc C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usb.o)
-                0x4000eadc                CyU3POtgIsDeviceMode
+                0x4000f49c       0xcc C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usb.o)
+                0x4000f49c                CyU3POtgIsDeviceMode
 
 i.CyU3POtgIsHostMode
-                0x4000eba8       0xc0
+                0x4000f568       0xc0
  i.CyU3POtgIsHostMode
-                0x4000eba8       0xc0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usb.o)
-                0x4000eba8                CyU3POtgIsHostMode
+                0x4000f568       0xc0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usb.o)
+                0x4000f568                CyU3POtgIsHostMode
 
 i.CyU3POtgIsStarted
-                0x4000ec68       0x10
+                0x4000f628       0x10
  i.CyU3POtgIsStarted
-                0x4000ec68       0x10 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usb.o)
-                0x4000ec68                CyU3POtgIsStarted
+                0x4000f628       0x10 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usb.o)
+                0x4000f628                CyU3POtgIsStarted
 
 i.CyU3PSetUsbCoreClock
-                0x4000ec78       0x84
+                0x4000f638       0x84
  i.CyU3PSetUsbCoreClock
-                0x4000ec78       0x84 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usb.o)
-                0x4000ec78                CyU3PSetUsbCoreClock
+                0x4000f638       0x84 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usb.o)
+                0x4000f638                CyU3PSetUsbCoreClock
 
-i.CyU3PUibInit  0x4000ecfc      0x1c8
+i.CyU3PUibInit  0x4000f6bc      0x1c8
  i.CyU3PUibInit
-                0x4000ecfc      0x1c8 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usb.o)
+                0x4000f6bc      0x1c8 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usb.o)
 
 i.CyU3PUsb2Resume
-                0x4000eec4      0x158
+                0x4000f884      0x158
  i.CyU3PUsb2Resume
-                0x4000eec4      0x158 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usb.o)
-                0x4000eec4                CyU3PUsb2Resume
+                0x4000f884      0x158 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usb.o)
+                0x4000f884                CyU3PUsb2Resume
 
 i.CyU3PUsbAckSetup
-                0x4000f01c       0xf8
+                0x4000f9dc       0xf8
  i.CyU3PUsbAckSetup
-                0x4000f01c       0xf8 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usb.o)
-                0x4000f01c                CyU3PUsbAckSetup
+                0x4000f9dc       0xf8 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usb.o)
+                0x4000f9dc                CyU3PUsbAckSetup
 
 i.CyU3PUsbCreateDmaChannels
-                0x4000f114      0x174
+                0x4000fad4      0x174
  i.CyU3PUsbCreateDmaChannels
-                0x4000f114      0x174 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usb.o)
-                0x4000f114                CyU3PUsbCreateDmaChannels
+                0x4000fad4      0x174 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usb.o)
+                0x4000fad4                CyU3PUsbCreateDmaChannels
 
 i.CyU3PUsbFlushEp
-                0x4000f288       0xbc
+                0x4000fc48       0xbc
  i.CyU3PUsbFlushEp
-                0x4000f288       0xbc C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usb.o)
-                0x4000f288                CyU3PUsbFlushEp
+                0x4000fc48       0xbc C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usb.o)
+                0x4000fc48                CyU3PUsbFlushEp
 
 i.CyU3PUsbGetEP0Data
-                0x4000f344      0x1b8
+                0x4000fd04      0x1b8
  i.CyU3PUsbGetEP0Data
-                0x4000f344      0x1b8 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usb.o)
-                0x4000f344                CyU3PUsbGetEP0Data
+                0x4000fd04      0x1b8 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usb.o)
+                0x4000fd04                CyU3PUsbGetEP0Data
 
 i.CyU3PUsbGetEpSeqNum
-                0x4000f4fc       0xb4
+                0x4000febc       0xb4
  i.CyU3PUsbGetEpSeqNum
-                0x4000f4fc       0xb4 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usb.o)
-                0x4000f4fc                CyU3PUsbGetEpSeqNum
+                0x4000febc       0xb4 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usb.o)
+                0x4000febc                CyU3PUsbGetEpSeqNum
 
 i.CyU3PUsbGetLock
-                0x4000f5b0        0x4
+                0x4000ff70        0x4
  i.CyU3PUsbGetLock
-                0x4000f5b0        0x4 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usb.o)
+                0x4000ff70        0x4 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usb.o)
 
 i.CyU3PUsbGetSpeed
-                0x4000f5b4       0x10
+                0x4000ff74       0x10
  i.CyU3PUsbGetSpeed
-                0x4000f5b4       0x10 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usb.o)
-                0x4000f5b4                CyU3PUsbGetSpeed
+                0x4000ff74       0x10 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usb.o)
+                0x4000ff74                CyU3PUsbGetSpeed
 
 i.CyU3PUsbHostIsStarted
-                0x4000f5c4       0x10
+                0x4000ff84       0x10
  i.CyU3PUsbHostIsStarted
-                0x4000f5c4       0x10 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usb.o)
-                0x4000f5c4                CyU3PUsbHostIsStarted
+                0x4000ff84       0x10 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usb.o)
+                0x4000ff84                CyU3PUsbHostIsStarted
 
 i.CyU3PUsbIsNewCtrlRqtRecvd
-                0x4000f5d4       0x4c
+                0x4000ff94       0x4c
  i.CyU3PUsbIsNewCtrlRqtRecvd
-                0x4000f5d4       0x4c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usb.o)
+                0x4000ff94       0x4c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usb.o)
 
 i.CyU3PUsbLPMDisable
-                0x4000f620       0x68
+                0x4000ffe0       0x68
  i.CyU3PUsbLPMDisable
-                0x4000f620       0x68 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usb.o)
-                0x4000f620                CyU3PUsbLPMDisable
+                0x4000ffe0       0x68 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usb.o)
+                0x4000ffe0                CyU3PUsbLPMDisable
 
 i.CyU3PUsbLoadBootloaderDescs
-                0x4000f688       0x6c
+                0x40010048       0x6c
  i.CyU3PUsbLoadBootloaderDescs
-                0x4000f688       0x6c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usb.o)
-                0x4000f688                CyU3PUsbLoadBootloaderDescs
+                0x40010048       0x6c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usb.o)
+                0x40010048                CyU3PUsbLoadBootloaderDescs
 
 i.CyU3PUsbOtgVbusChangeHandler
-                0x4000f6f4       0xb4
+                0x400100b4       0xb4
  i.CyU3PUsbOtgVbusChangeHandler
-                0x4000f6f4       0xb4 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usb.o)
-                0x4000f6f4                CyU3PUsbOtgVbusChangeHandler
+                0x400100b4       0xb4 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usb.o)
+                0x400100b4                CyU3PUsbOtgVbusChangeHandler
 
 i.CyU3PUsbPhyDisable
-                0x4000f7a8      0x24c
+                0x40010168      0x24c
  i.CyU3PUsbPhyDisable
-                0x4000f7a8      0x24c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usb.o)
-                0x4000f7a8                CyU3PUsbPhyDisable
+                0x40010168      0x24c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usb.o)
+                0x40010168                CyU3PUsbPhyDisable
 
 i.CyU3PUsbPhyEnable
-                0x4000f9f4      0x37c
+                0x400103b4      0x37c
  i.CyU3PUsbPhyEnable
-                0x4000f9f4      0x37c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usb.o)
-                0x4000f9f4                CyU3PUsbPhyEnable
+                0x400103b4      0x37c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usb.o)
+                0x400103b4                CyU3PUsbPhyEnable
 
 i.CyU3PUsbPowerOn
-                0x4000fd70        0xc
+                0x40010730        0xc
  i.CyU3PUsbPowerOn
-                0x4000fd70        0xc C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usb.o)
-                0x4000fd70                CyU3PUsbPowerOn
+                0x40010730        0xc C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usb.o)
+                0x40010730                CyU3PUsbPowerOn
 
 i.CyU3PUsbPutLock
-                0x4000fd7c        0x4
+                0x4001073c        0x4
  i.CyU3PUsbPutLock
-                0x4000fd7c        0x4 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usb.o)
+                0x4001073c        0x4 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usb.o)
 
 i.CyU3PUsbResetEndpointMemories
-                0x4000fd80      0x320
+                0x40010740      0x320
  i.CyU3PUsbResetEndpointMemories
-                0x4000fd80      0x320 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usb.o)
-                0x4000fd80                CyU3PUsbResetEndpointMemories
+                0x40010740      0x320 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usb.o)
+                0x40010740                CyU3PUsbResetEndpointMemories
 
 i.CyU3PUsbResetEp
-                0x400100a0       0xd4
+                0x40010a60       0xd4
  i.CyU3PUsbResetEp
-                0x400100a0       0xd4 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usb.o)
-                0x400100a0                CyU3PUsbResetEp
+                0x40010a60       0xd4 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usb.o)
+                0x40010a60                CyU3PUsbResetEp
 
 i.CyU3PUsbResumeInEpChannels
-                0x40010174       0x78
+                0x40010b34       0x78
  i.CyU3PUsbResumeInEpChannels
-                0x40010174       0x78 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usb.o)
+                0x40010b34       0x78 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usb.o)
 
 i.CyU3PUsbSendEP0Data
-                0x400101ec      0x250
+                0x40010bac      0x250
  i.CyU3PUsbSendEP0Data
-                0x400101ec      0x250 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usb.o)
-                0x400101ec                CyU3PUsbSendEP0Data
+                0x40010bac      0x250 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usb.o)
+                0x40010bac                CyU3PUsbSendEP0Data
 
 i.CyU3PUsbSendErdy
-                0x4001043c       0xf4
+                0x40010dfc       0xf4
  i.CyU3PUsbSendErdy
-                0x4001043c       0xf4 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usb.o)
-                0x4001043c                CyU3PUsbSendErdy
+                0x40010dfc       0xf4 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usb.o)
+                0x40010dfc                CyU3PUsbSendErdy
 
 i.CyU3PUsbSetDesc
-                0x40010530      0x1c8
+                0x40010ef0      0x1c8
  i.CyU3PUsbSetDesc
-                0x40010530      0x1c8 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usb.o)
-                0x40010530                CyU3PUsbSetDesc
+                0x40010ef0      0x1c8 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usb.o)
+                0x40010ef0                CyU3PUsbSetDesc
 
 i.CyU3PUsbSetEpNak
-                0x400106f8      0x1b4
+                0x400110b8      0x1b4
  i.CyU3PUsbSetEpNak
-                0x400106f8      0x1b4 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usb.o)
-                0x400106f8                CyU3PUsbSetEpNak
+                0x400110b8      0x1b4 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usb.o)
+                0x400110b8                CyU3PUsbSetEpNak
 
 i.CyU3PUsbSetEpSeqNum
-                0x400108ac       0xa8
+                0x4001126c       0xa8
  i.CyU3PUsbSetEpSeqNum
-                0x400108ac       0xa8 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usb.o)
-                0x400108ac                CyU3PUsbSetEpSeqNum
+                0x4001126c       0xa8 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usb.o)
+                0x4001126c                CyU3PUsbSetEpSeqNum
 
 i.CyU3PUsbSetLinkPowerState
-                0x40010954      0x154
+                0x40011314      0x154
  i.CyU3PUsbSetLinkPowerState
-                0x40010954      0x154 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usb.o)
-                0x40010954                CyU3PUsbSetLinkPowerState
+                0x40011314      0x154 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usb.o)
+                0x40011314                CyU3PUsbSetLinkPowerState
 
 i.CyU3PUsbStall
-                0x40010aa8      0x3f0
+                0x40011468      0x3f0
  i.CyU3PUsbStall
-                0x40010aa8      0x3f0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usb.o)
-                0x40010aa8                CyU3PUsbStall
+                0x40011468      0x3f0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usb.o)
+                0x40011468                CyU3PUsbStall
 
 i.CyU3PUsbStart
-                0x40010e98      0x3ac
+                0x40011858      0x3ac
  i.CyU3PUsbStart
-                0x40010e98      0x3ac C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usb.o)
-                0x40010e98                CyU3PUsbStart
+                0x40011858      0x3ac C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usb.o)
+                0x40011858                CyU3PUsbStart
 
 i.CyU3PUsbSuspendInEpChannels
-                0x40011244       0x80
+                0x40011c04       0x80
  i.CyU3PUsbSuspendInEpChannels
-                0x40011244       0x80 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usb.o)
+                0x40011c04       0x80 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usb.o)
 
 i.GetUsbLinkActive
-                0x400112c4       0x80
+                0x40011c84       0x80
  i.GetUsbLinkActive
-                0x400112c4       0x80 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usb.o)
+                0x40011c84       0x80 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usb.o)
 
 i.CyU3PHsGrantIntrHandler
-                0x40011344       0x78
+                0x40011d04       0x78
  i.CyU3PHsGrantIntrHandler
-                0x40011344       0x78 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usbpp.o)
+                0x40011d04       0x78 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usbpp.o)
 
 i.CyU3PUibApplicationDefine
-                0x400113bc      0x1a4
+                0x40011d7c      0x1a4
  i.CyU3PUibApplicationDefine
-                0x400113bc      0x1a4 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usbpp.o)
-                0x400113bc                CyU3PUibApplicationDefine
+                0x40011d7c      0x1a4 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usbpp.o)
+                0x40011d7c                CyU3PUibApplicationDefine
 
 i.CyU3PUibDevCtrlEvtHandler
-                0x40011560      0x210
+                0x40011f20      0x210
  i.CyU3PUibDevCtrlEvtHandler
-                0x40011560      0x210 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usbpp.o)
-                0x40011560                CyU3PUibDevCtrlEvtHandler
+                0x40011f20      0x210 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usbpp.o)
+                0x40011f20                CyU3PUibDevCtrlEvtHandler
 
 i.CyU3PUibEPEvtHandler
-                0x40011770      0x280
+                0x40012130      0x280
  i.CyU3PUibEPEvtHandler
-                0x40011770      0x280 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usbpp.o)
-                0x40011770                CyU3PUibEPEvtHandler
+                0x40012130      0x280 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usbpp.o)
+                0x40012130                CyU3PUibEPEvtHandler
 
 i.CyU3PUibInitVars
-                0x400119f0       0xd0
+                0x400123b0       0xd0
  i.CyU3PUibInitVars
-                0x400119f0       0xd0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usbpp.o)
+                0x400123b0       0xd0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usbpp.o)
 
 i.CyU3PUibIsSocketSuspended
-                0x40011ac0       0x3c
+                0x40012480       0x3c
  i.CyU3PUibIsSocketSuspended
-                0x40011ac0       0x3c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usbpp.o)
+                0x40012480       0x3c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usbpp.o)
 
 i.CyU3PUibLnkErrClrTimerCb
-                0x40011afc       0xa0
+                0x400124bc       0xa0
  i.CyU3PUibLnkErrClrTimerCb
-                0x40011afc       0xa0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usbpp.o)
+                0x400124bc       0xa0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usbpp.o)
 
 i.CyU3PUibLnkIntrEvtHandler
-                0x40011b9c       0xa0
+                0x4001255c       0xa0
  i.CyU3PUibLnkIntrEvtHandler
-                0x40011b9c       0xa0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usbpp.o)
-                0x40011b9c                CyU3PUibLnkIntrEvtHandler
+                0x4001255c       0xa0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usbpp.o)
+                0x4001255c                CyU3PUibLnkIntrEvtHandler
 
 i.CyU3PUibProtEpIntrEvtHandler
-                0x40011c3c      0x4f8
+                0x400125fc      0x4f8
  i.CyU3PUibProtEpIntrEvtHandler
-                0x40011c3c      0x4f8 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usbpp.o)
-                0x40011c3c                CyU3PUibProtEpIntrEvtHandler
+                0x400125fc      0x4f8 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usbpp.o)
+                0x400125fc                CyU3PUibProtEpIntrEvtHandler
 
 i.CyU3PUibProtIntrEvtHandler
-                0x40012134      0x13c
+                0x40012af4      0x13c
  i.CyU3PUibProtIntrEvtHandler
-                0x40012134      0x13c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usbpp.o)
-                0x40012134                CyU3PUibProtIntrEvtHandler
+                0x40012af4      0x13c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usbpp.o)
+                0x40012af4                CyU3PUibProtIntrEvtHandler
 
 i.CyU3PUibSendDescr
-                0x40012270      0x624
+                0x40012c30      0x624
  i.CyU3PUibSendDescr
-                0x40012270      0x624 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usbpp.o)
+                0x40012c30      0x624 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usbpp.o)
 
 i.CyU3PUibSocketInit
-                0x40012894       0xc4
+                0x40013254       0xc4
  i.CyU3PUibSocketInit
-                0x40012894       0xc4 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usbpp.o)
-                0x40012894                CyU3PUibSocketInit
+                0x40013254       0xc4 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usbpp.o)
+                0x40013254                CyU3PUibSocketInit
 
 i.CyU3PUibStatusTimerCb
-                0x40012958       0xa4
+                0x40013318       0xa4
  i.CyU3PUibStatusTimerCb
-                0x40012958       0xa4 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usbpp.o)
+                0x40013318       0xa4 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usbpp.o)
 
 i.CyU3PUibThreadEntry
-                0x400129fc       0x7c
+                0x400133bc       0x7c
  i.CyU3PUibThreadEntry
-                0x400129fc       0x7c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usbpp.o)
-                0x400129fc                CyU3PUibThreadEntry
+                0x400133bc       0x7c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usbpp.o)
+                0x400133bc                CyU3PUibThreadEntry
 
 i.CyU3PUibVbusChangeHandler
-                0x40012a78      0x168
+                0x40013438      0x168
  i.CyU3PUibVbusChangeHandler
-                0x40012a78      0x168 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usbpp.o)
-                0x40012a78                CyU3PUibVbusChangeHandler
+                0x40013438      0x168 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usbpp.o)
+                0x40013438                CyU3PUibVbusChangeHandler
 
 i.CyU3PUsbAddToEventLog
-                0x40012be0       0x84
+                0x400135a0       0x84
  i.CyU3PUsbAddToEventLog
-                0x40012be0       0x84 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usbpp.o)
-                0x40012be0                CyU3PUsbAddToEventLog
+                0x400135a0       0x84 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usbpp.o)
+                0x400135a0                CyU3PUsbAddToEventLog
 
 i.CyU3PUsbCheckUsb3Disconnect
-                0x40012c64      0x260
+                0x40013624      0x260
  i.CyU3PUsbCheckUsb3Disconnect
-                0x40012c64      0x260 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usbpp.o)
+                0x40013624      0x260 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usbpp.o)
 
 i.CyU3PUsbDescInit
-                0x40012ec4       0x1c
+                0x40013884       0x1c
  i.CyU3PUsbDescInit
-                0x40012ec4       0x1c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usbpp.o)
-                0x40012ec4                CyU3PUsbDescInit
+                0x40013884       0x1c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usbpp.o)
+                0x40013884                CyU3PUsbDescInit
 
 i.CyU3PUsbEpPrepare
-                0x40012ee0      0x220
+                0x400138a0      0x220
  i.CyU3PUsbEpPrepare
-                0x40012ee0      0x220 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usbpp.o)
-                0x40012ee0                CyU3PUsbEpPrepare
+                0x400138a0      0x220 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usbpp.o)
+                0x400138a0                CyU3PUsbEpPrepare
 
 i.CyU3PUsbFallBackToUsb2
-                0x40013100      0x2b8
+                0x40013ac0      0x2b8
  i.CyU3PUsbFallBackToUsb2
-                0x40013100      0x2b8 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usbpp.o)
+                0x40013ac0      0x2b8 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usbpp.o)
 
 i.CyU3PUsbGetEpStatus
-                0x400133b8       0xb8
+                0x40013d78       0xb8
  i.CyU3PUsbGetEpStatus
-                0x400133b8       0xb8 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usbpp.o)
-                0x400133b8                CyU3PUsbGetEpStatus
+                0x40013d78       0xb8 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usbpp.o)
+                0x40013d78                CyU3PUsbGetEpStatus
 
 i.CyU3PUsbHandleClearFeature
-                0x40013470      0x118
+                0x40013e30      0x118
  i.CyU3PUsbHandleClearFeature
-                0x40013470      0x118 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usbpp.o)
+                0x40013e30      0x118 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usbpp.o)
 
 i.CyU3PUsbHandleEvents
-                0x40013588      0x4b4
+                0x40013f48      0x4b4
  i.CyU3PUsbHandleEvents
-                0x40013588      0x4b4 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usbpp.o)
-                0x40013588                CyU3PUsbHandleEvents
+                0x40013f48      0x4b4 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usbpp.o)
+                0x40013f48                CyU3PUsbHandleEvents
 
 i.CyU3PUsbHandleGetStatus
-                0x40013a3c       0xf8
+                0x400143fc       0xf8
  i.CyU3PUsbHandleGetStatus
-                0x40013a3c       0xf8 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usbpp.o)
+                0x400143fc       0xf8 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usbpp.o)
 
 i.CyU3PUsbHandleSetFeature
-                0x40013b34      0x130
+                0x400144f4      0x130
  i.CyU3PUsbHandleSetFeature
-                0x40013b34      0x130 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usbpp.o)
+                0x400144f4      0x130 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usbpp.o)
 
 i.CyU3PUsbReEnableUsb3
-                0x40013c64      0x21c
+                0x40014624      0x21c
  i.CyU3PUsbReEnableUsb3
-                0x40013c64      0x21c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usbpp.o)
+                0x40014624      0x21c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usbpp.o)
 
 i.CyU3PUsbRegisterEventCallback
-                0x40013e80       0x54
+                0x40014840       0x54
  i.CyU3PUsbRegisterEventCallback
-                0x40013e80       0x54 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usbpp.o)
-                0x40013e80                CyU3PUsbRegisterEventCallback
+                0x40014840       0x54 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usbpp.o)
+                0x40014840                CyU3PUsbRegisterEventCallback
 
 i.CyU3PUsbRegisterLPMRequestCallback
-                0x40013ed4       0x10
+                0x40014894       0x10
  i.CyU3PUsbRegisterLPMRequestCallback
-                0x40013ed4       0x10 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usbpp.o)
-                0x40013ed4                CyU3PUsbRegisterLPMRequestCallback
+                0x40014894       0x10 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usbpp.o)
+                0x40014894                CyU3PUsbRegisterLPMRequestCallback
 
 i.CyU3PUsbRegisterSetupCallback
-                0x40013ee4       0x60
+                0x400148a4       0x60
  i.CyU3PUsbRegisterSetupCallback
-                0x40013ee4       0x60 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usbpp.o)
-                0x40013ee4                CyU3PUsbRegisterSetupCallback
+                0x400148a4       0x60 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usbpp.o)
+                0x400148a4                CyU3PUsbRegisterSetupCallback
 
 i.CyU3PUsbResetHandler
-                0x40013f44      0x178
+                0x40014904      0x178
  i.CyU3PUsbResetHandler
-                0x40013f44      0x178 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usbpp.o)
+                0x40014904      0x178 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usbpp.o)
 
 i.CyU3PUsbResumeHandler
-                0x400140bc       0x50
+                0x40014a7c       0x50
  i.CyU3PUsbResumeHandler
-                0x400140bc       0x50 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usbpp.o)
+                0x40014a7c       0x50 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usbpp.o)
 
 i.CyU3PUsbSSConnecthandler
-                0x4001410c      0x238
+                0x40014acc      0x238
  i.CyU3PUsbSSConnecthandler
-                0x4001410c      0x238 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usbpp.o)
-                0x4001410c                CyU3PUsbSSConnecthandler
+                0x40014acc      0x238 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usbpp.o)
+                0x40014acc                CyU3PUsbSSConnecthandler
 
 i.CyU3PUsbSSDisConnecthandler
-                0x40014344      0x1e0
+                0x40014d04      0x1e0
  i.CyU3PUsbSSDisConnecthandler
-                0x40014344      0x1e0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usbpp.o)
+                0x40014d04      0x1e0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usbpp.o)
 
 i.CyU3PUsbSSReset
-                0x40014524      0x1a8
+                0x40014ee4      0x1a8
  i.CyU3PUsbSSReset
-                0x40014524      0x1a8 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usbpp.o)
-                0x40014524                CyU3PUsbSSReset
+                0x40014ee4      0x1a8 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usbpp.o)
+                0x40014ee4                CyU3PUsbSSReset
 
 i.CyU3PUsbSendCompliancePatterns
-                0x400146cc      0x210
+                0x4001508c      0x210
  i.CyU3PUsbSendCompliancePatterns
-                0x400146cc      0x210 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usbpp.o)
+                0x4001508c      0x210 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usbpp.o)
 
 i.CyU3PUsbSetupCommand
-                0x400148dc      0x850
+                0x4001529c      0x850
  i.CyU3PUsbSetupCommand
-                0x400148dc      0x850 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usbpp.o)
+                0x4001529c      0x850 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usbpp.o)
 
 i.CyU3PUsbSuspendHandler
-                0x4001512c       0x50
+                0x40015aec       0x50
  i.CyU3PUsbSuspendHandler
-                0x4001512c       0x50 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usbpp.o)
+                0x40015aec       0x50 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usbpp.o)
 
 i.HandleVbusOffEvent
-                0x4001517c      0x130
+                0x40015b3c      0x130
  i.HandleVbusOffEvent
-                0x4001517c      0x130 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usbpp.o)
+                0x40015b3c      0x130 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3usbpp.o)
 
 i.CyU3PComputeChecksum
-                0x400152ac       0x5c
+                0x40015c6c       0x5c
  i.CyU3PComputeChecksum
-                0x400152ac       0x5c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3utils.o)
-                0x400152ac                CyU3PComputeChecksum
+                0x40015c6c       0x5c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3utils.o)
+                0x40015c6c                CyU3PComputeChecksum
 
 i.__aeabi_memclr4
-                0x40015308       0x20
+                0x40015cc8       0x20
  i.__aeabi_memclr4
-                0x40015308       0x20 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3utils.o)
-                0x40015308                __aeabi_memclr4
+                0x40015cc8       0x20 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3utils.o)
+                0x40015cc8                __aeabi_memclr4
 
 i.__aeabi_memcpy4
-                0x40015328       0x68
+                0x40015ce8       0x68
  i.__aeabi_memcpy4
-                0x40015328       0x68 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3utils.o)
-                0x40015328                __aeabi_memcpy4
+                0x40015ce8       0x68 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3utils.o)
+                0x40015ce8                __aeabi_memcpy4
 
 i.__aeabi_memset
-                0x40015390       0x28
+                0x40015d50       0x28
  i.__aeabi_memset
-                0x40015390       0x28 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3utils.o)
-                0x40015390                __aeabi_memset
+                0x40015d50       0x28 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3utils.o)
+                0x40015d50                __aeabi_memset
 
 i.__aeabi_memset4
-                0x400153b8       0x20
+                0x40015d78       0x20
  i.__aeabi_memset4
-                0x400153b8       0x20 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3utils.o)
-                0x400153b8                __aeabi_memset4
+                0x40015d78       0x20 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3utils.o)
+                0x40015d78                __aeabi_memset4
 
 i.CyU3POsTimerInit
-                0x400153d8      0x114
+                0x40015d98      0x114
  i.CyU3POsTimerInit
-                0x400153d8      0x114 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3vic.o)
-                0x400153d8                CyU3POsTimerInit
+                0x40015d98      0x114 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3vic.o)
+                0x40015d98                CyU3POsTimerInit
 
 i.CyU3PVicClearInt
-                0x400154ec        0xc
+                0x40015eac        0xc
  i.CyU3PVicClearInt
-                0x400154ec        0xc C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3vic.o)
-                0x400154ec                CyU3PVicClearInt
+                0x40015eac        0xc C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3vic.o)
+                0x40015eac                CyU3PVicClearInt
 
 i.CyU3PVicDisableAllInterrupts
-                0x400154f8       0x10
+                0x40015eb8       0x10
  i.CyU3PVicDisableAllInterrupts
-                0x400154f8       0x10 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3vic.o)
-                0x400154f8                CyU3PVicDisableAllInterrupts
+                0x40015eb8       0x10 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3vic.o)
+                0x40015eb8                CyU3PVicDisableAllInterrupts
 
 i.CyU3PVicDisableInt
-                0x40015508       0x14
+                0x40015ec8       0x14
  i.CyU3PVicDisableInt
-                0x40015508       0x14 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3vic.o)
-                0x40015508                CyU3PVicDisableInt
+                0x40015ec8       0x14 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3vic.o)
+                0x40015ec8                CyU3PVicDisableInt
 
 i.CyU3PVicEnableInt
-                0x4001551c       0x14
+                0x40015edc       0x14
  i.CyU3PVicEnableInt
-                0x4001551c       0x14 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3vic.o)
-                0x4001551c                CyU3PVicEnableInt
+                0x40015edc       0x14 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3vic.o)
+                0x40015edc                CyU3PVicEnableInt
 
 i.CyU3PVicEnableInterrupts
-                0x40015530        0xc
+                0x40015ef0        0xc
  i.CyU3PVicEnableInterrupts
-                0x40015530        0xc C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3vic.o)
-                0x40015530                CyU3PVicEnableInterrupts
+                0x40015ef0        0xc C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3vic.o)
+                0x40015ef0                CyU3PVicEnableInterrupts
 
-i.CyU3PVicInit  0x40015540       0x40
+i.CyU3PVicInit  0x40015f00       0x40
  i.CyU3PVicInit
-                0x40015540       0x34 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3vic.o)
-                0x40015540                CyU3PVicInit
- *fill*         0x40015574        0x4 
+                0x40015f00       0x34 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3vic.o)
+                0x40015f00                CyU3PVicInit
+ *fill*         0x40015f34        0x4 
  i.CyU3PVicInit.__stub
-                0x40015578        0x8 linker stubs
+                0x40015f38        0x8 linker stubs
 
 i.CyU3PMboxReset
-                0x40015580       0x40
+                0x40015f40       0x40
  i.CyU3PMboxReset
-                0x40015580       0x40 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cywbmbox.o)
-                0x40015580                CyU3PMboxReset
+                0x40015f40       0x40 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cywbmbox.o)
+                0x40015f40                CyU3PMboxReset
 
 i.CyFx3DevClearSwInterrupt
-                0x400155c0       0x18
+                0x40015f80       0x18
  i.CyFx3DevClearSwInterrupt
-                0x400155c0       0x18 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(fx3_dev.o)
-                0x400155c0                CyFx3DevClearSwInterrupt
+                0x40015f80       0x18 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(fx3_dev.o)
+                0x40015f80                CyFx3DevClearSwInterrupt
 
 i.CyFx3DevIOConfigure
-                0x400155d8      0x194
+                0x40015f98      0x194
  i.CyFx3DevIOConfigure
-                0x400155d8      0x194 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(fx3_dev.o)
-                0x400155d8                CyFx3DevIOConfigure
+                0x40015f98      0x194 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(fx3_dev.o)
+                0x40015f98                CyFx3DevIOConfigure
 
 i.CyFx3DevIOIsGpio
-                0x4001576c       0x40
+                0x4001612c       0x40
  i.CyFx3DevIOIsGpio
-                0x4001576c       0x40 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(fx3_dev.o)
-                0x4001576c                CyFx3DevIOIsGpio
+                0x4001612c       0x40 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(fx3_dev.o)
+                0x4001612c                CyFx3DevIOIsGpio
 
 i.CyFx3DevIOIsI2cConfigured
-                0x400157ac       0x10
+                0x4001616c       0x10
  i.CyFx3DevIOIsI2cConfigured
-                0x400157ac       0x10 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(fx3_dev.o)
-                0x400157ac                CyFx3DevIOIsI2cConfigured
+                0x4001616c       0x10 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(fx3_dev.o)
+                0x4001616c                CyFx3DevIOIsI2cConfigured
 
 i.CyFx3DevIOIsI2sConfigured
-                0x400157bc       0x10
+                0x4001617c       0x10
  i.CyFx3DevIOIsI2sConfigured
-                0x400157bc       0x10 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(fx3_dev.o)
-                0x400157bc                CyFx3DevIOIsI2sConfigured
+                0x4001617c       0x10 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(fx3_dev.o)
+                0x4001617c                CyFx3DevIOIsI2sConfigured
 
 i.CyFx3DevIOIsSpiConfigured
-                0x400157cc       0x10
+                0x4001618c       0x10
  i.CyFx3DevIOIsSpiConfigured
-                0x400157cc       0x10 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(fx3_dev.o)
-                0x400157cc                CyFx3DevIOIsSpiConfigured
+                0x4001618c       0x10 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(fx3_dev.o)
+                0x4001618c                CyFx3DevIOIsSpiConfigured
 
 i.CyFx3DevIOIsUartConfigured
-                0x400157dc       0x10
+                0x4001619c       0x10
  i.CyFx3DevIOIsUartConfigured
-                0x400157dc       0x10 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(fx3_dev.o)
-                0x400157dc                CyFx3DevIOIsUartConfigured
+                0x4001619c       0x10 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(fx3_dev.o)
+                0x4001619c                CyFx3DevIOIsUartConfigured
 
 i.CyFx3DevIOSelectGpio
-                0x400157ec       0xd0
+                0x400161ac       0xd0
  i.CyFx3DevIOSelectGpio
-                0x400157ec       0xd0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(fx3_dev.o)
-                0x400157ec                CyFx3DevIOSelectGpio
+                0x400161ac       0xd0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(fx3_dev.o)
+                0x400161ac                CyFx3DevIOSelectGpio
 
 i.CyFx3DevIOSetConfig
-                0x400158bc      0x274
+                0x4001627c      0x274
  i.CyFx3DevIOSetConfig
-                0x400158bc      0x274 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(fx3_dev.o)
+                0x4001627c      0x274 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(fx3_dev.o)
 
 i.CyFx3DevIdentifyPart
-                0x40015b30       0xa8
+                0x400164f0       0xa8
  i.CyFx3DevIdentifyPart
-                0x40015b30       0xa8 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(fx3_dev.o)
-                0x40015b30                CyFx3DevIdentifyPart
+                0x400164f0       0xa8 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(fx3_dev.o)
+                0x400164f0                CyFx3DevIdentifyPart
 
 i.CyFx3DevInitPageTables
-                0x40015bd8       0x74
+                0x40016598       0x74
  i.CyFx3DevInitPageTables
-                0x40015bd8       0x74 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(fx3_dev.o)
-                0x40015bd8                CyFx3DevInitPageTables
+                0x40016598       0x74 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(fx3_dev.o)
+                0x40016598                CyFx3DevInitPageTables
 
 i.CyFx3DevIsGpif32Supported
-                0x40015c4c       0x28
+                0x4001660c       0x28
  i.CyFx3DevIsGpif32Supported
-                0x40015c4c       0x28 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(fx3_dev.o)
-                0x40015c4c                CyFx3DevIsGpif32Supported
+                0x4001660c       0x28 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(fx3_dev.o)
+                0x4001660c                CyFx3DevIsGpif32Supported
 
 i.CyFx3DevIsI2sSupported
-                0x40015c74       0x28
+                0x40016634       0x28
  i.CyFx3DevIsI2sSupported
-                0x40015c74       0x28 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(fx3_dev.o)
-                0x40015c74                CyFx3DevIsI2sSupported
+                0x40016634       0x28 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(fx3_dev.o)
+                0x40016634                CyFx3DevIsI2sSupported
 
 i.CyFx3DevIsOtgSupported
-                0x40015c9c       0x28
+                0x4001665c       0x28
  i.CyFx3DevIsOtgSupported
-                0x40015c9c       0x28 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(fx3_dev.o)
-                0x40015c9c                CyFx3DevIsOtgSupported
+                0x4001665c       0x28 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(fx3_dev.o)
+                0x4001665c                CyFx3DevIsOtgSupported
 
 i.CyFx3DevIsSib0Supported
-                0x40015cc4       0x28
+                0x40016684       0x28
  i.CyFx3DevIsSib0Supported
-                0x40015cc4       0x28 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(fx3_dev.o)
-                0x40015cc4                CyFx3DevIsSib0Supported
+                0x40016684       0x28 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(fx3_dev.o)
+                0x40016684                CyFx3DevIsSib0Supported
 
 i.CyFx3DevIsSib1Supported
-                0x40015cec       0x28
+                0x400166ac       0x28
  i.CyFx3DevIsSib1Supported
-                0x40015cec       0x28 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(fx3_dev.o)
-                0x40015cec                CyFx3DevIsSib1Supported
+                0x400166ac       0x28 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(fx3_dev.o)
+                0x400166ac                CyFx3DevIsSib1Supported
 
 i.CyFx3DevIsUsb3Supported
-                0x40015d14       0x28
+                0x400166d4       0x28
  i.CyFx3DevIsUsb3Supported
-                0x40015d14       0x28 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(fx3_dev.o)
-                0x40015d14                CyFx3DevIsUsb3Supported
+                0x400166d4       0x28 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(fx3_dev.o)
+                0x400166d4                CyFx3DevIsUsb3Supported
 
 i.CyFx3BusyWait
-                0x40015d3c       0x30
+                0x400166fc       0x30
  i.CyFx3BusyWait
-                0x40015d3c       0x30 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(fx3_pib.o)
-                0x40015d3c                CyFx3BusyWait
+                0x400166fc       0x30 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(fx3_pib.o)
+                0x400166fc                CyFx3BusyWait
 
 i.CyFx3PibGetDllStatus
-                0x40015d6c       0x14
+                0x4001672c       0x14
  i.CyFx3PibGetDllStatus
-                0x40015d6c       0x14 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(fx3_pib.o)
-                0x40015d6c                CyFx3PibGetDllStatus
+                0x4001672c       0x14 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(fx3_pib.o)
+                0x4001672c                CyFx3PibGetDllStatus
 
 i.CyFx3SetCpuFreq
-                0x40015d80       0x30
+                0x40016740       0x30
  i.CyFx3SetCpuFreq
-                0x40015d80       0x30 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(fx3_pib.o)
-                0x40015d80                CyFx3SetCpuFreq
+                0x40016740       0x30 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(fx3_pib.o)
+                0x40016740                CyFx3SetCpuFreq
 
 i.CyFx3Usb2PhySetup
-                0x40015db0       0x18
+                0x40016770       0x18
  i.CyFx3Usb2PhySetup
-                0x40015db0       0x18 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(fx3_usb.o)
-                0x40015db0                CyFx3Usb2PhySetup
+                0x40016770       0x18 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(fx3_usb.o)
+                0x40016770                CyFx3Usb2PhySetup
 
 i.CyFx3Usb3LnkRelaxHpTimeout
-                0x40015dc8       0x18
+                0x40016788       0x18
  i.CyFx3Usb3LnkRelaxHpTimeout
-                0x40015dc8       0x18 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(fx3_usb.o)
-                0x40015dc8                CyFx3Usb3LnkRelaxHpTimeout
+                0x40016788       0x18 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(fx3_usb.o)
+                0x40016788                CyFx3Usb3LnkRelaxHpTimeout
 
 i.CyFx3Usb3LnkSetup
-                0x40015de0       0x44
+                0x400167a0       0x44
  i.CyFx3Usb3LnkSetup
-                0x40015de0       0x44 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(fx3_usb.o)
-                0x40015de0                CyFx3Usb3LnkSetup
+                0x400167a0       0x44 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(fx3_usb.o)
+                0x400167a0                CyFx3Usb3LnkSetup
 
 i.CyFx3Usb3SendTP
-                0x40015e24       0x30
+                0x400167e4       0x30
  i.CyFx3Usb3SendTP
-                0x40015e24       0x30 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(fx3_usb.o)
-                0x40015e24                CyFx3Usb3SendTP
+                0x400167e4       0x30 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(fx3_usb.o)
+                0x400167e4                CyFx3Usb3SendTP
 
 i.CyFx3UsbDmaPrefetchEnable
-                0x40015e54       0x2c
+                0x40016814       0x2c
  i.CyFx3UsbDmaPrefetchEnable
-                0x40015e54       0x2c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(fx3_usb.o)
-                0x40015e54                CyFx3UsbDmaPrefetchEnable
+                0x40016814       0x2c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(fx3_usb.o)
+                0x40016814                CyFx3UsbDmaPrefetchEnable
 
 i.CyFx3UsbPowerOn
-                0x40015e80       0x80
+                0x40016840       0x80
  i.CyFx3UsbPowerOn
-                0x40015e80       0x80 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(fx3_usb.o)
-                0x40015e80                CyFx3UsbPowerOn
+                0x40016840       0x80 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(fx3_usb.o)
+                0x40016840                CyFx3UsbPowerOn
 
 i.CyFx3UsbWritePhyReg
-                0x40015f00       0x94
+                0x400168c0       0x94
  i.CyFx3UsbWritePhyReg
-                0x40015f00       0x94 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(fx3_usb.o)
-                0x40015f00                CyFx3UsbWritePhyReg
+                0x400168c0       0x94 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(fx3_usb.o)
+                0x400168c0                CyFx3UsbWritePhyReg
 
 i.CyU3PSibApplicationDefine
-                0x40015f94       0xa8
+                0x40016954       0xa8
  i.CyU3PSibApplicationDefine
-                0x40015f94       0xa8 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyfx3stor.o)
-                0x40015f94                CyU3PSibApplicationDefine
+                0x40016954       0xa8 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyfx3stor.o)
+                0x40016954                CyU3PSibApplicationDefine
 
 i.CyU3PSibInitIntfParams
-                0x4001603c       0x58
+                0x400169fc       0x58
  i.CyU3PSibInitIntfParams
-                0x4001603c       0x58 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyfx3stor.o)
-                0x4001603c                CyU3PSibInitIntfParams
+                0x400169fc       0x58 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyfx3stor.o)
+                0x400169fc                CyU3PSibInitIntfParams
 
 i.CyU3PSibThreadEntry
-                0x40016094       0x70
+                0x40016a54       0x70
  i.CyU3PSibThreadEntry
-                0x40016094       0x70 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyfx3stor.o)
-                0x40016094                CyU3PSibThreadEntry
+                0x40016a54       0x70 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyfx3stor.o)
+                0x40016a54                CyU3PSibThreadEntry
 
 i.CyU3PDebugApplicationDefine
-                0x40016104       0xdc
+                0x40016ac4       0xdc
  i.CyU3PDebugApplicationDefine
-                0x40016104       0xdc C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3debug.o)
-                0x40016104                CyU3PDebugApplicationDefine
+                0x40016ac4       0xdc C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3debug.o)
+                0x40016ac4                CyU3PDebugApplicationDefine
 
 i.CyU3PDebugChannelReset
-                0x400161e0       0x34
+                0x40016ba0       0x34
  i.CyU3PDebugChannelReset
-                0x400161e0       0x34 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3debug.o)
+                0x40016ba0       0x34 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3debug.o)
 
 i.CyU3PDebugThreadEntry
-                0x40016214       0xe4
+                0x40016bd4       0xe4
  i.CyU3PDebugThreadEntry
-                0x40016214       0xe4 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3debug.o)
-                0x40016214                CyU3PDebugThreadEntry
+                0x40016bd4       0xe4 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3debug.o)
+                0x40016bd4                CyU3PDebugThreadEntry
 
 i.CyU3PDmaMultiChannelResumeUsbConsumer
-                0x400162f8       0x64
+                0x40016cb8       0x64
  i.CyU3PDmaMultiChannelResumeUsbConsumer
-                0x400162f8       0x64 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3multichannelutils.o)
-                0x400162f8                CyU3PDmaMultiChannelResumeUsbConsumer
+                0x40016cb8       0x64 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3multichannelutils.o)
+                0x40016cb8                CyU3PDmaMultiChannelResumeUsbConsumer
 
 i.CyU3PDmaMultiChannelSuspendUsbConsumer
-                0x4001635c      0x108
+                0x40016d1c      0x108
  i.CyU3PDmaMultiChannelSuspendUsbConsumer
-                0x4001635c      0x108 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3multichannelutils.o)
-                0x4001635c                CyU3PDmaMultiChannelSuspendUsbConsumer
+                0x40016d1c      0x108 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3multichannelutils.o)
+                0x40016d1c                CyU3PDmaMultiChannelSuspendUsbConsumer
 
 i.CyU3PPibApplicationDefine
-                0x40016464      0x13c
+                0x40016e24      0x13c
  i.CyU3PPibApplicationDefine
-                0x40016464      0x13c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3pib.o)
-                0x40016464                CyU3PPibApplicationDefine
+                0x40016e24      0x13c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3pib.o)
+                0x40016e24                CyU3PPibApplicationDefine
 
 i.CyU3PPibThreadEntry
-                0x400165a0      0x2b0
+                0x40016f60      0x2b0
  i.CyU3PPibThreadEntry
-                0x400165a0      0x2b0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3pib.o)
-                0x400165a0                CyU3PPibThreadEntry
+                0x40016f60      0x2b0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3pib.o)
+                0x40016f60                CyU3PPibThreadEntry
 
 i.CyU3PDmaIntHandler
-                0x40016850      0x178
+                0x40017210      0x178
  i.CyU3PDmaIntHandler
-                0x40016850      0x178 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3dmaint.o)
+                0x40017210      0x178 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3dmaint.o)
 
 i.CyU3PDmaMultiChannelAcquireLock
-                0x400169c8       0x84
+                0x40017388       0x84
  i.CyU3PDmaMultiChannelAcquireLock
-                0x400169c8       0x84 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3multichannel.o)
-                0x400169c8                CyU3PDmaMultiChannelAcquireLock
+                0x40017388       0x84 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3multichannel.o)
+                0x40017388                CyU3PDmaMultiChannelAcquireLock
 
 i._tx_initialize_kernel_enter
-                0x40016a4c       0x68
+                0x4001740c       0x68
  i._tx_initialize_kernel_enter
-                0x40016a4c       0x68 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_initialize_kernel_enter.o)
-                0x40016a4c                _tx_initialize_kernel_enter
+                0x4001740c       0x68 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_initialize_kernel_enter.o)
+                0x4001740c                _tx_initialize_kernel_enter
 
 i._tx_thread_identify
-                0x40016ab4      0x114
+                0x40017474      0x114
  i._tx_thread_identify
-                0x40016ab4      0x114 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_identify.o)
-                0x40016ab4                _tx_thread_identify
+                0x40017474      0x114 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_identify.o)
+                0x40017474                _tx_thread_identify
 
 i._tx_thread_initialize
-                0x40016bc8      0x100
+                0x40017588      0x100
  i._tx_thread_initialize
-                0x40016bc8      0x100 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_initialize.o)
-                0x40016bc8                _tx_thread_initialize
+                0x40017588      0x100 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_initialize.o)
+                0x40017588                _tx_thread_initialize
 
 i._tx_thread_sleep
-                0x40016cc8      0x1c4
+                0x40017688      0x1c4
  i._tx_thread_sleep
-                0x40016cc8      0x1c4 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_sleep.o)
-                0x40016cc8                _tx_thread_sleep
+                0x40017688      0x1c4 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_sleep.o)
+                0x40017688                _tx_thread_sleep
 
 i._tx_thread_system_suspend
-                0x40016e8c      0x604
+                0x4001784c      0x604
  i._tx_thread_system_suspend
-                0x40016e8c      0x604 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_system_suspend.o)
-                0x40016e8c                _tx_thread_system_suspend
+                0x4001784c      0x604 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_system_suspend.o)
+                0x4001784c                _tx_thread_system_suspend
 
 i._tx_timer_initialize
-                0x40017490      0x144
+                0x40017e50      0x144
  i._tx_timer_initialize
-                0x40017490      0x144 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_timer_initialize.o)
-                0x40017490                _tx_timer_initialize
+                0x40017e50      0x144 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_timer_initialize.o)
+                0x40017e50                _tx_timer_initialize
 
 i._tx_timer_system_activate
-                0x400175d4       0xec
+                0x40017f94       0xec
  i._tx_timer_system_activate
-                0x400175d4       0xec C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_timer_system_activate.o)
-                0x400175d4                _tx_timer_system_activate
+                0x40017f94       0xec C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_timer_system_activate.o)
+                0x40017f94                _tx_timer_system_activate
 
 i._tx_timer_thread_entry
-                0x400176c0      0x244
+                0x40018080      0x244
  i._tx_timer_thread_entry
-                0x400176c0      0x244 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_timer_thread_entry.o)
-                0x400176c0                _tx_timer_thread_entry
+                0x40018080      0x244 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_timer_thread_entry.o)
+                0x40018080                _tx_timer_thread_entry
 
 i._tx_trace_initialize
-                0x40017904       0x50
+                0x400182c4       0x50
  i._tx_trace_initialize
-                0x40017904       0x50 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_trace_initialize.o)
-                0x40017904                _tx_trace_initialize
+                0x400182c4       0x50 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_trace_initialize.o)
+                0x400182c4                _tx_trace_initialize
 
 i._txe_byte_allocate
-                0x40017954      0x110
+                0x40018314      0x110
  i._txe_byte_allocate
-                0x40017954      0x110 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(txe_byte_allocate.o)
-                0x40017954                _txe_byte_allocate
+                0x40018314      0x110 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(txe_byte_allocate.o)
+                0x40018314                _txe_byte_allocate
 
 i._txe_byte_pool_create
-                0x40017a64      0x190
+                0x40018424      0x190
  i._txe_byte_pool_create
-                0x40017a64      0x190 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(txe_byte_pool_create.o)
-                0x40017a64                _txe_byte_pool_create
+                0x40018424      0x190 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(txe_byte_pool_create.o)
+                0x40018424                _txe_byte_pool_create
 
 i._txe_event_flags_create
-                0x40017bf4      0x140
+                0x400185b4      0x140
  i._txe_event_flags_create
-                0x40017bf4      0x140 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(txe_event_flags_create.o)
-                0x40017bf4                _txe_event_flags_create
+                0x400185b4      0x140 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(txe_event_flags_create.o)
+                0x400185b4                _txe_event_flags_create
 
 i._txe_event_flags_delete
-                0x40017d34       0x80
+                0x400186f4       0x80
  i._txe_event_flags_delete
-                0x40017d34       0x80 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(txe_event_flags_delete.o)
-                0x40017d34                _txe_event_flags_delete
+                0x400186f4       0x80 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(txe_event_flags_delete.o)
+                0x400186f4                _txe_event_flags_delete
 
 i._txe_event_flags_get
-                0x40017db4       0xc0
+                0x40018774       0xc0
  i._txe_event_flags_get
-                0x40017db4       0xc0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(txe_event_flags_get.o)
-                0x40017db4                _txe_event_flags_get
+                0x40018774       0xc0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(txe_event_flags_get.o)
+                0x40018774                _txe_event_flags_get
 
 i._txe_event_flags_set
-                0x40017e74       0x68
+                0x40018834       0x68
  i._txe_event_flags_set
-                0x40017e74       0x68 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(txe_event_flags_set.o)
-                0x40017e74                _txe_event_flags_set
+                0x40018834       0x68 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(txe_event_flags_set.o)
+                0x40018834                _txe_event_flags_set
 
 i._txe_mutex_create
-                0x40017edc      0x178
+                0x4001889c      0x178
  i._txe_mutex_create
-                0x40017edc      0x178 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(txe_mutex_create.o)
-                0x40017edc                _txe_mutex_create
+                0x4001889c      0x178 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(txe_mutex_create.o)
+                0x4001889c                _txe_mutex_create
 
 i._txe_mutex_delete
-                0x40018054       0x80
+                0x40018a14       0x80
  i._txe_mutex_delete
-                0x40018054       0x80 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(txe_mutex_delete.o)
-                0x40018054                _txe_mutex_delete
+                0x40018a14       0x80 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(txe_mutex_delete.o)
+                0x40018a14                _txe_mutex_delete
 
 i._txe_mutex_get
-                0x400180d4       0xd4
+                0x40018a94       0xd4
  i._txe_mutex_get
-                0x400180d4       0xd4 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(txe_mutex_get.o)
-                0x400180d4                _txe_mutex_get
+                0x40018a94       0xd4 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(txe_mutex_get.o)
+                0x40018a94                _txe_mutex_get
 
 i._txe_mutex_put
-                0x400181a8       0xa0
+                0x40018b68       0xa0
  i._txe_mutex_put
-                0x400181a8       0xa0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(txe_mutex_put.o)
-                0x400181a8                _txe_mutex_put
+                0x40018b68       0xa0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(txe_mutex_put.o)
+                0x40018b68                _txe_mutex_put
 
 i._txe_queue_create
-                0x40018248      0x1b8
+                0x40018c08      0x1b8
  i._txe_queue_create
-                0x40018248      0x1b8 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(txe_queue_create.o)
-                0x40018248                _txe_queue_create
+                0x40018c08      0x1b8 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(txe_queue_create.o)
+                0x40018c08                _txe_queue_create
 
 i._txe_queue_front_send
-                0x40018400       0xa0
+                0x40018dc0       0xa0
  i._txe_queue_front_send
-                0x40018400       0xa0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(txe_queue_front_send.o)
-                0x40018400                _txe_queue_front_send
+                0x40018dc0       0xa0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(txe_queue_front_send.o)
+                0x40018dc0                _txe_queue_front_send
 
 i._txe_queue_receive
-                0x400184a0       0xa0
+                0x40018e60       0xa0
  i._txe_queue_receive
-                0x400184a0       0xa0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(txe_queue_receive.o)
-                0x400184a0                _txe_queue_receive
+                0x40018e60       0xa0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(txe_queue_receive.o)
+                0x40018e60                _txe_queue_receive
 
 i._txe_queue_send
-                0x40018540       0xa0
+                0x40018f00       0xa0
  i._txe_queue_send
-                0x40018540       0xa0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(txe_queue_send.o)
-                0x40018540                _txe_queue_send
+                0x40018f00       0xa0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(txe_queue_send.o)
+                0x40018f00                _txe_queue_send
 
 i._txe_thread_create
-                0x400185e0      0x264
+                0x40018fa0      0x264
  i._txe_thread_create
-                0x400185e0      0x264 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(txe_thread_create.o)
-                0x400185e0                _txe_thread_create
+                0x40018fa0      0x264 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(txe_thread_create.o)
+                0x40018fa0                _txe_thread_create
 
 i._txe_thread_priority_change
-                0x40018844       0xa0
+                0x40019204       0xa0
  i._txe_thread_priority_change
-                0x40018844       0xa0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(txe_thread_priority_change.o)
-                0x40018844                _txe_thread_priority_change
+                0x40019204       0xa0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(txe_thread_priority_change.o)
+                0x40019204                _txe_thread_priority_change
 
 i._txe_thread_relinquish
-                0x400188e4       0x34
+                0x400192a4       0x34
  i._txe_thread_relinquish
-                0x400188e4       0x34 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(txe_thread_relinquish.o)
-                0x400188e4                _txe_thread_relinquish
+                0x400192a4       0x34 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(txe_thread_relinquish.o)
+                0x400192a4                _txe_thread_relinquish
 
 i._txe_thread_resume
-                0x40018918       0x40
+                0x400192d8       0x40
  i._txe_thread_resume
-                0x40018918       0x40 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(txe_thread_resume.o)
-                0x40018918                _txe_thread_resume
+                0x400192d8       0x40 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(txe_thread_resume.o)
+                0x400192d8                _txe_thread_resume
 
 i._txe_timer_activate
-                0x40018958       0x40
+                0x40019318       0x40
  i._txe_timer_activate
-                0x40018958       0x40 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(txe_timer_activate.o)
-                0x40018958                _txe_timer_activate
+                0x40019318       0x40 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(txe_timer_activate.o)
+                0x40019318                _txe_timer_activate
 
 i._txe_timer_change
-                0x40018998       0x88
+                0x40019358       0x88
  i._txe_timer_change
-                0x40018998       0x88 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(txe_timer_change.o)
-                0x40018998                _txe_timer_change
+                0x40019358       0x88 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(txe_timer_change.o)
+                0x40019358                _txe_timer_change
 
 i._txe_timer_create
-                0x40018a20      0x1c8
+                0x400193e0      0x1c8
  i._txe_timer_create
-                0x40018a20      0x1c8 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(txe_timer_create.o)
-                0x40018a20                _txe_timer_create
+                0x400193e0      0x1c8 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(txe_timer_create.o)
+                0x400193e0                _txe_timer_create
 
 i._txe_timer_deactivate
-                0x40018be8       0x40
+                0x400195a8       0x40
  i._txe_timer_deactivate
-                0x40018be8       0x40 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(txe_timer_deactivate.o)
-                0x40018be8                _txe_timer_deactivate
+                0x400195a8       0x40 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(txe_timer_deactivate.o)
+                0x400195a8                _txe_timer_deactivate
 
 i._tx_byte_allocate
-                0x40018c28      0x2c8
+                0x400195e8      0x2c8
  i._tx_byte_allocate
-                0x40018c28      0x2c8 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_byte_allocate.o)
-                0x40018c28                _tx_byte_allocate
+                0x400195e8      0x2c8 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_byte_allocate.o)
+                0x400195e8                _tx_byte_allocate
 
 i._tx_byte_pool_cleanup
-                0x40018ef0       0xd0
+                0x400198b0       0xd0
  i._tx_byte_pool_cleanup
-                0x40018ef0       0xd0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_byte_pool_cleanup.o)
-                0x40018ef0                _tx_byte_pool_cleanup
+                0x400198b0       0xd0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_byte_pool_cleanup.o)
+                0x400198b0                _tx_byte_pool_cleanup
 
 i._tx_byte_pool_create
-                0x40018fc0      0x258
+                0x40019980      0x258
  i._tx_byte_pool_create
-                0x40018fc0      0x258 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_byte_pool_create.o)
-                0x40018fc0                _tx_byte_pool_create
+                0x40019980      0x258 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_byte_pool_create.o)
+                0x40019980                _tx_byte_pool_create
 
 i._tx_byte_pool_search
-                0x40019218      0x1b8
+                0x40019bd8      0x1b8
  i._tx_byte_pool_search
-                0x40019218      0x1b8 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_byte_pool_search.o)
-                0x40019218                _tx_byte_pool_search
+                0x40019bd8      0x1b8 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_byte_pool_search.o)
+                0x40019bd8                _tx_byte_pool_search
 
 i._tx_event_flags_create
-                0x400193d0      0x1cc
+                0x40019d90      0x1cc
  i._tx_event_flags_create
-                0x400193d0      0x1cc C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_event_flags_create.o)
-                0x400193d0                _tx_event_flags_create
+                0x40019d90      0x1cc C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_event_flags_create.o)
+                0x40019d90                _tx_event_flags_create
 
 i._tx_event_flags_delete
-                0x4001959c      0x24c
+                0x40019f5c      0x24c
  i._tx_event_flags_delete
-                0x4001959c      0x24c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_event_flags_delete.o)
-                0x4001959c                _tx_event_flags_delete
+                0x40019f5c      0x24c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_event_flags_delete.o)
+                0x40019f5c                _tx_event_flags_delete
 
 i._tx_event_flags_get
-                0x400197e8      0x2d0
+                0x4001a1a8      0x2d0
  i._tx_event_flags_get
-                0x400197e8      0x2d0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_event_flags_get.o)
-                0x400197e8                _tx_event_flags_get
+                0x4001a1a8      0x2d0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_event_flags_get.o)
+                0x4001a1a8                _tx_event_flags_get
 
 i._tx_event_flags_set
-                0x40019ab8      0x5e8
+                0x4001a478      0x5e8
  i._tx_event_flags_set
-                0x40019ab8      0x5e8 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_event_flags_set.o)
-                0x40019ab8                _tx_event_flags_set
+                0x4001a478      0x5e8 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_event_flags_set.o)
+                0x4001a478                _tx_event_flags_set
 
 i._tx_initialize_high_level
-                0x4001a0a0       0xa8
+                0x4001aa60       0xa8
  i._tx_initialize_high_level
-                0x4001a0a0       0xa8 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_initialize_high_level.o)
-                0x4001a0a0                _tx_initialize_high_level
+                0x4001aa60       0xa8 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_initialize_high_level.o)
+                0x4001aa60                _tx_initialize_high_level
 
 i._tx_mutex_create
-                0x4001a148      0x1d8
+                0x4001ab08      0x1d8
  i._tx_mutex_create
-                0x4001a148      0x1d8 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_mutex_create.o)
-                0x4001a148                _tx_mutex_create
+                0x4001ab08      0x1d8 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_mutex_create.o)
+                0x4001ab08                _tx_mutex_create
 
 i._tx_mutex_delete
-                0x4001a320      0x2dc
+                0x4001ace0      0x2dc
  i._tx_mutex_delete
-                0x4001a320      0x2dc C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_mutex_delete.o)
-                0x4001a320                _tx_mutex_delete
+                0x4001ace0      0x2dc C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_mutex_delete.o)
+                0x4001ace0                _tx_mutex_delete
 
 i._tx_mutex_get
-                0x4001a5fc      0x2f4
+                0x4001afbc      0x2f4
  i._tx_mutex_get
-                0x4001a5fc      0x2f4 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_mutex_get.o)
-                0x4001a5fc                _tx_mutex_get
+                0x4001afbc      0x2f4 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_mutex_get.o)
+                0x4001afbc                _tx_mutex_get
 
 i._tx_mutex_priority_change
-                0x4001a8f0       0x88
+                0x4001b2b0       0x88
  i._tx_mutex_priority_change
-                0x4001a8f0       0x88 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_mutex_priority_change.o)
-                0x4001a8f0                _tx_mutex_priority_change
+                0x4001b2b0       0x88 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_mutex_priority_change.o)
+                0x4001b2b0                _tx_mutex_priority_change
 
 i._tx_mutex_put
-                0x4001a978      0x4d4
+                0x4001b338      0x4d4
  i._tx_mutex_put
-                0x4001a978      0x4d4 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_mutex_put.o)
-                0x4001a978                _tx_mutex_put
+                0x4001b338      0x4d4 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_mutex_put.o)
+                0x4001b338                _tx_mutex_put
 
 i._tx_queue_create
-                0x4001ae4c      0x20c
+                0x4001b80c      0x20c
  i._tx_queue_create
-                0x4001ae4c      0x20c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_queue_create.o)
-                0x4001ae4c                _tx_queue_create
+                0x4001b80c      0x20c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_queue_create.o)
+                0x4001b80c                _tx_queue_create
 
 i._tx_queue_front_send
-                0x4001b058      0x3bc
+                0x4001ba18      0x3bc
  i._tx_queue_front_send
-                0x4001b058      0x3bc C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_queue_front_send.o)
-                0x4001b058                _tx_queue_front_send
+                0x4001ba18      0x3bc C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_queue_front_send.o)
+                0x4001ba18                _tx_queue_front_send
 
 i._tx_queue_receive
-                0x4001b414      0x460
+                0x4001bdd4      0x460
  i._tx_queue_receive
-                0x4001b414      0x460 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_queue_receive.o)
-                0x4001b414                _tx_queue_receive
+                0x4001bdd4      0x460 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_queue_receive.o)
+                0x4001bdd4                _tx_queue_receive
 
 i._tx_queue_send
-                0x4001b874      0x3ac
+                0x4001c234      0x3ac
  i._tx_queue_send
-                0x4001b874      0x3ac C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_queue_send.o)
-                0x4001b874                _tx_queue_send
+                0x4001c234      0x3ac C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_queue_send.o)
+                0x4001c234                _tx_queue_send
 
 i._tx_thread_create
-                0x4001bc20      0x33c
+                0x4001c5e0      0x33c
  i._tx_thread_create
-                0x4001bc20      0x33c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_create.o)
-                0x4001bc20                _tx_thread_create
+                0x4001c5e0      0x33c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_create.o)
+                0x4001c5e0                _tx_thread_create
 
 i._tx_thread_priority_change
-                0x4001bf5c      0x1a0
+                0x4001c91c      0x1a0
  i._tx_thread_priority_change
-                0x4001bf5c      0x1a0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_priority_change.o)
-                0x4001bf5c                _tx_thread_priority_change
+                0x4001c91c      0x1a0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_priority_change.o)
+                0x4001c91c                _tx_thread_priority_change
 
 i._tx_thread_relinquish
-                0x4001c0fc      0x2f0
+                0x4001cabc      0x2f0
  i._tx_thread_relinquish
-                0x4001c0fc      0x2f0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_relinquish.o)
-                0x4001c0fc                _tx_thread_relinquish
+                0x4001cabc      0x2f0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_relinquish.o)
+                0x4001cabc                _tx_thread_relinquish
 
 i._tx_thread_resume
-                0x4001c3ec      0x1d0
+                0x4001cdac      0x1d0
  i._tx_thread_resume
-                0x4001c3ec      0x1d0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_resume.o)
-                0x4001c3ec                _tx_thread_resume
+                0x4001cdac      0x1d0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_resume.o)
+                0x4001cdac                _tx_thread_resume
 
 i._tx_thread_shell_entry
-                0x4001c5bc       0x9c
+                0x4001cf7c       0x9c
  i._tx_thread_shell_entry
-                0x4001c5bc       0x9c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_shell_entry.o)
-                0x4001c5bc                _tx_thread_shell_entry
+                0x4001cf7c       0x9c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_shell_entry.o)
+                0x4001cf7c                _tx_thread_shell_entry
 
 i._tx_thread_stack_analyze
-                0x4001c658       0xd4
+                0x4001d018       0xd4
  i._tx_thread_stack_analyze
-                0x4001c658       0xd4 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_stack_analyze.o)
-                0x4001c658                _tx_thread_stack_analyze
+                0x4001d018       0xd4 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_stack_analyze.o)
+                0x4001d018                _tx_thread_stack_analyze
 
 i._tx_thread_stack_error_handler
-                0x4001c72c       0x4c
+                0x4001d0ec       0x4c
  i._tx_thread_stack_error_handler
-                0x4001c72c       0x4c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_stack_error_handler.o)
-                0x4001c72c                _tx_thread_stack_error_handler
+                0x4001d0ec       0x4c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_stack_error_handler.o)
+                0x4001d0ec                _tx_thread_stack_error_handler
 
 i._tx_thread_system_preempt_check
-                0x4001c778       0xb0
+                0x4001d138       0xb0
  i._tx_thread_system_preempt_check
-                0x4001c778       0xb0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_system_preempt_check.o)
-                0x4001c778                _tx_thread_system_preempt_check
+                0x4001d138       0xb0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_system_preempt_check.o)
+                0x4001d138                _tx_thread_system_preempt_check
 
 i._tx_thread_system_resume
-                0x4001c828      0x3c8
+                0x4001d1e8      0x3c8
  i._tx_thread_system_resume
-                0x4001c828      0x3c8 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_system_resume.o)
-                0x4001c828                _tx_thread_system_resume
+                0x4001d1e8      0x3c8 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_system_resume.o)
+                0x4001d1e8                _tx_thread_system_resume
 
 i._tx_thread_time_slice
-                0x4001cbf0      0x168
+                0x4001d5b0      0x168
  i._tx_thread_time_slice
-                0x4001cbf0      0x168 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_time_slice.o)
-                0x4001cbf0                _tx_thread_time_slice
+                0x4001d5b0      0x168 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_time_slice.o)
+                0x4001d5b0                _tx_thread_time_slice
 
 i._tx_thread_timeout
-                0x4001cd58       0x6c
+                0x4001d718       0x6c
  i._tx_thread_timeout
-                0x4001cd58       0x6c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_timeout.o)
-                0x4001cd58                _tx_thread_timeout
+                0x4001d718       0x6c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_timeout.o)
+                0x4001d718                _tx_thread_timeout
 
 i._tx_timer_activate
-                0x4001cdc4      0x140
+                0x4001d784      0x140
  i._tx_timer_activate
-                0x4001cdc4      0x140 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_timer_activate.o)
-                0x4001cdc4                _tx_timer_activate
+                0x4001d784      0x140 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_timer_activate.o)
+                0x4001d784                _tx_timer_activate
 
 i._tx_timer_change
-                0x4001cf04      0x12c
+                0x4001d8c4      0x12c
  i._tx_timer_change
-                0x4001cf04      0x12c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_timer_change.o)
-                0x4001cf04                _tx_timer_change
+                0x4001d8c4      0x12c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_timer_change.o)
+                0x4001d8c4                _tx_timer_change
 
 i._tx_timer_create
-                0x4001d030      0x1fc
+                0x4001d9f0      0x1fc
  i._tx_timer_create
-                0x4001d030      0x1fc C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_timer_create.o)
-                0x4001d030                _tx_timer_create
+                0x4001d9f0      0x1fc C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_timer_create.o)
+                0x4001d9f0                _tx_timer_create
 
 i._tx_timer_deactivate
-                0x4001d22c      0x274
+                0x4001dbec      0x274
  i._tx_timer_deactivate
-                0x4001d22c      0x274 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_timer_deactivate.o)
-                0x4001d22c                _tx_timer_deactivate
+                0x4001dbec      0x274 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_timer_deactivate.o)
+                0x4001dbec                _tx_timer_deactivate
 
 i._tx_timer_expiration_process
-                0x4001d4a0       0x3c
+                0x4001de60       0x3c
  i._tx_timer_expiration_process
-                0x4001d4a0       0x3c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_timer_expiration_process.o)
-                0x4001d4a0                _tx_timer_expiration_process
+                0x4001de60       0x3c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_timer_expiration_process.o)
+                0x4001de60                _tx_timer_expiration_process
 
 i._tx_timer_system_deactivate
-                0x4001d4dc       0xa4
+                0x4001de9c       0xa4
  i._tx_timer_system_deactivate
-                0x4001d4dc       0xa4 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_timer_system_deactivate.o)
-                0x4001d4dc                _tx_timer_system_deactivate
+                0x4001de9c       0xa4 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_timer_system_deactivate.o)
+                0x4001de9c                _tx_timer_system_deactivate
 
 i._tx_trace_object_register
-                0x4001d580      0x1ac
+                0x4001df40      0x1ac
  i._tx_trace_object_register
-                0x4001d580      0x1ac C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_trace_object_register.o)
-                0x4001d580                _tx_trace_object_register
+                0x4001df40      0x1ac C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_trace_object_register.o)
+                0x4001df40                _tx_trace_object_register
 
 i._tx_trace_object_unregister
-                0x4001d72c       0x94
+                0x4001e0ec       0x94
  i._tx_trace_object_unregister
-                0x4001d72c       0x94 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_trace_object_unregister.o)
-                0x4001d72c                _tx_trace_object_unregister
+                0x4001e0ec       0x94 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_trace_object_unregister.o)
+                0x4001e0ec                _tx_trace_object_unregister
 
 i._tx_event_flags_cleanup
-                0x4001d7c0       0xd0
+                0x4001e180       0xd0
  i._tx_event_flags_cleanup
-                0x4001d7c0       0xd0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_event_flags_cleanup.o)
-                0x4001d7c0                _tx_event_flags_cleanup
+                0x4001e180       0xd0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_event_flags_cleanup.o)
+                0x4001e180                _tx_event_flags_cleanup
 
 i._tx_mutex_cleanup
-                0x4001d890       0xd0
+                0x4001e250       0xd0
  i._tx_mutex_cleanup
-                0x4001d890       0xd0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_mutex_cleanup.o)
-                0x4001d890                _tx_mutex_cleanup
+                0x4001e250       0xd0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_mutex_cleanup.o)
+                0x4001e250                _tx_mutex_cleanup
 
 i._tx_mutex_prioritize
-                0x4001d960      0x274
+                0x4001e320      0x274
  i._tx_mutex_prioritize
-                0x4001d960      0x274 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_mutex_prioritize.o)
-                0x4001d960                _tx_mutex_prioritize
+                0x4001e320      0x274 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_mutex_prioritize.o)
+                0x4001e320                _tx_mutex_prioritize
 
 i._tx_queue_cleanup
-                0x4001dbd4       0xe8
+                0x4001e594       0xe8
  i._tx_queue_cleanup
-                0x4001dbd4       0xe8 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_queue_cleanup.o)
-                0x4001dbd4                _tx_queue_cleanup
+                0x4001e594       0xe8 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_queue_cleanup.o)
+                0x4001e594                _tx_queue_cleanup
 
-.rel.dyn        0x4001dcbc        0x0
+.rel.dyn        0x4001e67c        0x0
  .rel.iplt      0x00000000        0x0 ./UART/uart.o
 
 .data           0x40030000      0x2cc
@@ -14093,7 +14094,7 @@ i._tx_queue_cleanup
                 0x400361fc                __exidx_end = .
 OUTPUT(BScProjectVaerksSensorInterfacing.elf elf32-littlearm)
 
-.debug_info     0x00000000     0x70b4
+.debug_info     0x00000000     0x6ff4
  .debug_info    0x00000000     0x11bf ./UART/uart.o
  .debug_info    0x000011bf      0xeea ./SPI/spi_config.o
  .debug_info    0x000020a9      0xe3c ./SPI/spi_init.o
@@ -14104,23 +14105,23 @@ OUTPUT(BScProjectVaerksSensorInterfacing.elf elf32-littlearm)
  .debug_info    0x00004454      0xf6f ./CyFxFiles/cyfxtx.o
  .debug_info    0x000053c3      0x262 ./CyFxFiles/cyfxusbenumdscr.o
  .debug_info    0x00005625      0x874 ./Application/application_thread.o
- .debug_info    0x00005e99      0x5c4 ./ADcmXL3021/recording_modes.o
- .debug_info    0x0000645d      0x44b ./main.o
- .debug_info    0x000068a8       0x94 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3entry_armcc.o)
- .debug_info    0x0000693c       0x94 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3entry_armcc.o)
- .debug_info    0x000069d0       0x8c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3mmu.o)
- .debug_info    0x00006a5c       0x94 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3isr_armcc.o)
- .debug_info    0x00006af0       0xa4 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_system_return.o)
- .debug_info    0x00006b94       0xa0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_schedule.o)
- .debug_info    0x00006c34       0xac C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_vectored_context_save.o)
- .debug_info    0x00006ce0       0xa0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_timer_interrupt.o)
- .debug_info    0x00006d80       0xa4 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_context_restore.o)
- .debug_info    0x00006e24       0xa4 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_irq_nesting_end.o)
- .debug_info    0x00006ec8       0xa8 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_irq_nesting_start.o)
- .debug_info    0x00006f70       0xa4 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_initialize_low_level.o)
- .debug_info    0x00007014       0xa0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_stack_build.o)
+ .debug_info    0x00005e99      0x504 ./ADcmXL3021/recording_modes.o
+ .debug_info    0x0000639d      0x44b ./main.o
+ .debug_info    0x000067e8       0x94 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3entry_armcc.o)
+ .debug_info    0x0000687c       0x94 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3entry_armcc.o)
+ .debug_info    0x00006910       0x8c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3mmu.o)
+ .debug_info    0x0000699c       0x94 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3isr_armcc.o)
+ .debug_info    0x00006a30       0xa4 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_system_return.o)
+ .debug_info    0x00006ad4       0xa0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_schedule.o)
+ .debug_info    0x00006b74       0xac C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_vectored_context_save.o)
+ .debug_info    0x00006c20       0xa0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_timer_interrupt.o)
+ .debug_info    0x00006cc0       0xa4 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_context_restore.o)
+ .debug_info    0x00006d64       0xa4 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_irq_nesting_end.o)
+ .debug_info    0x00006e08       0xa8 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_irq_nesting_start.o)
+ .debug_info    0x00006eb0       0xa4 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_initialize_low_level.o)
+ .debug_info    0x00006f54       0xa0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_stack_build.o)
 
-.debug_abbrev   0x00000000      0xdd8
+.debug_abbrev   0x00000000      0xda4
  .debug_abbrev  0x00000000      0x1ab ./UART/uart.o
  .debug_abbrev  0x000001ab      0x151 ./SPI/spi_config.o
  .debug_abbrev  0x000002fc      0x1ae ./SPI/spi_init.o
@@ -14131,10 +14132,10 @@ OUTPUT(BScProjectVaerksSensorInterfacing.elf elf32-littlearm)
  .debug_abbrev  0x00000809      0x253 ./CyFxFiles/cyfxtx.o
  .debug_abbrev  0x00000a5c       0x78 ./CyFxFiles/cyfxusbenumdscr.o
  .debug_abbrev  0x00000ad4      0x113 ./Application/application_thread.o
- .debug_abbrev  0x00000be7      0x132 ./ADcmXL3021/recording_modes.o
- .debug_abbrev  0x00000d19       0xab ./main.o
- .debug_abbrev  0x00000dc4       0x14 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3entry_armcc.o)
-                0x00000dc4                __ARM_asm.debug_abbrev
+ .debug_abbrev  0x00000be7       0xfe ./ADcmXL3021/recording_modes.o
+ .debug_abbrev  0x00000ce5       0xab ./main.o
+ .debug_abbrev  0x00000d90       0x14 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3entry_armcc.o)
+                0x00000d90                __ARM_asm.debug_abbrev
 
 .debug_aranges  0x00000000      0x2a0
  .debug_aranges
@@ -14236,34 +14237,34 @@ OUTPUT(BScProjectVaerksSensorInterfacing.elf elf32-littlearm)
  .debug_macro   0x00004551       0xf6 ./main.o
  .debug_macro   0x00004647       0x10 ./main.o
 
-.debug_line     0x00000000     0x4726
- .debug_line    0x00000000      0x5c1 ./UART/uart.o
- .debug_line    0x000005c1      0x504 ./SPI/spi_config.o
- .debug_line    0x00000ac5      0x56f ./SPI/spi_init.o
- .debug_line    0x00001034      0x605 ./Modbus/modbus_self_implemented.o
- .debug_line    0x00001639      0x4ff ./GPIO/gpio_init.o
- .debug_line    0x00001b38      0x4ed ./GPIO/gpio_thread.o
- .debug_line    0x00002025       0x5d ./CyFxFiles/cyfx_gcc_startup.o
- .debug_line    0x00002082      0x7cb ./CyFxFiles/cyfxtx.o
- .debug_line    0x0000284d      0x294 ./CyFxFiles/cyfxusbenumdscr.o
- .debug_line    0x00002ae1      0x57b ./Application/application_thread.o
- .debug_line    0x0000305c      0xa69 ./ADcmXL3021/recording_modes.o
- .debug_line    0x00003ac5      0x531 ./main.o
- .debug_line    0x00003ff6       0x80 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3entry_armcc.o)
- .debug_line    0x00004076       0x50 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3entry_armcc.o)
- .debug_line    0x000040c6       0xf8 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3mmu.o)
- .debug_line    0x000041be      0x194 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3isr_armcc.o)
- .debug_line    0x00004352       0x68 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_system_return.o)
- .debug_line    0x000043ba       0x68 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_schedule.o)
- .debug_line    0x00004422       0x6c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_vectored_context_save.o)
- .debug_line    0x0000448e       0x8c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_timer_interrupt.o)
- .debug_line    0x0000451a       0xa0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_context_restore.o)
- .debug_line    0x000045ba       0x54 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_irq_nesting_end.o)
- .debug_line    0x0000460e       0x58 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_irq_nesting_start.o)
- .debug_line    0x00004666       0x58 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_initialize_low_level.o)
- .debug_line    0x000046be       0x68 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_stack_build.o)
+.debug_line     0x00000000     0x4681
+ .debug_line    0x00000000      0x5c2 ./UART/uart.o
+ .debug_line    0x000005c2      0x504 ./SPI/spi_config.o
+ .debug_line    0x00000ac6      0x56f ./SPI/spi_init.o
+ .debug_line    0x00001035      0x605 ./Modbus/modbus_self_implemented.o
+ .debug_line    0x0000163a      0x4ff ./GPIO/gpio_init.o
+ .debug_line    0x00001b39      0x4ed ./GPIO/gpio_thread.o
+ .debug_line    0x00002026       0x5d ./CyFxFiles/cyfx_gcc_startup.o
+ .debug_line    0x00002083      0x7cb ./CyFxFiles/cyfxtx.o
+ .debug_line    0x0000284e      0x294 ./CyFxFiles/cyfxusbenumdscr.o
+ .debug_line    0x00002ae2      0x579 ./Application/application_thread.o
+ .debug_line    0x0000305b      0x9c5 ./ADcmXL3021/recording_modes.o
+ .debug_line    0x00003a20      0x531 ./main.o
+ .debug_line    0x00003f51       0x80 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3entry_armcc.o)
+ .debug_line    0x00003fd1       0x50 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3entry_armcc.o)
+ .debug_line    0x00004021       0xf8 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3mmu.o)
+ .debug_line    0x00004119      0x194 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3isr_armcc.o)
+ .debug_line    0x000042ad       0x68 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_system_return.o)
+ .debug_line    0x00004315       0x68 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_schedule.o)
+ .debug_line    0x0000437d       0x6c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_vectored_context_save.o)
+ .debug_line    0x000043e9       0x8c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_timer_interrupt.o)
+ .debug_line    0x00004475       0xa0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_context_restore.o)
+ .debug_line    0x00004515       0x54 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_irq_nesting_end.o)
+ .debug_line    0x00004569       0x58 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_irq_nesting_start.o)
+ .debug_line    0x000045c1       0x58 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_initialize_low_level.o)
+ .debug_line    0x00004619       0x68 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_stack_build.o)
 
-.debug_str      0x00000000     0xf9f2
+.debug_str      0x00000000     0xf9dd
  .debug_str     0x00000000     0xc013 ./UART/uart.o
                                0xc246 (size before relaxing)
  .debug_str     0x0000c013      0x228 ./SPI/spi_config.o
@@ -14282,9 +14283,9 @@ OUTPUT(BScProjectVaerksSensorInterfacing.elf elf32-littlearm)
                                0x35fd (size before relaxing)
  .debug_str     0x0000f659      0x14e ./Application/application_thread.o
                                0xa548 (size before relaxing)
- .debug_str     0x0000f7a7       0xc1 ./ADcmXL3021/recording_modes.o
-                               0x9cfd (size before relaxing)
- .debug_str     0x0000f868      0x18a ./main.o
+ .debug_str     0x0000f7a7       0xac ./ADcmXL3021/recording_modes.o
+                               0x9c95 (size before relaxing)
+ .debug_str     0x0000f853      0x18a ./main.o
                                0xb690 (size before relaxing)
 
 .comment        0x00000000     0xb2b4

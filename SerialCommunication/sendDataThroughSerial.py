@@ -1,3 +1,6 @@
+
+#This is just a python test script for sending data one way through a serial connection (from PC to consumer)
+
 import time
 import serial
 

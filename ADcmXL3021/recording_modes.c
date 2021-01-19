@@ -177,70 +177,19 @@ CyU3PReturnStatus_t start_sampling_RTS() {
 	// the execution time is much more immediate (seems to be similar to how the GUI does it)
 	int i, ii;
 	uint8_t  spi_data[200];
-	uint16_t data_to_store;
-	int16_t signed_data_to_store;
-	//uint8_t data_for_sampling[200] = {0x00};
 	for (i = 0; i < 150; i++) { // This should be an infinite while-loop, but this is just for testing purposes so we can get on with the application.
 		CyU3PSpiSetSsnLine (CyFalse);
 		//status = CyU3PSpiTransmitWords(data_for_sampling, 200);
 		status = CyU3PSpiReceiveWords (spi_data, 0xC8); //0xC8 for 200, data should be stored in rxData
 		CyU3PSpiSetSsnLine (CyTrue);
 		for (ii = 0; ii < 100; ii++) {
-			data_to_store = (spi_data[ii * 2] << 8) | (spi_data[ii * 2 + 1]);
-			//0x8000 is offset for signed,
-			//0x0773 is 1907 as the multiplication factor for gravity,
-			//0x03E8 is 1000 which needs to be divided twice to get
-			//the correct multiplication factor, and go from mg to g (gravities) (WE DONT DO THIS, SO DATA IS IN mg)
-			if (data_to_store > 0x8000) {
-				data_to_store = (data_to_store - 0x8000) * 0x0773 / 0x03E8;// / 0x03E8;
-				signed_data_to_store = data_to_store;
-				signed_data_to_store = -(signed_data_to_store);
-				//HoldingRegister[ii] = signed_data_to_store;
-			} else { // this is negatives, we need to be able to express this somehow (right now its all positives)
-				data_to_store = (0x8000 - data_to_store) * 0x0773 / 0x03E8;// / 0x03E8;
-				signed_data_to_store = data_to_store;
-				//HoldingRegister[ii] = signed_data_to_store;
-			}
-			HoldingRegister[ii] = signed_data_to_store;
+			// 0x8000 is offset for signed,
+			// 0x0773 is the multiplication factor to get it in mg. 0x03E8 is the division factor to divide it by 1000, as the mg multiplication factor was 1000 too much (as it is a decimal number)
+			// Data is stored in mg (gravities)
+			HoldingRegister[ii] = (((((spi_data[ii*2] << 8) | (spi_data[ii*2+1])) - 0x8000) * 0x0773) + (0x03E8 / 2)) / 0x03E8;
 		}
 		CyU3PThreadSleep (12);
 	}
-
-//	//Option 2 - using the "built-in" DMA functions to wait for responses
-//	CyU3PMemSet (glEp0Buffer, 0, sizeof (glEp0Buffer));
-//	CyU3PDmaBuffer_t buf_p;
-//	buf_p.buffer = glEp0Buffer;
-//	buf_p.status = 0;
-//	buf_p.size  = 0x70; //0xC8 = 200, 0x64 = 100
-//	buf_p.count = 0x70;
-//
-//	int i, ii;
-//	for (i = 0; i < 150; i++) {
-//		CyU3PSpiSetSsnLine (CyFalse);
-//		CyU3PSpiSetBlockXfer (0, 0x64); //Probably should be 0xC8
-//
-//		//receives buffer
-//		status = CyU3PDmaChannelSetupRecvBuffer (&glSpiRxHandle, &buf_p);
-//		if (status != CY_U3P_SUCCESS) {
-//			CyU3PSpiSetSsnLine (CyTrue);
-//			return status;
-//		}
-//		status = CyU3PDmaChannelWaitForCompletion (&glSpiRxHandle, 2000);
-//		/*if (status != CY_U3P_SUCCESS) {
-//			CyU3PSpiSetSsnLine (CyTrue);
-//			return status;
-//		}*/
-//
-//		CyU3PSpiSetSsnLine (CyTrue);
-//		CyU3PSpiDisableBlockXfer (CyFalse, CyTrue);
-//		for (ii = 0; ii < 50; ii++) {
-//			HoldingRegister[ii] = (buf_p.buffer[ii * 2] << 8) | (buf_p.buffer[ii * 2 + 1]);//buf_p.buffer[ii];
-//			//HoldingRegister[600] = 0x03E8; //hard coding 1000 for testing purposes in reg 600
-//			//HoldingRegister[601] = 0x1388; // -||- 5000
-//		}
-//		CyU3PThreadSleep (12);
-//	}
-
 
 	// RECORD DATA IN RTS MODE //////////////////////////////// END
 
@@ -489,43 +438,22 @@ CyU3PReturnStatus_t start_sampling_MTC() {
 
 	CyU3PThreadSleep (20);
 
-
-
-
-
-	CyU3PMemSet (glEp0Buffer, 0, sizeof (glEp0Buffer));
-	CyU3PDmaBuffer_t buf_p;
-	buf_p.buffer = glEp0Buffer;
-	buf_p.status = 0;
-	buf_p.size  = 0x2000; //65520 (0x1 0000 - 0x10), since we cant have 0x1 0000 (since its larger than uint16)
-	buf_p.count = 0x2000;
-
-	CyU3PMemSet (glEp0Buffer2, 0, sizeof (glEp0Buffer2));
-	CyU3PDmaBuffer_t buf2_p;
-	buf2_p.buffer = glEp0Buffer2;
-	buf2_p.status = 0;
-	buf2_p.size  = 0x2000;
-	buf2_p.count = 0x2000;
-
+	data[0] = 0x00; data[1] = 0x0E;
+	uint8_t receive_data[2];
 	int i;
-	for (i = 0; i < 4096; i+=2) {
-		buf_p.buffer[i * 2] = 0x00;
-		buf_p.buffer[i * 2 + 1] = 0x0E;
+	for (i = -1; i < 99; i++) { // The reason why we do this as a loop (1 by 1) rather than sending 100 datapoints in at once, is because, after trial and error, this way yields the best results.
+		CyU3PSpiSetSsnLine (CyFalse);
+		CyU3PSpiTransferWords (data, 2, receive_data, 2);
+		CyU3PSpiSetSsnLine (CyTrue);
+		if (i >= 0) { //-1 to 99 and this check ensures we put the MISO data into the correct holding register (which is data from the previous MOSI data)
+			HoldingRegister[i] = ((((receive_data[0] << 8) | (receive_data[1])) * 0x0773) + (0x03E8 / 2)) / 0x03E8;
+		}
 	}
-
-	CyU3PSpiTransferWords (&buf_p, 0x2000, &buf2_p, 0x2000);
-
-	//Because of missing memory/data on FX3 board, we will only take the last 4096/3 = 1365 values of each measurement. This is not good though, and we need a board with more memory.
-	//FIGURE OUT THE LOGIC TO INVOKE THE LAST 1365 BYTES OF THE BUFFER WHEN STORING IT IN THE HOLDING REGISTER
-	//X-axis
-	int ii = 0;
-	for (i = 0; i < 1364; i+=2) {
-		HoldingRegister[i] = (buf2_p.buffer[/*(4095 - 1365) + */ii * 2 + 2] << 8) | (buf2_p.buffer[/*(4095 - 1365) + */ii * 2 + 1 + 2]); // +2 to ignore the first one, because the read is always "1 behind" the transmit
-		ii++;
-	}
-	uint8_t spi_data[1];
-	status = CyU3PSpiReceiveWords (spi_data, 0x01); //The last value
-	HoldingRegister[1364] = spi_data[0];
+	data[0] = 0x00; data[1] = 0x00;
+	CyU3PSpiSetSsnLine (CyFalse);
+	CyU3PSpiReceiveWords (data, 2);
+	CyU3PSpiSetSsnLine (CyTrue);
+	HoldingRegister[99] = ((((data[0] << 8) | (data[1])) * 0x0773) + (0x03E8 / 2)) / 0x03E8; // Do the last holding register, which is retreived from 0x0000.
 
 	CyU3PThreadSleep (200);
 
@@ -534,22 +462,22 @@ CyU3PReturnStatus_t start_sampling_MTC() {
 	status = CyU3PSpiTransmitWords(data, 2);
 	CyU3PSpiSetSsnLine (CyTrue);
 
-	for (i = 0; i < 4096; i+=2) {
-		buf_p.buffer[i * 2] = 0x00;
-		buf_p.buffer[i * 2 + 1] = 0x10;
-	}
-
 	CyU3PThreadSleep (20);
 
-	CyU3PSpiTransferWords (&buf_p, 0x2000, &buf2_p, 0x2000);
-	//Y-axis
-	ii = 0;
-	for (i = 1365; i < 2729; i+=2) {
-		HoldingRegister[i] = (buf2_p.buffer[/*(4095 - 1365) + */ii * 2 + 2] << 8) | (buf2_p.buffer[/*(4095 - 1365) + */ii * 2 + 1 + 2]); // +2 to ignore the first one, because the read is always "1 behind" the transmit
-		ii++;
+	data[0] = 0x00; data[1] = 0x10;
+	for (i = 99; i < 199; i++) {
+		CyU3PSpiSetSsnLine (CyFalse);
+		CyU3PSpiTransferWords (data, 2, receive_data, 2);
+		CyU3PSpiSetSsnLine (CyTrue);
+		if (i >= 100) { //-1 to 99 and this check ensures we put the MISO data into the correct holding register (which is data from the previous MOSI data)
+			HoldingRegister[i] = ((((receive_data[0] << 8) | (receive_data[1])) * 0x0773) + (0x03E8 / 2)) / 0x03E8;
+		}
 	}
-	status = CyU3PSpiReceiveWords (spi_data, 0x01); //The last value
-	HoldingRegister[2729] = spi_data[0];
+	data[0] = 0x00; data[1] = 0x00;
+	CyU3PSpiSetSsnLine (CyFalse);
+	CyU3PSpiReceiveWords (data, 2);
+	CyU3PSpiSetSsnLine (CyTrue);
+	HoldingRegister[199] = ((((data[0] << 8) | (data[1])) * 0x0773) + (0x03E8 / 2)) / 0x03E8; // Do the last holding register, which is retreived from 0x0000.
 
 	CyU3PThreadSleep (200);
 
@@ -558,108 +486,26 @@ CyU3PReturnStatus_t start_sampling_MTC() {
 	status = CyU3PSpiTransmitWords(data, 2);
 	CyU3PSpiSetSsnLine (CyTrue);
 
-	for (i = 0; i < 4096; i+=2) {
-		buf_p.buffer[i * 2] = 0x00;
-		buf_p.buffer[i * 2 + 1] = 0x12;
-	}
-
 	CyU3PThreadSleep (20);
 
-	CyU3PSpiTransferWords (&buf_p, 0x2000, &buf2_p, 0x2000);
-	//Z-axis
-	ii = 0;
-	for (i = 2730; i < 4095; i+=2) {
-		HoldingRegister[i] = (buf2_p.buffer[/*(4095 - 1365) + */ii * 2 + 2] << 8) | (buf2_p.buffer[/*(4095 - 1365) + */ii * 2 + 1 + 2]); // +2 to ignore the first one, because the read is always "1 behind" the transmit
-		ii++;
+	data[0] = 0x00; data[1] = 0x12;
+	for (i = 199; i < 299; i++) {
+		CyU3PSpiSetSsnLine (CyFalse);
+		CyU3PSpiTransferWords (data, 2, receive_data, 2);
+		CyU3PSpiSetSsnLine (CyTrue);
+		if (i >= 200) { //-1 to 99 and this check ensures we put the MISO data into the correct holding register (which is data from the previous MOSI data)
+			HoldingRegister[i] = ((((receive_data[0] << 8) | (receive_data[1])) * 0x0773) + (0x03E8 / 2)) / 0x03E8;
+		}
 	}
-	status = CyU3PSpiReceiveWords (spi_data, 0x01); //The last value
-	HoldingRegister[4095] = spi_data[0];
-
-
-
-	//DMA which is I don't know how to send 2 directional data (send 0x0E00 and recieve something because of this)
-//	int i, ii;
-//	for (i = 0; i < 150; i++) {
-//		CyU3PSpiSetSsnLine (CyFalse);
-//		CyU3PSpiSetBlockXfer (0x2000, 0x2000); //0x2000 = 4096*2 (as each sample of the 4096 is 16 bytes)
-//
-//		//receives buffer
-//		status = CyU3PDmaChannelSetupRecvBuffer (&glSpiRxHandle, &buf_p);
-//		status = CyU3PDmaChannelWaitForCompletion (&glSpiRxHandle, 200);
-//
-//		CyU3PSpiSetSsnLine (CyTrue);
-//		CyU3PSpiDisableBlockXfer (CyFalse, CyTrue);
-//		for (ii = 0; ii < 50; ii++) {
-//			HoldingRegister[ii] = (buf_p.buffer[ii * 2] << 8) | (buf_p.buffer[ii * 2 + 1]);//buf_p.buffer[ii];
-//			//HoldingRegister[600] = 0x03E8; //hard coding 1000 for testing purposes in reg 600
-//			//HoldingRegister[601] = 0x1388; // -||- 5000
-//		}
-//		CyU3PThreadSleep (12);
-//	}
-
-
-
-
-
-
-//	int i;
-//	data[0] = 0x00; data[1] = 0x0E; //X_BUF
-//	for (i = 0; i < 4096; i++) {
-//		CyU3PSpiSetSsnLine (CyFalse);
-//		status = CyU3PSpiTransmitWords(data, 2);
-//		CyU3PSpiSetSsnLine (CyTrue);
-//	}
-//
-//	data[0] = 0x00; data[1] = 0x00;
-//	CyU3PSpiSetSsnLine (CyFalse);
-//	status = CyU3PSpiTransmitWords(data, 2);
-//	CyU3PSpiSetSsnLine (CyTrue);
-//
-//	CyU3PThreadSleep (200);
-//
-//	data[0] = 0x00; data[1] = 0x80;
-//	CyU3PSpiSetSsnLine (CyFalse);
-//	status = CyU3PSpiTransmitWords(data, 2);
-//	CyU3PSpiSetSsnLine (CyTrue);
-//
-//	CyU3PThreadSleep (20);
-//
-//	data[0] = 0x00; data[1] = 0x10; //Y_BUF
-//	for (i = 0; i < 4096; i++) {
-//		CyU3PSpiSetSsnLine (CyFalse);
-//		status = CyU3PSpiTransmitWords(data, 2);
-//		CyU3PSpiSetSsnLine (CyTrue);
-//	}
-//
-//	data[0] = 0x00; data[1] = 0x00;
-//	CyU3PSpiSetSsnLine (CyFalse);
-//	status = CyU3PSpiTransmitWords(data, 2);
-//	CyU3PSpiSetSsnLine (CyTrue);
-//
-//	CyU3PThreadSleep (200);
-//
-//	data[0] = 0x00; data[1] = 0x80;
-//	CyU3PSpiSetSsnLine (CyFalse);
-//	status = CyU3PSpiTransmitWords(data, 2);
-//	CyU3PSpiSetSsnLine (CyTrue);
-//
-//	CyU3PThreadSleep (20);
-//
-//	data[0] = 0x00; data[1] = 0x12; //Z_BUF
-//	for (i = 0; i < 4096; i++) {
-//		CyU3PSpiSetSsnLine (CyFalse);
-//		status = CyU3PSpiTransmitWords(data, 2);
-//		CyU3PSpiSetSsnLine (CyTrue);
-//	}
-//
-//	data[0] = 0x00; data[1] = 0x00;
-//	CyU3PSpiSetSsnLine (CyFalse);
-//	status = CyU3PSpiTransmitWords(data, 2);
-//	CyU3PSpiSetSsnLine (CyTrue);
+	data[0] = 0x00; data[1] = 0x00;
+	CyU3PSpiSetSsnLine (CyFalse);
+	CyU3PSpiReceiveWords (data, 2);
+	CyU3PSpiSetSsnLine (CyTrue);
+	HoldingRegister[299] = ((((data[0] << 8) | (data[1])) * 0x0773) + (0x03E8 / 2)) / 0x03E8; // Do the last holding register, which is retreived from 0x0000.
 
 	// TRIGGER RECORDING ////////////////////////////////////// END
-	return status;
 
+	return status;
 }
 
 
@@ -932,13 +778,21 @@ CyU3PReturnStatus_t start_sampling_MFFT() {
 	CyU3PThreadSleep (40);
 
 	data[0] = 0x00; data[1] = 0x0E;
+	uint8_t receive_data[2];
 	int i;
-	for (i = 0; i < 2048; i++) {
+	for (i = -1; i < 99; i++) { // The reason why we do this as a loop (1 by 1) rather than sending 100 datapoints in at once, is because, after trial and error, this way yields the best results.
 		CyU3PSpiSetSsnLine (CyFalse);
-		status = CyU3PSpiTransmitWords(data, 2);
+		CyU3PSpiTransferWords (data, 2, receive_data, 2);
 		CyU3PSpiSetSsnLine (CyTrue);
-		//CyU3PThreadSleep (0.035);
+		if (i >= 0) { //-1 to 99 and this check ensures we put the MISO data into the correct holding register (which is data from the previous MOSI data)
+			HoldingRegister[i] = ((receive_data[0] << 8) | (receive_data[1]));
+		}
 	}
+	data[0] = 0x00; data[1] = 0x00;
+	CyU3PSpiSetSsnLine (CyFalse);
+	CyU3PSpiReceiveWords (data, 2);
+	CyU3PSpiSetSsnLine (CyTrue);
+	HoldingRegister[99] = ((data[0] << 8) | (data[1])); // Do the last holding register, which is retreived from 0x0000.
 
 	CyU3PThreadSleep (200);
 
@@ -950,12 +804,19 @@ CyU3PReturnStatus_t start_sampling_MFFT() {
 	CyU3PThreadSleep (20);
 
 	data[0] = 0x00; data[1] = 0x10;
-	for (i = 0; i < 2048; i++) {
+	for (i = 99; i < 199; i++) {
 		CyU3PSpiSetSsnLine (CyFalse);
-		status = CyU3PSpiTransmitWords(data, 2);
+		CyU3PSpiTransferWords (data, 2, receive_data, 2);
 		CyU3PSpiSetSsnLine (CyTrue);
-		//CyU3PThreadSleep (0.035);
+		if (i >= 100) { //-1 to 99 and this check ensures we put the MISO data into the correct holding register (which is data from the previous MOSI data)
+			HoldingRegister[i] = ((receive_data[0] << 8) | (receive_data[1]));
+		}
 	}
+	data[0] = 0x00; data[1] = 0x00;
+	CyU3PSpiSetSsnLine (CyFalse);
+	CyU3PSpiReceiveWords (data, 2);
+	CyU3PSpiSetSsnLine (CyTrue);
+	HoldingRegister[199] = ((data[0] << 8) | (data[1])); // Do the last holding register, which is retreived from 0x0000.
 
 	CyU3PThreadSleep (200);
 
@@ -967,24 +828,21 @@ CyU3PReturnStatus_t start_sampling_MFFT() {
 	CyU3PThreadSleep (20);
 
 	data[0] = 0x00; data[1] = 0x12;
-	for (i = 0; i < 2048; i++) {
+	for (i = 199; i < 299; i++) {
 		CyU3PSpiSetSsnLine (CyFalse);
-		status = CyU3PSpiTransmitWords(data, 2);
+		CyU3PSpiTransferWords (data, 2, receive_data, 2);
 		CyU3PSpiSetSsnLine (CyTrue);
-		//CyU3PThreadSleep (0.035);
+		if (i >= 200) { //-1 to 99 and this check ensures we put the MISO data into the correct holding register (which is data from the previous MOSI data)
+			HoldingRegister[i] = ((receive_data[0] << 8) | (receive_data[1]));
+		}
 	}
-
-
-	// WRITE TO TRIGGER DATA CAPTURE IN MFFT MODE ///////////// END
-
-	// END CAPTURE ////////////////////////////////////////// START
-
 	data[0] = 0x00; data[1] = 0x00;
 	CyU3PSpiSetSsnLine (CyFalse);
-	status = CyU3PSpiTransmitWords(data, 2);
+	CyU3PSpiReceiveWords (data, 2);
 	CyU3PSpiSetSsnLine (CyTrue);
+	HoldingRegister[299] = ((data[0] << 8) | (data[1])); // Do the last holding register, which is retreived from 0x0000.
 
-	// END CAPTURE //////////////////////////////////////////// END
+	// WRITE TO TRIGGER DATA CAPTURE IN MFFT MODE ///////////// END
 
 	return status;
 }
@@ -1569,17 +1427,21 @@ CyU3PReturnStatus_t start_sampling_AFFT() {
 		CyU3PThreadSleep (3);
 
 		data[0] = 0x00; data[1] = 0x0E;
+		uint8_t receive_data[2];
 		int i;
-		for (i = 0; i < 2048; i++) {
+		for (i = -1; i < 99; i++) { // The reason why we do this as a loop (1 by 1) rather than sending 100 datapoints in at once, is because, after trial and error, this way yields the best results.
 			CyU3PSpiSetSsnLine (CyFalse);
-			status = CyU3PSpiTransmitWords(data, 2);
+			CyU3PSpiTransferWords (data, 2, receive_data, 2);
 			CyU3PSpiSetSsnLine (CyTrue);
+			if (i >= 0) { //-1 to 99 and this check ensures we put the MISO data into the correct holding register (which is data from the previous MOSI data)
+				HoldingRegister[i] = ((receive_data[0] << 8) | (receive_data[1]));
+			}
 		}
-
 		data[0] = 0x00; data[1] = 0x00;
 		CyU3PSpiSetSsnLine (CyFalse);
-		status = CyU3PSpiTransmitWords(data, 2);
+		CyU3PSpiReceiveWords (data, 2);
 		CyU3PSpiSetSsnLine (CyTrue);
+		HoldingRegister[99] = ((data[0] << 8) | (data[1])); // Do the last holding register, which is retreived from 0x0000.
 
 		CyU3PThreadSleep (200);
 
@@ -1591,17 +1453,19 @@ CyU3PReturnStatus_t start_sampling_AFFT() {
 		CyU3PThreadSleep (20);
 
 		data[0] = 0x00; data[1] = 0x10;
-		for (i = 0; i < 2048; i++) {
+		for (i = 99; i < 199; i++) {
 			CyU3PSpiSetSsnLine (CyFalse);
-			status = CyU3PSpiTransmitWords(data, 2);
+			CyU3PSpiTransferWords (data, 2, receive_data, 2);
 			CyU3PSpiSetSsnLine (CyTrue);
-			//CyU3PThreadSleep (0.035);
+			if (i >= 100) { //-1 to 99 and this check ensures we put the MISO data into the correct holding register (which is data from the previous MOSI data)
+				HoldingRegister[i] = ((receive_data[0] << 8) | (receive_data[1]));
+			}
 		}
-
 		data[0] = 0x00; data[1] = 0x00;
 		CyU3PSpiSetSsnLine (CyFalse);
-		status = CyU3PSpiTransmitWords(data, 2);
+		CyU3PSpiReceiveWords (data, 2);
 		CyU3PSpiSetSsnLine (CyTrue);
+		HoldingRegister[199] = ((data[0] << 8) | (data[1])); // Do the last holding register, which is retreived from 0x0000.
 
 		CyU3PThreadSleep (200);
 
@@ -1613,19 +1477,21 @@ CyU3PReturnStatus_t start_sampling_AFFT() {
 		CyU3PThreadSleep (20);
 
 		data[0] = 0x00; data[1] = 0x12;
-		for (i = 0; i < 2048; i++) {
+		for (i = 199; i < 299; i++) {
 			CyU3PSpiSetSsnLine (CyFalse);
-			status = CyU3PSpiTransmitWords(data, 2);
+			CyU3PSpiTransferWords (data, 2, receive_data, 2);
 			CyU3PSpiSetSsnLine (CyTrue);
-			//CyU3PThreadSleep (0.035);
+			if (i >= 200) { //-1 to 99 and this check ensures we put the MISO data into the correct holding register (which is data from the previous MOSI data)
+				HoldingRegister[i] = ((receive_data[0] << 8) | (receive_data[1]));
+			}
 		}
-
 		data[0] = 0x00; data[1] = 0x00;
 		CyU3PSpiSetSsnLine (CyFalse);
-		status = CyU3PSpiTransmitWords(data, 2);
+		CyU3PSpiReceiveWords (data, 2);
 		CyU3PSpiSetSsnLine (CyTrue);
+		HoldingRegister[299] = ((data[0] << 8) | (data[1])); // Do the last holding register, which is retreived from 0x0000.
 
-		CyU3PThreadSleep (1333);
+		CyU3PThreadSleep (1333); // set this timer depending on how often you want it to run
 	}
 
 	// TRIGGER RECORDING AFFT ///////////////////////////////// END

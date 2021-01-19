@@ -46,7 +46,7 @@ CyU3PReturnStatus_t CyFxSpiInit (uint16_t pageLen) {
     spiConfig.leadTime   = CY_U3P_SPI_SSN_LAG_LEAD_HALF_CLK;
     spiConfig.lagTime    = CY_U3P_SPI_SSN_LAG_LEAD_HALF_CLK;
     spiConfig.ssnCtrl    = CY_U3P_SPI_SSN_CTRL_FW;
-    spiConfig.clock      = 1400000; //8000000 previously
+    spiConfig.clock      = 1400000; //8000000 previously, max is 33MHz and minimum is 10KHz
     spiConfig.wordLen    = 16;
 
     status = CyU3PSpiSetConfig (&spiConfig, NULL);

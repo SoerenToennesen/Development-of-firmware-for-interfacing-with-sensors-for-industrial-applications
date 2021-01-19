@@ -41,6 +41,8 @@ void CyFxUartLpDmaCallback (
          * received upon reception of every buffer. The buffer will not be sent
          * out unless it is explicitly committed. The call shall fail if there
          * is any application error. */
+
+    	//WHEN I REQUEST OVER 30 DATA POINTS (OR MORE) FROM THE HOLDINGREGISTER, THE OUTPUT BUFFER WILL BE OVER 64 BYTES LONG, AND THUS CRASH THE PROGRAM. CHANGE THE BYTES AMOUNT IF NEEDED.
     	if (input->buffer_p.count != 0) {
 			response_buffer_dma = entry_func_dmamode(&(input->buffer_p.buffer), input->buffer_p.count);
 			input->buffer_p.count = response_buffer_dma.response_size;
@@ -91,7 +93,7 @@ void CyFxUartLpApplnInit (void) {
 
     // Create a DMA Manual channel between UART producer socket and UART consumer socket
     CyU3PMemSet ((uint8_t *)&dmaConfig, 0, sizeof(dmaConfig));
-    dmaConfig.size = 64;
+    dmaConfig.size = 256; // used to be 32, but now we can request a size of ...125*2+6 = 256... 125 bytes. The modbus master simulator maximum requests 125 bytes. The request for 125 data points takes around 0.125 seconds including the request and receive.
     dmaConfig.count = 4;
     dmaConfig.prodSckId = CY_U3P_LPP_SOCKET_UART_PROD;
     dmaConfig.consSckId = CY_U3P_LPP_SOCKET_UART_CONS;
