@@ -7,9 +7,22 @@ import pymodbus
 from pymodbus.pdu import ModbusRequest
 from pymodbus.client.sync import ModbusSerialClient as ModbusClient
 from pymodbus.transaction import ModbusRtuFramer
-
-
 from pymodbus.client.sync import ModbusSerialClient
+
+
+fig = plt.figure()
+ax = fig.add_subplot(111)
+plt.ion()
+fig.show()
+fig.canvas.draw()
+
+var = 0
+xyz = 0
+time_array = numpy.array([0,1,2,3,4,5,6,7,8,9])
+x = numpy.empty(0)
+y = numpy.empty(0)
+z = numpy.empty(0)
+
 
 client = ModbusSerialClient(
     method='rtu',
@@ -23,39 +36,35 @@ client = ModbusSerialClient(
 connection = client.connect()
 print("Connected = " + str(connection))
 
+x_address = 0
+y_address = 100
+z_address = 200
+x_count = 10 #should be 100
+y_count = 10
+z_count = 10
+slave_id = 1
+
 x = 0
-while x < 20:
+while x < 100:
     x=x+1
     try:
-        res  = client.read_holding_registers(address=1,count=2,unit=1) # start_address, count, slave_id
-        
-        if not res.isError():
-            print(res.registers)
-        else:
-            print("")
+        res_x  = client.read_holding_registers(address=x_address,count=x_count,unit=slave_id)
+        #res_y  = client.read_holding_registers(address=y_address,count=y_count,unit=slave_id)
+        #res_z  = client.read_holding_registers(address=z_address,count=z_count,unit=slave_id)
+        if not res_x.isError():# and not res_y.isError() and not res_z.isError():
+            x_data = res_x.registers #this is stored as a list
+            #y_data = res_y.registers #this is stored as a list
+            #z_data = res_z.registers #this is stored as a list
+            ax.clear()
+            ax.plot(time_array,x_data)
+            fig.canvas.draw()
+            time_array = [i + x_count for i in time_array]
+            print(res_x.registers)
+            #print(res_y.registers)
+            #print(res_z.registers)
+            continue
     except:
-        print("Found an error")
-
-#res  = client.read_holding_registers(address=1,count=2,unit=1) # start_address, count, slave_id
-#print(res.registers)
-#print(res)
-
-
-
-'''
-if client.connect():  # Trying for connect to Modbus Server/Slave
-    #Reading from a holding register with the below content.
-    
-    print("connected")
-    
-    res = client.read_holding_registers(address=1, count=1, unit=1)
-    if not res.isError():
-        print(res.registers)
-    else:
-        print(res)
-else:
-    print('Cannot connect to the Modbus Server/Slave')
-'''
+        print("An error has occurred...")
 
 
 
@@ -63,71 +72,4 @@ else:
 
 
 
-'''
-client = ModbusClient(method = 'rtu', port='com4', baudrate=9600, parity = 'O', timeout=1)
-connection = client.connect()
-print(connection) # returns true, but cannot have the below "serialport" open as well...
-registers  = client.read_holding_registers(0,100,unit=1) # start_address, count, slave_id
-print (registers.registers)
 
-#write = client.write_register(1,425,unit=1) # address = 1, value to set = 425, slave ID = 1
-'''
-
-'''
-
-serialport = "com4"
-ser = serial.Serial(serialport, 9600)
-
-fig = plt.figure()
-ax = fig.add_subplot(111)
-plt.ion()
-fig.show()
-fig.canvas.draw()
-
-var = 0
-xyz = 0
-time_array = numpy.array([1,2])
-x = numpy.empty(0)
-y = numpy.empty(0)
-z = numpy.empty(0)
-
-while(1):
-    val = ser.readline()
-    char_num = 9
-    
-    if val[char_num] == 45:
-    	ax.clear()
-    	ax.plot(time_array,x)
-    	fig.canvas.draw()
-    
-    	print("---------")
-    	x = numpy.empty(0)
-    	y = numpy.empty(0)
-    	z = numpy.empty(0)
-    	xyz = 0
-    	#if var % 2 == 0:
-    	#	time_array = [i + 2 for i in time_array]
-    	#else:
-    	#	time_array = [i - 2 for i in time_array]
-    	#var = var + 1
-    	time_array = [i + 2 for i in time_array]
-    	continue
-    
-    while val[char_num] != 32:
-    	char_num = char_num + 1
-    val = val[9:char_num]
-    val = int(val, 16)
-    
-    if xyz < 2:
-    	x = numpy.append(x, val)
-    	xyz = xyz + 1
-    elif 2 <= xyz < 4:
-    	y = numpy.append(y, val)
-    	xyz = xyz + 1
-    else:
-    	z = numpy.append(z, val)
-    	xyz = xyz + 1
-    
-    print(val)
-
-'''
