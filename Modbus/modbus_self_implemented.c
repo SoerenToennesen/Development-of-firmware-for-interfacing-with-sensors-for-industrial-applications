@@ -60,6 +60,7 @@ volatile int16_t HoldingRegister[4096];
 //6&7. 13 88: Value 5000 in register 601
 // https://www.fernhillsoftware.com/help/drivers/modbus/modbus-protocol.html
 
+//CRC algorithm for Modbus based on CCS at https://ctlsys.com/support/how_to_compute_the_modbus_rtu_message_crc/
 uint16_t ModRTU_CRC(byte buf[], int len) {
   uint16_t crc = 0xFFFF;
   for (int pos = 0; pos < len; pos++) {

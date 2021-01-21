@@ -5,6 +5,14 @@
 #            EMBED A MATPLOTLIB ANIMATION INSIDE YOUR             #
 #            OWN GUI!                                             #
 #                                                                 #
+#                                                                 #
+#            Based on K.Mulier's StackOverflow response on        #
+#https://stackoverflow.com/questions/38469630/realtime-plotting-wi#
+#th-pyqt-plotwidget-error-message-plotwidget-object-is-not?noredir#
+#                         ect=1&lq=1                              #
+#                                                                 #
+# Edited by Soren Toennesen, for B.Sc. Project at DTU with Vaerks #
+#                                                                 #
 ###################################################################
 
 import sys
@@ -38,9 +46,9 @@ connection = client.connect()
 print("Connected = " + str(connection))
 
 count = 10
-x_address = 0
-y_address = 100
-z_address = 200
+x_address = 50
+y_address = 150
+z_address = 250
 x_count = 10
 y_count = 10
 z_count = 10
@@ -50,6 +58,7 @@ slave_id = 1
 
 class CustomMainWindow(QMainWindow):
     def __init__(self):
+        print("Initiating main window")
         super(CustomMainWindow, self).__init__()
         # Define the geometry of the main window
         self.setGeometry(500, 500, 1000, 800)
@@ -71,7 +80,7 @@ class CustomMainWindow(QMainWindow):
 
 
     def addData_callbackFunc(self, value):
-        # print("Add data: " + str(value))
+        #print("Add data: " + str(value))
         self.myFig.addData(value)
         return
 
@@ -80,12 +89,14 @@ class CustomMainWindow(QMainWindow):
 
 class CustomFigCanvas(FigureCanvas, TimedAnimation):
     def __init__(self):
+        print("Initiating canvas")
+        self.next_data = 0
         self.addedData = []
         # print(matplotlib.__version__)
         # The data
         self.xlim = 200
         self.n = np.linspace(0, self.xlim - 1, self.xlim)
-        self.next_data = 1
+        #self.next_data = 1
         self.y1 = (self.n * 0.0) + 50
         self.y2 = (self.n * 0.0) + 50
         self.y3 = (self.n * 0.0) + 50
@@ -154,36 +165,45 @@ class CustomFigCanvas(FigureCanvas, TimedAnimation):
         self.ax4.add_line(self.line4_3_tail)
         self.ax4.add_line(self.line4_3_head)
         self.ax1.set_xlim(0, self.xlim - 1)
-        self.ax1.set_ylim(-1000, 25000)
+        self.ax1.set_ylim(-1000, 70000)
         self.ax2.set_xlim(0, self.xlim - 1)
-        self.ax2.set_ylim(-1000, 25000)
+        self.ax2.set_ylim(-1000, 70000)
         self.ax3.set_xlim(0, self.xlim - 1)
-        self.ax3.set_ylim(-1000, 25000)
+        self.ax3.set_ylim(-1000, 70000)
         self.ax4.set_xlim(0, self.xlim - 1)
-        self.ax4.set_ylim(-1000, 25000)
+        self.ax4.set_ylim(-1000, 70000)
         FigureCanvas.__init__(self, self.fig)
-        TimedAnimation.__init__(self, self.fig, interval = 1, blit = True)
+        TimedAnimation.__init__(self, self.fig, interval = 20, blit = True)
         return
 
     def new_frame_seq(self):
+        print("New frame new me")
         return iter(range(self.n.size))
 
     def _init_draw(self):
-        lines1 = [self.line1, self.line1_tail, self.line1_head]#   ,   self.line4_1, self.line4_2, self.line4_3]#   ,   self.line2, self.line2_tail, self.line2_head   ,   self.line3, self.line3_tail, self.line3_head]
-        for l in lines1:
-            l.set_data([], [])
-        lines2 = [self.line2, self.line2_tail, self.line2_head]#   ,   self.line4_1, self.line4_2, self.line4_3]
-        for l in lines2:
-            l.set_data([], [])
-        lines3 = [self.line3, self.line3_tail, self.line3_head]#   ,   self.line4_1, self.line4_2, self.line4_3]
-        for l in lines3:
-            l.set_data([], [])
-        lines4 = [self.line4_1, self.line4_1_tail, self.line4_1_head, self.line4_2, self.line4_2_tail, self.line4_2_head, self.line4_3, self.line4_3_tail, self.line4_3_head]
-        for l in lines4:
-            l.set_data([], [])
+        print("Initiating drawings")
+        
+        if self.next_data == 1:
+            lines1 = [self.line1, self.line1_tail, self.line1_head   ,   self.line4_1, self.line4_1_tail, self.line4_1_head]
+            for l in lines1:
+                l.set_data([], [])
+        
+        if self.next_data == 2:
+            lines2 = [self.line2, self.line2_tail, self.line2_head   ,   self.line4_2, self.line4_2_tail, self.line4_2_head]
+            for l in lines2:
+                l.set_data([], [])
+        
+        if self.next_data == 3:
+            lines3 = [self.line3, self.line3_tail, self.line3_head   ,   self.line4_3, self.line4_3_tail, self.line4_3_head]
+            for l in lines3:
+                l.set_data([], [])
         return
 
     def addData(self, value):
+        if self.next_data >= 3:
+            self.next_data = 1
+        else:
+            self.next_data = self.next_data + 1
         self.addedData.append(value)
         return
 
@@ -200,47 +220,45 @@ class CustomFigCanvas(FigureCanvas, TimedAnimation):
 
     def _draw_frame(self, framedata):
         margin = 2
+        
         if self.next_data == 1:
             while(len(self.addedData) > 0):
                 self.y1 = np.roll(self.y1, -1)
                 self.y1[-1] = self.addedData[0]
                 del(self.addedData[0])
-            self.next_data = 2
+            self.line1.set_data(self.n[ 0 : self.n.size - margin ], self.y1[ 0 : self.n.size - margin ])
+            self.line1_tail.set_data(np.append(self.n[-10:-1 - margin], self.n[-1 - margin]), np.append(self.y1[-10:-1 - margin], self.y1[-1 - margin]))
+            self.line1_head.set_data(self.n[-1 - margin], self.y1[-1 - margin])
+            self.line4_1.set_data(self.n[0: self.n.size - margin], self.y1[0: self.n.size - margin])
+            self.line4_1_tail.set_data(np.append(self.n[-10:-1 - margin], self.n[-1 - margin]), np.append(self.y1[-10:-1 - margin], self.y1[-1 - margin]))
+            self.line4_1_head.set_data(self.n[-1 - margin], self.y1[-1 - margin])
+            
         elif self.next_data == 2:
             while(len(self.addedData) > 0):
                 self.y2 = np.roll(self.y2, -1)
                 self.y2[-1] = self.addedData[0]
                 del(self.addedData[0])
-            self.next_data = 3
+            self.line2.set_data(self.n[ 0 : self.n.size - margin ], self.y2[ 0 : self.n.size - margin ])
+            self.line2_tail.set_data(np.append(self.n[-10:-1 - margin], self.n[-1 - margin]), np.append(self.y2[-10:-1 - margin], self.y2[-1 - margin]))
+            self.line2_head.set_data(self.n[-1 - margin], self.y2[-1 - margin])
+            self.line4_2.set_data(self.n[0: self.n.size - margin], self.y2[0: self.n.size - margin])
+            self.line4_2_tail.set_data(np.append(self.n[-10:-1 - margin], self.n[-1 - margin]), np.append(self.y2[-10:-1 - margin], self.y2[-1 - margin]))
+            self.line4_2_head.set_data(self.n[-1 - margin], self.y2[-1 - margin])
+            
         elif self.next_data == 3:
             while(len(self.addedData) > 0):
                 self.y3 = np.roll(self.y3, -1)
                 self.y3[-1] = self.addedData[0]
                 del(self.addedData[0])
-            self.next_data = 1
-
-        self.line1.set_data(self.n[ 0 : self.n.size - margin ], self.y1[ 0 : self.n.size - margin ])
-        self.line1_tail.set_data(np.append(self.n[-10:-1 - margin], self.n[-1 - margin]), np.append(self.y1[-10:-1 - margin], self.y1[-1 - margin]))
-        self.line1_head.set_data(self.n[-1 - margin], self.y1[-1 - margin])
-        self.line4_1.set_data(self.n[0: self.n.size - margin], self.y1[0: self.n.size - margin])
-        self.line4_1_tail.set_data(np.append(self.n[-10:-1 - margin], self.n[-1 - margin]), np.append(self.y1[-10:-1 - margin], self.y1[-1 - margin]))
-        self.line4_1_head.set_data(self.n[-1 - margin], self.y1[-1 - margin])
-
-        self.line2.set_data(self.n[ 0 : self.n.size - margin ], self.y2[ 0 : self.n.size - margin ])
-        self.line2_tail.set_data(np.append(self.n[-10:-1 - margin], self.n[-1 - margin]), np.append(self.y2[-10:-1 - margin], self.y2[-1 - margin]))
-        self.line2_head.set_data(self.n[-1 - margin], self.y2[-1 - margin])
-        self.line4_2.set_data(self.n[0: self.n.size - margin], self.y2[0: self.n.size - margin])
-        self.line4_2_tail.set_data(np.append(self.n[-10:-1 - margin], self.n[-1 - margin]), np.append(self.y2[-10:-1 - margin], self.y2[-1 - margin]))
-        self.line4_2_head.set_data(self.n[-1 - margin], self.y2[-1 - margin])
-
-        self.line3.set_data(self.n[ 0 : self.n.size - margin ], self.y3[ 0 : self.n.size - margin ])
-        self.line3_tail.set_data(np.append(self.n[-10:-1 - margin], self.n[-1 - margin]), np.append(self.y3[-10:-1 - margin], self.y3[-1 - margin]))
-        self.line3_head.set_data(self.n[-1 - margin], self.y3[-1 - margin])
-        self.line4_3.set_data(self.n[0: self.n.size - margin], self.y3[0: self.n.size - margin])
-        self.line4_3_tail.set_data(np.append(self.n[-10:-1 - margin], self.n[-1 - margin]), np.append(self.y3[-10:-1 - margin], self.y3[-1 - margin]))
-        self.line4_3_head.set_data(self.n[-1 - margin], self.y3[-1 - margin])
+            self.line3.set_data(self.n[ 0 : self.n.size - margin ], self.y3[ 0 : self.n.size - margin ])
+            self.line3_tail.set_data(np.append(self.n[-10:-1 - margin], self.n[-1 - margin]), np.append(self.y3[-10:-1 - margin], self.y3[-1 - margin]))
+            self.line3_head.set_data(self.n[-1 - margin], self.y3[-1 - margin])
+            self.line4_3.set_data(self.n[0: self.n.size - margin], self.y3[0: self.n.size - margin])
+            self.line4_3_tail.set_data(np.append(self.n[-10:-1 - margin], self.n[-1 - margin]), np.append(self.y3[-10:-1 - margin], self.y3[-1 - margin]))
+            self.line4_3_head.set_data(self.n[-1 - margin], self.y3[-1 - margin])
 
         self._drawn_artists = [self.line1, self.line1_tail, self.line1_head   ,   self.line2, self.line2_tail, self.line2_head   ,   self.line3, self.line3_tail, self.line3_head   ,   self.line4_1, self.line4_1_tail, self.line4_1_head, self.line4_2, self.line4_2_tail, self.line4_2_head, self.line4_3, self.line4_3_tail, self.line4_3_head]
+        
         return
 
 ''' End Class '''
@@ -271,24 +289,22 @@ def dataSendLoop(addData_callbackFunc):
                 x_data = res_x.registers
                 y_data = res_y.registers
                 z_data = res_z.registers
-                print("X-data")
-                print(x_data)
-                print("Y-data")
-                print(y_data)
-                print("Z-data")
-                print(z_data)
-                print("")
-                print("------------------------------------------")
-                print("")
+                print("X-data: {}".format(x_data))
+                print("Y-data: {}".format(y_data))
+                print("Z-data: {}".format(z_data))
                 data = []
                 for i in range(count):
                     data.append(x_data[i])
                     data.append(y_data[i])
                     data.append(z_data[i])
                 y = np.array(data)
+                print("Length of sent data (x- + y- + z-data): {}".format(len(y)))
                 for i in range(len(y)):
                     mySrc.data_signal.emit(y[i]) # <- Here you emit a signal!
-                    time.sleep(0.001)
+                    time.sleep(0.01)
+                print("")
+                print("------------------------------------------")
+                print("")
         except Exception as e:
             print("An error has occurred...")
             print(e)

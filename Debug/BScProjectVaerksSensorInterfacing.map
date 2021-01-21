@@ -11825,35 +11825,35 @@ END GROUP
                 0x400051d8      0x18c ./Application/application_thread.o
                 0x400051d8                CyFxApplicationDefine
  .text.start_sampling_AFFT
-                0x40005364     0x163c ./ADcmXL3021/recording_modes.o
+                0x40005364     0x1638 ./ADcmXL3021/recording_modes.o
                 0x40005364                start_sampling_AFFT
- .text.main     0x400069a0       0xfc ./main.o
-                0x400069a0                main
- .text          0x40006a9c       0x50 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_system_return.o)
-                0x40006a9c                _tx_thread_system_return
- .text          0x40006aec       0x74 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_schedule.o)
-                0x40006aec                _tx_thread_schedule
- .text          0x40006b60       0xf0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_timer_interrupt.o)
-                0x40006b60                _tx_timer_interrupt
- .text          0x40006c50       0x3c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_initialize_low_level.o)
-                0x40006c50                _tx_initialize_low_level
- .text          0x40006c8c       0x78 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_stack_build.o)
-                0x40006c8c                _tx_thread_stack_build
- .text          0x40006d04       0xf0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\ARM GCC\/arm-none-eabi/lib\libc.a(lib_a-memcpy-stub.o)
-                0x40006d04                memcpy
- .text          0x40006df4      0x114 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\ARM GCC\/lib/gcc/arm-none-eabi/4.8.1\libgcc.a(_udivsi3.o)
-                0x40006df4                __aeabi_uidiv
-                0x40006df4                __udivsi3
-                0x40006ee8                __aeabi_uidivmod
- .text          0x40006f08      0x148 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\ARM GCC\/lib/gcc/arm-none-eabi/4.8.1\libgcc.a(_divsi3.o)
-                0x40006f08                __divsi3
-                0x40006f08                __aeabi_idiv
-                0x40007030                __aeabi_idivmod
- .text          0x40007050        0x4 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\ARM GCC\/lib/gcc/arm-none-eabi/4.8.1\libgcc.a(_dvmd_tls.o)
-                0x40007050                __aeabi_idiv0
-                0x40007050                __aeabi_ldiv0
+ .text.main     0x4000699c       0xfc ./main.o
+                0x4000699c                main
+ .text          0x40006a98       0x50 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_system_return.o)
+                0x40006a98                _tx_thread_system_return
+ .text          0x40006ae8       0x74 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_schedule.o)
+                0x40006ae8                _tx_thread_schedule
+ .text          0x40006b5c       0xf0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_timer_interrupt.o)
+                0x40006b5c                _tx_timer_interrupt
+ .text          0x40006c4c       0x3c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_initialize_low_level.o)
+                0x40006c4c                _tx_initialize_low_level
+ .text          0x40006c88       0x78 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_stack_build.o)
+                0x40006c88                _tx_thread_stack_build
+ .text          0x40006d00       0xf0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\ARM GCC\/arm-none-eabi/lib\libc.a(lib_a-memcpy-stub.o)
+                0x40006d00                memcpy
+ .text          0x40006df0      0x114 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\ARM GCC\/lib/gcc/arm-none-eabi/4.8.1\libgcc.a(_udivsi3.o)
+                0x40006df0                __aeabi_uidiv
+                0x40006df0                __udivsi3
+                0x40006ee4                __aeabi_uidivmod
+ .text          0x40006f04      0x148 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\ARM GCC\/lib/gcc/arm-none-eabi/4.8.1\libgcc.a(_divsi3.o)
+                0x40006f04                __divsi3
+                0x40006f04                __aeabi_idiv
+                0x4000702c                __aeabi_idivmod
+ .text          0x4000704c        0x4 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\ARM GCC\/lib/gcc/arm-none-eabi/4.8.1\libgcc.a(_dvmd_tls.o)
+                0x4000704c                __aeabi_idiv0
+                0x4000704c                __aeabi_ldiv0
  *(.rodata*)
- *fill*         0x40007054        0xc 
+ *fill*         0x40007050       0x10 
  .rodata.glFirmwareID
                 0x40007060       0x20 ./SPI/spi_init.o
                 0x40007060                glFirmwareID
