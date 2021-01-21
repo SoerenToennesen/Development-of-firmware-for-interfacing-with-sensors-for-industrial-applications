@@ -283,8 +283,11 @@ def dataSendLoop(addData_callbackFunc):
     while True:
         try:
             res_x = client.read_holding_registers(address=x_address, count=x_count, unit=slave_id)
+            time.sleep(0.1)
             res_y = client.read_holding_registers(address=y_address, count=y_count, unit=slave_id)
+            time.sleep(0.1)
             res_z = client.read_holding_registers(address=z_address, count=z_count, unit=slave_id)
+            time.sleep(0.1)
             if not res_x.isError() and not res_y.isError() and not res_z.isError():
                 x_data = res_x.registers
                 y_data = res_y.registers

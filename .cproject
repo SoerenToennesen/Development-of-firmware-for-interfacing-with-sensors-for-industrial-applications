@@ -62,7 +62,7 @@
 								<option id="ilg.gnuarmeclipse.managedbuild.cross.option.c.compiler.defs.591090420" name="Defined symbols (-D)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.c.compiler.defs" useByScannerDiscovery="false" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="__CYU3P_TX__=1"/>
 								</option>
-								<option id="ilg.gnuarmeclipse.managedbuild.cross.option.c.compiler.include.files.599845667" name="Include files (-include)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.c.compiler.include.files" useByScannerDiscovery="false" valueType="includeFiles"/>
+								<option id="ilg.gnuarmeclipse.managedbuild.cross.option.c.compiler.include.files.599845667" name="Include files (-include)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.c.compiler.include.files" useByScannerDiscovery="false"/>
 								<inputType id="ilg.gnuarmeclipse.managedbuild.cross.tool.c.compiler.input.1924002698" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.c.compiler.input"/>
 							</tool>
 							<tool id="ilg.gnuarmeclipse.managedbuild.cross.tool.cpp.compiler.1376932643" name="Cross ARM C++ Compiler" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.cpp.compiler"/>
@@ -74,6 +74,7 @@
 								<option id="ilg.gnuarmeclipse.managedbuild.cross.option.c.linker.nostart.1145628464" name="Do not use standard start files (-nostartfiles)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.c.linker.nostart" value="true" valueType="boolean"/>
 								<option id="ilg.gnuarmeclipse.managedbuild.cross.option.c.linker.libs.1340923482" name="Libraries (-l)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.c.linker.libs" valueType="libs">
 									<listOptionValue builtIn="false" value="cyu3lpp"/>
+									<listOptionValue builtIn="false" value="m"/>
 									<listOptionValue builtIn="false" value="cyfxapi"/>
 									<listOptionValue builtIn="false" value="cyu3threadx"/>
 									<listOptionValue builtIn="false" value="c"/>
@@ -81,6 +82,7 @@
 								</option>
 								<option id="ilg.gnuarmeclipse.managedbuild.cross.option.c.linker.paths.213695032" name="Library search path (-L)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.c.linker.paths" valueType="libPaths">
 									<listOptionValue builtIn="false" value="&quot;${FX3_INSTALL_PATH}/fw_lib/${FX3SDKVERSION}/fx3_debug&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ARMGCC_INSTALL_PATH}/lib&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ARMGCC_INSTALL_PATH}/lib/gcc/arm-none-eabi/${ARMGCC_VERSION}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ARMGCC_INSTALL_PATH}/arm-none-eabi/lib&quot;"/>
 								</option>

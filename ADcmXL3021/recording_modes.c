@@ -14,7 +14,7 @@
 #include "../UART/uart.h"
 #include "../Modbus/modbus_self_implemented.h"
 
-
+#include <math.h>
 
 
 
@@ -1431,20 +1431,27 @@ CyU3PReturnStatus_t start_sampling_AFFT() {
 
 		data[0] = 0x00; data[1] = 0x0E;
 		uint8_t receive_data[2];
+		float temp_data;
 		int i;
 		for (i = -1; i < 99; i++) { // The reason why we do this as a loop (1 by 1) rather than sending 100 datapoints in at once, is because, after trial and error, this way yields the best results.
 			CyU3PSpiSetSsnLine (CyFalse);
 			CyU3PSpiTransferWords (data, 2, receive_data, 2);
 			CyU3PSpiSetSsnLine (CyTrue);
 			if (i >= 0) { //-1 to 99 and this check ensures we put the MISO data into the correct holding register (which is data from the previous MOSI data)
-				HoldingRegister[i] = ((receive_data[0] << 8) | (receive_data[1]));
+				//HoldingRegister[i] = ((receive_data[0] << 8) | (receive_data[1]));
+				temp_data = ((powf(2, ((float)((receive_data[0] << 8) | (receive_data[1]))) / 2048)) / (powf(2.0, 2.0))) * 0.9535;
+				//HoldingRegister[i] = ((((2^(((receive_data[0] << 8) | (receive_data[1])) / 0x800)) / (2^2)) * 0x253F) + (0x03E8 / 2)) / 0x03E8; //0x800 is 2048 division factor (check datasheet). 0x253F is the multiplication factor to convert it to magnitude (from datasheet)
+				HoldingRegister[i] = temp_data;
 			}
 		}
 		data[0] = 0x00; data[1] = 0x00;
 		CyU3PSpiSetSsnLine (CyFalse);
 		CyU3PSpiReceiveWords (data, 2);
 		CyU3PSpiSetSsnLine (CyTrue);
-		HoldingRegister[99] = ((data[0] << 8) | (data[1])); // Do the last holding register, which is retreived from 0x0000.
+		//HoldingRegister[99] = ((data[0] << 8) | (data[1])); // Do the last holding register, which is retreived from 0x0000.
+		//HoldingRegister[99] = ((((2^(((data[0] << 8) | (data[1])) / 0x800)) / (2^2)) * 0x253F) + (0x03E8 / 2)) / 0x03E8;
+		temp_data = ((powf(2, ((float)((data[0] << 8) | (data[0]))) / 2048)) / (powf(2.0, 2.0))) * 0.9535;
+		HoldingRegister[99] = temp_data;
 
 		CyU3PThreadSleep (200);
 
@@ -1461,14 +1468,20 @@ CyU3PReturnStatus_t start_sampling_AFFT() {
 			CyU3PSpiTransferWords (data, 2, receive_data, 2);
 			CyU3PSpiSetSsnLine (CyTrue);
 			if (i >= 100) { //-1 to 99 and this check ensures we put the MISO data into the correct holding register (which is data from the previous MOSI data)
-				HoldingRegister[i] = ((receive_data[0] << 8) | (receive_data[1]));
+				//HoldingRegister[i] = ((receive_data[0] << 8) | (receive_data[1]));
+				temp_data = ((powf(2, ((float)((receive_data[0] << 8) | (receive_data[1]))) / 2048)) / (powf(2.0, 2.0))) * 0.9535;
+				//HoldingRegister[i] = ((((2^(((receive_data[0] << 8) | (receive_data[1])) / 0x800)) / (2^2)) * 0x253F) + (0x03E8 / 2)) / 0x03E8;
+				HoldingRegister[i] = temp_data;
 			}
 		}
 		data[0] = 0x00; data[1] = 0x00;
 		CyU3PSpiSetSsnLine (CyFalse);
 		CyU3PSpiReceiveWords (data, 2);
 		CyU3PSpiSetSsnLine (CyTrue);
-		HoldingRegister[199] = ((data[0] << 8) | (data[1])); // Do the last holding register, which is retreived from 0x0000.
+		//HoldingRegister[199] = ((data[0] << 8) | (data[1])); // Do the last holding register, which is retreived from 0x0000.
+		//HoldingRegister[199] = ((((2^(((data[0] << 8) | (data[1])) / 0x800)) / (2^2)) * 0x253F) + (0x03E8 / 2)) / 0x03E8;
+		temp_data = ((powf(2, ((float)((data[0] << 8) | (data[0]))) / 2048)) / (powf(2.0, 2.0))) * 0.9535;
+		HoldingRegister[199] = temp_data;
 
 		CyU3PThreadSleep (200);
 
@@ -1485,14 +1498,20 @@ CyU3PReturnStatus_t start_sampling_AFFT() {
 			CyU3PSpiTransferWords (data, 2, receive_data, 2);
 			CyU3PSpiSetSsnLine (CyTrue);
 			if (i >= 200) { //-1 to 99 and this check ensures we put the MISO data into the correct holding register (which is data from the previous MOSI data)
-				HoldingRegister[i] = ((receive_data[0] << 8) | (receive_data[1]));
+				//HoldingRegister[i] = ((receive_data[0] << 8) | (receive_data[1]));
+				temp_data = ((powf(2, ((float)((receive_data[0] << 8) | (receive_data[1]))) / 2048)) / (powf(2.0, 2.0))) * 0.9535;
+				//HoldingRegister[i] = ((((2^(((receive_data[0] << 8) | (receive_data[1])) / 0x800)) / (2^2)) * 0x253F) + (0x03E8 / 2)) / 0x03E8;
+				HoldingRegister[i] = temp_data;
 			}
 		}
 		data[0] = 0x00; data[1] = 0x00;
 		CyU3PSpiSetSsnLine (CyFalse);
 		CyU3PSpiReceiveWords (data, 2);
 		CyU3PSpiSetSsnLine (CyTrue);
-		HoldingRegister[299] = ((data[0] << 8) | (data[1])); // Do the last holding register, which is retreived from 0x0000.
+		//HoldingRegister[299] = ((data[0] << 8) | (data[1])); // Do the last holding register, which is retreived from 0x0000.
+		//HoldingRegister[299] = ((((2^(((data[0] << 8) | (data[1])) / 0x800)) / (2^2)) * 0x253F) + (0x03E8 / 2)) / 0x03E8;
+		temp_data = ((powf(2, ((float)((data[0] << 8) | (data[0]))) / 2048)) / (powf(2.0, 2.0))) * 0.9535;
+		HoldingRegister[299] = temp_data;
 
 		for (i = 0; i < 250; i++) {
 			CyU3PThreadSleep (5);
