@@ -39,8 +39,8 @@ print("Connected = " + str(connection))
 
 count = 10
 x_address = 0
-y_address = 0
-z_address = 0
+y_address = 100
+z_address = 200
 x_count = 10
 y_count = 10
 z_count = 10
