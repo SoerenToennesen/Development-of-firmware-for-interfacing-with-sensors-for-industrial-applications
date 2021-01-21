@@ -33,7 +33,8 @@ int iiii;
 
 struct response ans;
 
-volatile int16_t HoldingRegister[4096];
+//volatile int16_t HoldingRegister[4096];
+volatile int16_t HoldingRegister[7422];
 //volatile uint16_t HoldingRegister_RTS[1000];
 //volatile uint16_t HoldingRegister_MTC_X[4096]; //can't do one for each because data overflows in cypress fx3...
 //volatile uint16_t HoldingRegister_MTC_Y[4096];

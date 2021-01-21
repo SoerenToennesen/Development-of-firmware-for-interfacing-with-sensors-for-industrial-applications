@@ -46,9 +46,9 @@ connection = client.connect()
 print("Connected = " + str(connection))
 
 count = 10
-x_address = 50
-y_address = 150
-z_address = 250
+x_address = 1000
+y_address = 3000
+z_address = 5000
 x_count = 10
 y_count = 10
 z_count = 10
@@ -110,22 +110,22 @@ class CustomFigCanvas(FigureCanvas, TimedAnimation):
         # self.ax1 settings
         self.ax1.set_title('X-axis', size = 10, fontweight='bold')
         self.ax1.set_xlabel('Time [data points]', size = 7)
-        self.ax1.set_ylabel('X-axis data [gravities in mg]', size = 7)
+        self.ax1.set_ylabel('X-axis data [mg]', size = 7)
         self.ax1.tick_params(axis="x", labelsize=5)
         self.ax1.tick_params(axis="y", labelsize=5)
         self.ax2.set_title('Y-axis', size = 10, fontweight='bold')
         self.ax2.set_xlabel('Time [data points]', size = 7)
-        self.ax2.set_ylabel('Y-axis data [gravities in mg]', size = 7)
+        self.ax2.set_ylabel('Y-axis data [mg]', size = 7)
         self.ax2.tick_params(axis="x", labelsize=5)
         self.ax2.tick_params(axis="y", labelsize=5)
         self.ax3.set_title('Z-axis', size = 10, fontweight='bold')
         self.ax3.set_xlabel('Time [data points]', size = 7)
-        self.ax3.set_ylabel('Z-axis data [gravities in mg]', size = 7)
+        self.ax3.set_ylabel('Z-axis data [mg]', size = 7)
         self.ax3.tick_params(axis="x", labelsize=5)
         self.ax3.tick_params(axis="y", labelsize=5)
         self.ax4.set_title('Triaxial', size = 10, fontweight='bold')
         self.ax4.set_xlabel('Time [data points]', size = 7)
-        self.ax4.set_ylabel('Triaxial data [gravities in mg]', size = 7)
+        self.ax4.set_ylabel('Triaxial data [mg]', size = 7)
         self.ax4.tick_params(axis="x", labelsize=5)
         self.ax4.tick_params(axis="y", labelsize=5)
         self.line1 = Line2D([], [], color='slateblue', linewidth=0.5)
@@ -165,13 +165,13 @@ class CustomFigCanvas(FigureCanvas, TimedAnimation):
         self.ax4.add_line(self.line4_3_tail)
         self.ax4.add_line(self.line4_3_head)
         self.ax1.set_xlim(0, self.xlim - 1)
-        self.ax1.set_ylim(-1000, 70000)
+        self.ax1.set_ylim(0, 1000)#70000)
         self.ax2.set_xlim(0, self.xlim - 1)
-        self.ax2.set_ylim(-1000, 70000)
+        self.ax2.set_ylim(0, 1000)#70000)
         self.ax3.set_xlim(0, self.xlim - 1)
-        self.ax3.set_ylim(-1000, 70000)
+        self.ax3.set_ylim(0, 1000)#70000)
         self.ax4.set_xlim(0, self.xlim - 1)
-        self.ax4.set_ylim(-1000, 70000)
+        self.ax4.set_ylim(0, 1000)#70000)
         FigureCanvas.__init__(self, self.fig)
         TimedAnimation.__init__(self, self.fig, interval = 20, blit = True)
         return
