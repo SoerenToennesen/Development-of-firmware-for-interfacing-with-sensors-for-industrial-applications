@@ -1094,6 +1094,7 @@ CyU3PReturnStatus_t start_sampling_AFFT() {
 
 	// TRIGGER RECORDING AFFT /////////////////////////////// START
 
+	trigger_recording:
 	data[0] = 0x00; data[1] = 0x80;
 	CyU3PSpiSetSsnLine (CyFalse);
 	status = CyU3PSpiTransmitWords(data, 2);
@@ -1493,12 +1494,67 @@ CyU3PReturnStatus_t start_sampling_AFFT() {
 		CyU3PSpiSetSsnLine (CyTrue);
 		HoldingRegister[299] = ((data[0] << 8) | (data[1])); // Do the last holding register, which is retreived from 0x0000.
 
-		CyU3PThreadSleep (1333); // set this timer depending on how often you want it to run
+		for (i = 0; i < 250; i++) {
+			CyU3PThreadSleep (5);
+			if (button_click) {
+				for (;;) {
+					CyU3PThreadSleep (5);
+					if (!button_click) {
+						goto stop_measurements;
+					}
+				}
+			}
+		}
+		//CyU3PThreadSleep (1333); // set this timer depending on how often you want it to run
 	}
 
 	// TRIGGER RECORDING AFFT ///////////////////////////////// END
 
 	// STOP RECORDING /////////////////////////////////////// START
+
+	stop_measurements:
+
+	data[0] = 0x00; data[1] = 0x80;
+	CyU3PSpiSetSsnLine (CyFalse);
+	status = CyU3PSpiTransmitWords(data, 2);
+	CyU3PSpiSetSsnLine (CyTrue);
+
+	CyU3PThreadSleep (1);
+
+	data[0] = 0xE8; data[1] = 0xBE;
+	CyU3PSpiSetSsnLine (CyFalse);
+	status = CyU3PSpiTransmitWords(data, 2);
+	CyU3PSpiSetSsnLine (CyTrue);
+
+	CyU3PThreadSleep (1);
+
+	data[0] = 0x00; data[1] = 0xBF;
+	CyU3PSpiSetSsnLine (CyFalse);
+	status = CyU3PSpiTransmitWords(data, 2);
+	CyU3PSpiSetSsnLine (CyTrue);
+
+	CyU3PThreadSleep (1);
+
+	data[0] = 0x00; data[1] = 0x80;
+	CyU3PSpiSetSsnLine (CyFalse);
+	status = CyU3PSpiTransmitWords(data, 2);
+	CyU3PSpiSetSsnLine (CyTrue);
+
+	CyU3PThreadSleep (1);
+
+	data[0] = 0xE8; data[1] = 0xBE;
+	CyU3PSpiSetSsnLine (CyFalse);
+	status = CyU3PSpiTransmitWords(data, 2);
+	CyU3PSpiSetSsnLine (CyTrue);
+
+	CyU3PThreadSleep (1);
+
+	data[0] = 0x00; data[1] = 0xBF;
+	CyU3PSpiSetSsnLine (CyFalse);
+	status = CyU3PSpiTransmitWords(data, 2);
+	CyU3PSpiSetSsnLine (CyTrue);
+
+	CyU3PThreadSleep (1);
 
 	data[0] = 0x00; data[1] = 0x80;
 	CyU3PSpiSetSsnLine (CyFalse);
@@ -1570,18 +1626,12 @@ CyU3PReturnStatus_t start_sampling_AFFT() {
 
 	CyU3PThreadSleep (1);
 
-	data[0] = 0x11; data[1] = 0x9B;
+	data[0] = 0x00; data[1] = 0x9B; // CHECK IF ITS 0x00 OR 0x11!!!
 	CyU3PSpiSetSsnLine (CyFalse);
 	status = CyU3PSpiTransmitWords(data, 2);
 	CyU3PSpiSetSsnLine (CyTrue);
 
-	CyU3PThreadSleep (1);
-
-	// STOP RECORDING //////////////////////////////////////// END
-
-	CyU3PThreadSleep (100);
-
-	// SOFTWARE RESET ////////////////////////////////////// START
+	CyU3PThreadSleep (5);
 
 	data[0] = 0x00; data[1] = 0x80;
 	CyU3PSpiSetSsnLine (CyFalse);
@@ -1590,21 +1640,242 @@ CyU3PReturnStatus_t start_sampling_AFFT() {
 
 	CyU3PThreadSleep (1);
 
-	data[0] = 0x80; data[1] = 0xBE;
+	data[0] = 0x00; data[1] = 0x81;
 	CyU3PSpiSetSsnLine (CyFalse);
 	status = CyU3PSpiTransmitWords(data, 2);
 	CyU3PSpiSetSsnLine (CyTrue);
 
 	CyU3PThreadSleep (1);
 
-	data[0] = 0x00; data[1] = 0xBF;
+	data[0] = 0x00; data[1] = 0x1A;
 	CyU3PSpiSetSsnLine (CyFalse);
 	status = CyU3PSpiTransmitWords(data, 2);
 	CyU3PSpiSetSsnLine (CyTrue);
 
 	CyU3PThreadSleep (1);
 
-	// SOFTWARE RESET //////////////////////////////////////// END
+	data[0] = 0x00; data[1] = 0x00;
+	CyU3PSpiSetSsnLine (CyFalse);
+	status = CyU3PSpiTransmitWords(data, 2);
+	CyU3PSpiSetSsnLine (CyTrue);
+
+	CyU3PThreadSleep (1);
+
+	data[0] = 0x00; data[1] = 0x80;
+	CyU3PSpiSetSsnLine (CyFalse);
+	status = CyU3PSpiTransmitWords(data, 2);
+	CyU3PSpiSetSsnLine (CyTrue);
+
+	CyU3PThreadSleep (1);
+
+	data[0] = 0x00; data[1] = 0x81;
+	CyU3PSpiSetSsnLine (CyFalse);
+	status = CyU3PSpiTransmitWords(data, 2);
+	CyU3PSpiSetSsnLine (CyTrue);
+
+	CyU3PThreadSleep (1);
+
+	data[0] = 0x00; data[1] = 0x1A;
+	CyU3PSpiSetSsnLine (CyFalse);
+	status = CyU3PSpiTransmitWords(data, 2);
+	CyU3PSpiSetSsnLine (CyTrue);
+
+	CyU3PThreadSleep (1);
+
+	data[0] = 0x00; data[1] = 0x00;
+	CyU3PSpiSetSsnLine (CyFalse);
+	status = CyU3PSpiTransmitWords(data, 2);
+	CyU3PSpiSetSsnLine (CyTrue);
+
+	CyU3PThreadSleep (1);
+
+	data[0] = 0x00; data[1] = 0x80;
+	CyU3PSpiSetSsnLine (CyFalse);
+	status = CyU3PSpiTransmitWords(data, 2);
+	CyU3PSpiSetSsnLine (CyTrue);
+
+	CyU3PThreadSleep (1);
+
+	data[0] = 0x00; data[1] = 0x81;
+	CyU3PSpiSetSsnLine (CyFalse);
+	status = CyU3PSpiTransmitWords(data, 2);
+	CyU3PSpiSetSsnLine (CyTrue);
+
+	CyU3PThreadSleep (1);
+
+	data[0] = 0x00; data[1] = 0x1A;
+	CyU3PSpiSetSsnLine (CyFalse);
+	status = CyU3PSpiTransmitWords(data, 2);
+	CyU3PSpiSetSsnLine (CyTrue);
+
+	CyU3PThreadSleep (1);
+
+	data[0] = 0x00; data[1] = 0x00;
+	CyU3PSpiSetSsnLine (CyFalse);
+	status = CyU3PSpiTransmitWords(data, 2);
+	CyU3PSpiSetSsnLine (CyTrue);
+
+	CyU3PThreadSleep (1);
+
+	data[0] = 0x00; data[1] = 0x80;
+	CyU3PSpiSetSsnLine (CyFalse);
+	status = CyU3PSpiTransmitWords(data, 2);
+	CyU3PSpiSetSsnLine (CyTrue);
+
+	CyU3PThreadSleep (1);
+
+	data[0] = 0x00; data[1] = 0x9A;
+	CyU3PSpiSetSsnLine (CyFalse);
+	status = CyU3PSpiTransmitWords(data, 2);
+	CyU3PSpiSetSsnLine (CyTrue);
+
+	CyU3PThreadSleep (1);
+
+	data[0] = 0x00; data[1] = 0x9B;
+	CyU3PSpiSetSsnLine (CyFalse);
+	status = CyU3PSpiTransmitWords(data, 2);
+	CyU3PSpiSetSsnLine (CyTrue);
+
+	CyU3PThreadSleep (100);
+
+	data[0] = 0x00; data[1] = 0x80;
+	CyU3PSpiSetSsnLine (CyFalse);
+	status = CyU3PSpiTransmitWords(data, 2);
+	CyU3PSpiSetSsnLine (CyTrue);
+
+	CyU3PThreadSleep (1);
+
+	data[0] = 0x00; data[1] = 0x81;
+	CyU3PSpiSetSsnLine (CyFalse);
+	status = CyU3PSpiTransmitWords(data, 2);
+	CyU3PSpiSetSsnLine (CyTrue);
+
+	CyU3PThreadSleep (1);
+
+	data[0] = 0x00; data[1] = 0x1A;
+	CyU3PSpiSetSsnLine (CyFalse);
+	status = CyU3PSpiTransmitWords(data, 2);
+	CyU3PSpiSetSsnLine (CyTrue);
+
+	CyU3PThreadSleep (1);
+
+	data[0] = 0x00; data[1] = 0x00;
+	CyU3PSpiSetSsnLine (CyFalse);
+	status = CyU3PSpiTransmitWords(data, 2);
+	CyU3PSpiSetSsnLine (CyTrue);
+
+	CyU3PThreadSleep (1);
+
+	data[0] = 0x00; data[1] = 0x80;
+	CyU3PSpiSetSsnLine (CyFalse);
+	status = CyU3PSpiTransmitWords(data, 2);
+	CyU3PSpiSetSsnLine (CyTrue);
+
+	CyU3PThreadSleep (1);
+
+	data[0] = 0x01; data[1] = 0x9A;
+	CyU3PSpiSetSsnLine (CyFalse);
+	status = CyU3PSpiTransmitWords(data, 2);
+	CyU3PSpiSetSsnLine (CyTrue);
+
+	CyU3PThreadSleep (1);
+
+	data[0] = 0x00; data[1] = 0x9B;
+	CyU3PSpiSetSsnLine (CyFalse);
+	status = CyU3PSpiTransmitWords(data, 2);
+	CyU3PSpiSetSsnLine (CyTrue);
+
+	CyU3PThreadSleep (1);
+
+	data[0] = 0x00; data[1] = 0x80;
+	CyU3PSpiSetSsnLine (CyFalse);
+	status = CyU3PSpiTransmitWords(data, 2);
+	CyU3PSpiSetSsnLine (CyTrue);
+
+	CyU3PThreadSleep (1);
+
+	data[0] = 0x00; data[1] = 0x81;
+	CyU3PSpiSetSsnLine (CyFalse);
+	status = CyU3PSpiTransmitWords(data, 2);
+	CyU3PSpiSetSsnLine (CyTrue);
+
+	CyU3PThreadSleep (1);
+
+	data[0] = 0x00; data[1] = 0x1A;
+	CyU3PSpiSetSsnLine (CyFalse);
+	status = CyU3PSpiTransmitWords(data, 2);
+	CyU3PSpiSetSsnLine (CyTrue);
+
+	CyU3PThreadSleep (1);
+
+	data[0] = 0x00; data[1] = 0x00;
+	CyU3PSpiSetSsnLine (CyFalse);
+	status = CyU3PSpiTransmitWords(data, 2);
+	CyU3PSpiSetSsnLine (CyTrue);
+
+	CyU3PThreadSleep (1);
+
+	data[0] = 0x00; data[1] = 0x80;
+	CyU3PSpiSetSsnLine (CyFalse);
+	status = CyU3PSpiTransmitWords(data, 2);
+	CyU3PSpiSetSsnLine (CyTrue);
+
+	CyU3PThreadSleep (1);
+
+	data[0] = 0x01; data[1] = 0x9A;
+	CyU3PSpiSetSsnLine (CyFalse);
+	status = CyU3PSpiTransmitWords(data, 2);
+	CyU3PSpiSetSsnLine (CyTrue);
+
+	CyU3PThreadSleep (1);
+
+	data[0] = 0x00; data[1] = 0x9B;
+	CyU3PSpiSetSsnLine (CyFalse);
+	status = CyU3PSpiTransmitWords(data, 2);
+	CyU3PSpiSetSsnLine (CyTrue);
+
+	CyU3PThreadSleep (1);
+
+	// STOP RECORDING //////////////////////////////////////// END
+
+	for (;;) {
+		CyU3PThreadSleep (5);
+		if (button_click) {
+			for (;;) {
+				CyU3PThreadSleep (5);
+				if (!button_click) {
+					goto trigger_recording;
+				}
+			}
+		}
+	}
+
+//	CyU3PThreadSleep (100);
+//
+//	// SOFTWARE RESET ////////////////////////////////////// START
+//
+//	data[0] = 0x00; data[1] = 0x80;
+//	CyU3PSpiSetSsnLine (CyFalse);
+//	status = CyU3PSpiTransmitWords(data, 2);
+//	CyU3PSpiSetSsnLine (CyTrue);
+//
+//	CyU3PThreadSleep (1);
+//
+//	data[0] = 0x80; data[1] = 0xBE;
+//	CyU3PSpiSetSsnLine (CyFalse);
+//	status = CyU3PSpiTransmitWords(data, 2);
+//	CyU3PSpiSetSsnLine (CyTrue);
+//
+//	CyU3PThreadSleep (1);
+//
+//	data[0] = 0x00; data[1] = 0xBF;
+//	CyU3PSpiSetSsnLine (CyFalse);
+//	status = CyU3PSpiTransmitWords(data, 2);
+//	CyU3PSpiSetSsnLine (CyTrue);
+//
+//	CyU3PThreadSleep (1);
+//
+//	// SOFTWARE RESET //////////////////////////////////////// END
 
 	return status;
 }

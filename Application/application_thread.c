@@ -53,11 +53,25 @@ void AppThread_Entry (uint32_t input) {
     status = CyFxUsbSpiInit ();
     if (status != CY_U3P_SUCCESS) while(1);
 
+    start_sampling:
     //turnOnOrOffADcmXL3021(); //Currently, this runs forever, turning the ADcmXL3021 on and off again.
     //start_sampling_RTS(); //This runs forever but only writes to the holding registers once. If you want to configure it such that it writes continously, you would have to put the data collection into a while loop.
     //start_sampling_MTC(); //This runs once and only writes to the holding registers once. If you want to configure it such that it writes continously, you would have to put invoking data collection and the data collection into a while loop.
     //start_sampling_MFFT(); //This runs once and only writes to the holding registers once. If you want to configure it such that it writes continously, you would have to put invoking data collection and the data collection into a while loop.
     start_sampling_AFFT(); //This runs forever and writes to the holding registers continously.
+
+    for (;;) {
+    	CyU3PThreadSleep (5);
+    	if (button_click) {
+    		for (;;) {
+    			CyU3PThreadSleep (5);
+    			if (!button_click) {
+    				goto start_sampling;
+    			}
+    		}
+    	}
+    }
+
 }
 
 
@@ -115,35 +129,33 @@ void CyFxApplicationDefine (void) {
 		while(1);
 	}
 
-//	//SHOULD BE USED FOR INVOKING THE BUTTON ON THE BOARD, BUT COULDN'T GET IT TO WORK!!
-//			//THIS WAS TO ENABLE THE BUTTON, WHEN CLICKING, IT SHOULD TRIGGER AN ACTION
-//	/* Allocate the memory for the threads */
-//	ptr = CyU3PMemAlloc (CY_FX_GPIOAPP_THREAD_STACK);
-//
-//	/* Create the thread for the application */
-//	retThrdCreate = CyU3PThreadCreate (&gpioInputThread,          /* GPIO Example App Thread structure */
-//						  "22:GPIO_simple_input",                 /* Thread ID and Thread name */
-//						  GpioInputThread_Entry,                  /* GPIO Example App Thread entry function */
-//						  0,                                      /* No input parameter to thread */
-//						  ptr,                                    /* Pointer to the allocated thread stack */
-//						  CY_FX_GPIOAPP_THREAD_STACK,             /* Thread stack size */
-//						  CY_FX_GPIOAPP_THREAD_PRIORITY,          /* Thread priority */
-//						  CY_FX_GPIOAPP_THREAD_PRIORITY,          /* Pre-emption threshold for the thread */
-//						  CYU3P_NO_TIME_SLICE,                    /* No time slice for the application thread */
-//						  CYU3P_AUTO_START                        /* Start the Thread immediately */
-//						  );
-//
-//	/* Check the return code */
-//	if (retThrdCreate != 0)
-//	{
-//		/* Thread creation failed with the error code retThrdCreate */
-//
-//		/* Add custom recovery or debug actions here */
-//
-//		/* Application cannot continue */
-//		/* Loop indefinitely */
-//		while(1);
-//	}
+	/* Allocate the memory for the threads */
+	ptr = CyU3PMemAlloc (CY_FX_GPIOAPP_THREAD_STACK);
+
+	/* Create the thread for the application */
+	retThrdCreate = CyU3PThreadCreate (&gpioInputThread,          /* GPIO Example App Thread structure */
+						  "22:GPIO_simple_input",                 /* Thread ID and Thread name */
+						  GpioInputThread_Entry,                  /* GPIO Example App Thread entry function */
+						  0,                                      /* No input parameter to thread */
+						  ptr,                                    /* Pointer to the allocated thread stack */
+						  CY_FX_GPIOAPP_THREAD_STACK,             /* Thread stack size */
+						  CY_FX_GPIOAPP_THREAD_PRIORITY,          /* Thread priority */
+						  CY_FX_GPIOAPP_THREAD_PRIORITY,          /* Pre-emption threshold for the thread */
+						  CYU3P_NO_TIME_SLICE,                    /* No time slice for the application thread */
+						  CYU3P_AUTO_START                        /* Start the Thread immediately */
+						  );
+
+	/* Check the return code */
+	if (retThrdCreate != 0)
+	{
+		/* Thread creation failed with the error code retThrdCreate */
+
+		/* Add custom recovery or debug actions here */
+
+		/* Application cannot continue */
+		/* Loop indefinitely */
+		while(1);
+	}
 
 	/* Allocate the memory for the threads */
 	ptr = CyU3PMemAlloc (CY_FX_UARTLP_THREAD_STACK);
