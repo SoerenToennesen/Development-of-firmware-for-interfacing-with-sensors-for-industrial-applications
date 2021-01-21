@@ -4,7 +4,7 @@
 import time
 import serial
 
-ser=serial.Serial(port='com4', baudrate=9600, parity=serial.PARITY_NONE, stopbits=serial.STOPBITS_ONE, bytesize=serial.EIGHTBITS, timeout=1)
+ser=serial.Serial(port='com4', baudrate=115200, parity=serial.PARITY_NONE, stopbits=serial.STOPBITS_ONE, bytesize=serial.EIGHTBITS, timeout=1)
 invoke_data = 0x41
 invoke_data2 = hex(ord('A'))
 invoke_data3 = hex(3)

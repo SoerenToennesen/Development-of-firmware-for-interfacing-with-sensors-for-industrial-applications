@@ -32,7 +32,7 @@ CyU3PReturnStatus_t CyFxDebugInit (void) {
     }
 
     CyU3PMemSet ((uint8_t *)&uartConfig, 0, sizeof (uartConfig));
-    uartConfig.baudRate = CY_U3P_UART_BAUDRATE_9600;
+    uartConfig.baudRate = CY_U3P_UART_BAUDRATE_115200;
     uartConfig.stopBit  = CY_U3P_UART_ONE_STOP_BIT;
     uartConfig.parity   = CY_U3P_UART_NO_PARITY;
     uartConfig.txEnable = CyTrue;

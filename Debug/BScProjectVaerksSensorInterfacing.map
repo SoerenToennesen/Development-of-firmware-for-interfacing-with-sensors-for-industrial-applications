@@ -360,7 +360,7 @@ Discarded input sections
  .data          0x00000000        0x0 ./UART/uart_init.o
  .bss           0x00000000        0x0 ./UART/uart_init.o
  .text.CyFxDebugInit
-                0x00000000       0xf4 ./UART/uart_init.o
+                0x00000000       0xf8 ./UART/uart_init.o
  .debug_info    0x00000000      0x508 ./UART/uart_init.o
  .debug_abbrev  0x00000000       0x99 ./UART/uart_init.o
  .debug_aranges
@@ -448,7 +448,7 @@ Discarded input sections
  .text.CyFxUartLpApplnCallback2
                 0x00000000      0x19c ./UART/uart_registermode.o
  .text.CyFxUartLpApplnInit2
-                0x00000000       0xa8 ./UART/uart_registermode.o
+                0x00000000       0xac ./UART/uart_registermode.o
  .text.UartLpAppThread_Entry2
                 0x00000000       0xb0 ./UART/uart_registermode.o
  .debug_info    0x00000000      0xb77 ./UART/uart_registermode.o
@@ -11744,116 +11744,116 @@ END GROUP
                 0x40003000      0x164 ./UART/uart.o
                 0x40003000                CyFxUartLpDmaCallback
  .text.CyFxUartLpApplnInit
-                0x40003164      0x198 ./UART/uart.o
+                0x40003164      0x19c ./UART/uart.o
                 0x40003164                CyFxUartLpApplnInit
  .text.UartLpAppThread_Entry
-                0x400032fc       0xf0 ./UART/uart.o
-                0x400032fc                UartLpAppThread_Entry
+                0x40003300       0xf0 ./UART/uart.o
+                0x40003300                UartLpAppThread_Entry
  .text.CyFxSpiInit
-                0x400033ec      0x1b8 ./SPI/spi_config.o
-                0x400033ec                CyFxSpiInit
+                0x400033f0      0x1b8 ./SPI/spi_config.o
+                0x400033f0                CyFxSpiInit
  .text.CyFxUSBSetupCB
-                0x400035a4      0x134 ./SPI/spi_init.o
-                0x400035a4                CyFxUSBSetupCB
+                0x400035a8      0x134 ./SPI/spi_init.o
+                0x400035a8                CyFxUSBSetupCB
  .text.CyFxUSBEventCB
-                0x400036d8       0x84 ./SPI/spi_init.o
-                0x400036d8                CyFxUSBEventCB
+                0x400036dc       0x84 ./SPI/spi_init.o
+                0x400036dc                CyFxUSBEventCB
  .text.CyFxApplnLPMRqtCB
-                0x4000375c       0x28 ./SPI/spi_init.o
-                0x4000375c                CyFxApplnLPMRqtCB
+                0x40003760       0x28 ./SPI/spi_init.o
+                0x40003760                CyFxApplnLPMRqtCB
  .text.CyFxUsbSpiInit
-                0x40003784      0x250 ./SPI/spi_init.o
-                0x40003784                CyFxUsbSpiInit
+                0x40003788      0x250 ./SPI/spi_init.o
+                0x40003788                CyFxUsbSpiInit
  .text.ModRTU_CRC
-                0x400039d4      0x124 ./Modbus/modbus_self_implemented.o
-                0x400039d4                ModRTU_CRC
+                0x400039d8      0x124 ./Modbus/modbus_self_implemented.o
+                0x400039d8                ModRTU_CRC
  .text.entry_func_dmamode
-                0x40003af8      0x5f0 ./Modbus/modbus_self_implemented.o
-                0x40003af8                entry_func_dmamode
+                0x40003afc      0x5f0 ./Modbus/modbus_self_implemented.o
+                0x40003afc                entry_func_dmamode
  .text.CyFxGpioIntrCb
-                0x400040e8       0x84 ./GPIO/gpio_init.o
-                0x400040e8                CyFxGpioIntrCb
+                0x400040ec       0x84 ./GPIO/gpio_init.o
+                0x400040ec                CyFxGpioIntrCb
  .text.CyFxGpioInit
-                0x4000416c      0x124 ./GPIO/gpio_init.o
-                0x4000416c                CyFxGpioInit
+                0x40004170      0x124 ./GPIO/gpio_init.o
+                0x40004170                CyFxGpioInit
  .text.GpioOutputThread_Entry
-                0x40004290       0x70 ./GPIO/gpio_thread.o
-                0x40004290                GpioOutputThread_Entry
- .text          0x40004300       0x2c ./CyFxFiles/cyfx_gcc_startup.o
-                0x40004300                jump
-                0x40004304                CyU3PToolChainInit
-                0x40004320                __user_initial_stackheap
+                0x40004294       0x70 ./GPIO/gpio_thread.o
+                0x40004294                GpioOutputThread_Entry
+ .text          0x40004304       0x2c ./CyFxFiles/cyfx_gcc_startup.o
+                0x40004304                jump
+                0x40004308                CyU3PToolChainInit
+                0x40004324                __user_initial_stackheap
  .text.CyU3PUndefinedHandler
-                0x4000432c        0xc ./CyFxFiles/cyfxtx.o
-                0x4000432c                CyU3PUndefinedHandler
+                0x40004330        0xc ./CyFxFiles/cyfxtx.o
+                0x40004330                CyU3PUndefinedHandler
  .text.CyU3PPrefetchHandler
-                0x40004338        0xc ./CyFxFiles/cyfxtx.o
-                0x40004338                CyU3PPrefetchHandler
+                0x4000433c        0xc ./CyFxFiles/cyfxtx.o
+                0x4000433c                CyU3PPrefetchHandler
  .text.CyU3PAbortHandler
-                0x40004344        0xc ./CyFxFiles/cyfxtx.o
-                0x40004344                CyU3PAbortHandler
+                0x40004348        0xc ./CyFxFiles/cyfxtx.o
+                0x40004348                CyU3PAbortHandler
  .text.tx_application_define
-                0x40004350       0x1c ./CyFxFiles/cyfxtx.o
-                0x40004350                tx_application_define
+                0x40004354       0x1c ./CyFxFiles/cyfxtx.o
+                0x40004354                tx_application_define
  .text.CyU3PMemInit
-                0x4000436c       0x58 ./CyFxFiles/cyfxtx.o
-                0x4000436c                CyU3PMemInit
+                0x40004370       0x58 ./CyFxFiles/cyfxtx.o
+                0x40004370                CyU3PMemInit
  .text.CyU3PMemAlloc
-                0x400043c4      0x184 ./CyFxFiles/cyfxtx.o
-                0x400043c4                CyU3PMemAlloc
+                0x400043c8      0x184 ./CyFxFiles/cyfxtx.o
+                0x400043c8                CyU3PMemAlloc
  .text.CyU3PMemSet
-                0x40004548      0x100 ./CyFxFiles/cyfxtx.o
-                0x40004548                CyU3PMemSet
+                0x4000454c      0x100 ./CyFxFiles/cyfxtx.o
+                0x4000454c                CyU3PMemSet
  .text.CyU3PMemCopy
-                0x40004648      0x280 ./CyFxFiles/cyfxtx.o
-                0x40004648                CyU3PMemCopy
+                0x4000464c      0x280 ./CyFxFiles/cyfxtx.o
+                0x4000464c                CyU3PMemCopy
  .text.CyU3PDmaBufferInit
-                0x400048c8       0xf8 ./CyFxFiles/cyfxtx.o
-                0x400048c8                CyU3PDmaBufferInit
+                0x400048cc       0xf8 ./CyFxFiles/cyfxtx.o
+                0x400048cc                CyU3PDmaBufferInit
  .text.CyU3PDmaBufMgrSetStatus
-                0x400049c0      0x1a0 ./CyFxFiles/cyfxtx.o
+                0x400049c4      0x1a0 ./CyFxFiles/cyfxtx.o
  .text.CyU3PDmaBufferAlloc
-                0x40004b60      0x36c ./CyFxFiles/cyfxtx.o
-                0x40004b60                CyU3PDmaBufferAlloc
+                0x40004b64      0x36c ./CyFxFiles/cyfxtx.o
+                0x40004b64                CyU3PDmaBufferAlloc
  .text.CyU3PDmaBufferFree
-                0x40004ecc      0x2cc ./CyFxFiles/cyfxtx.o
-                0x40004ecc                CyU3PDmaBufferFree
+                0x40004ed0      0x2cc ./CyFxFiles/cyfxtx.o
+                0x40004ed0                CyU3PDmaBufferFree
  .text.AppThread_Entry
-                0x40005198       0x3c ./Application/application_thread.o
-                0x40005198                AppThread_Entry
+                0x4000519c       0x3c ./Application/application_thread.o
+                0x4000519c                AppThread_Entry
  .text.CyFxApplicationDefine
-                0x400051d4      0x18c ./Application/application_thread.o
-                0x400051d4                CyFxApplicationDefine
+                0x400051d8      0x18c ./Application/application_thread.o
+                0x400051d8                CyFxApplicationDefine
  .text.start_sampling_AFFT
-                0x40005360     0x163c ./ADcmXL3021/recording_modes.o
-                0x40005360                start_sampling_AFFT
- .text.main     0x4000699c       0xfc ./main.o
-                0x4000699c                main
- .text          0x40006a98       0x50 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_system_return.o)
-                0x40006a98                _tx_thread_system_return
- .text          0x40006ae8       0x74 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_schedule.o)
-                0x40006ae8                _tx_thread_schedule
- .text          0x40006b5c       0xf0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_timer_interrupt.o)
-                0x40006b5c                _tx_timer_interrupt
- .text          0x40006c4c       0x3c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_initialize_low_level.o)
-                0x40006c4c                _tx_initialize_low_level
- .text          0x40006c88       0x78 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_stack_build.o)
-                0x40006c88                _tx_thread_stack_build
- .text          0x40006d00       0xf0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\ARM GCC\/arm-none-eabi/lib\libc.a(lib_a-memcpy-stub.o)
-                0x40006d00                memcpy
- .text          0x40006df0      0x114 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\ARM GCC\/lib/gcc/arm-none-eabi/4.8.1\libgcc.a(_udivsi3.o)
-                0x40006df0                __aeabi_uidiv
-                0x40006df0                __udivsi3
-                0x40006ee4                __aeabi_uidivmod
- .text          0x40006f04      0x148 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\ARM GCC\/lib/gcc/arm-none-eabi/4.8.1\libgcc.a(_divsi3.o)
-                0x40006f04                __divsi3
-                0x40006f04                __aeabi_idiv
-                0x4000702c                __aeabi_idivmod
- .text          0x4000704c        0x4 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\ARM GCC\/lib/gcc/arm-none-eabi/4.8.1\libgcc.a(_dvmd_tls.o)
-                0x4000704c                __aeabi_idiv0
-                0x4000704c                __aeabi_ldiv0
+                0x40005364     0x163c ./ADcmXL3021/recording_modes.o
+                0x40005364                start_sampling_AFFT
+ .text.main     0x400069a0       0xfc ./main.o
+                0x400069a0                main
+ .text          0x40006a9c       0x50 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_system_return.o)
+                0x40006a9c                _tx_thread_system_return
+ .text          0x40006aec       0x74 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_schedule.o)
+                0x40006aec                _tx_thread_schedule
+ .text          0x40006b60       0xf0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_timer_interrupt.o)
+                0x40006b60                _tx_timer_interrupt
+ .text          0x40006c50       0x3c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_initialize_low_level.o)
+                0x40006c50                _tx_initialize_low_level
+ .text          0x40006c8c       0x78 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_stack_build.o)
+                0x40006c8c                _tx_thread_stack_build
+ .text          0x40006d04       0xf0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\ARM GCC\/arm-none-eabi/lib\libc.a(lib_a-memcpy-stub.o)
+                0x40006d04                memcpy
+ .text          0x40006df4      0x114 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\ARM GCC\/lib/gcc/arm-none-eabi/4.8.1\libgcc.a(_udivsi3.o)
+                0x40006df4                __aeabi_uidiv
+                0x40006df4                __udivsi3
+                0x40006ee8                __aeabi_uidivmod
+ .text          0x40006f08      0x148 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\ARM GCC\/lib/gcc/arm-none-eabi/4.8.1\libgcc.a(_divsi3.o)
+                0x40006f08                __divsi3
+                0x40006f08                __aeabi_idiv
+                0x40007030                __aeabi_idivmod
+ .text          0x40007050        0x4 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\ARM GCC\/lib/gcc/arm-none-eabi/4.8.1\libgcc.a(_dvmd_tls.o)
+                0x40007050                __aeabi_idiv0
+                0x40007050                __aeabi_ldiv0
  *(.rodata*)
- *fill*         0x40007050       0x10 
+ *fill*         0x40007054        0xc 
  .rodata.glFirmwareID
                 0x40007060       0x20 ./SPI/spi_init.o
                 0x40007060                glFirmwareID

@@ -1426,6 +1426,8 @@ CyU3PReturnStatus_t start_sampling_AFFT() {
 
 		CyU3PThreadSleep (3);
 
+		// Every time we print 0x0E, 0x10, 0x12, the BUF_PNTR automatically advances from 0-2047 (as there are so many stored in each buffer). FFT data is unsigned 16-bit.
+
 		data[0] = 0x00; data[1] = 0x0E;
 		uint8_t receive_data[2];
 		int i;
