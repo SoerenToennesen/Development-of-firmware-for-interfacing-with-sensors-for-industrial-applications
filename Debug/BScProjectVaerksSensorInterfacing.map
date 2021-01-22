@@ -310,7 +310,7 @@ response_buffer_new
 gpioOutputThread    0xa8              ./Application/application_thread.o
 test_buffer         0xc               ./UART/uart.o
 iii                 0x4               ./Modbus/modbus_self_implemented.o
-HoldingRegister     0x39fc            ./UART/uart.o
+HoldingRegister     0x3000            ./Modbus/modbus_self_implemented.o
 glFxGpioAppEvent    0x28              ./GPIO/gpio_init.o
 iiii                0x4               ./Modbus/modbus_self_implemented.o
 i                   0x4               ./Modbus/modbus_self_implemented.o
@@ -496,8 +496,8 @@ Discarded input sections
                 0x00000000       0xac ./UART/uart_registermode.o
  .text.UartLpAppThread_Entry2
                 0x00000000       0xb0 ./UART/uart_registermode.o
- .debug_info    0x00000000      0xba9 ./UART/uart_registermode.o
- .debug_abbrev  0x00000000      0x16f ./UART/uart_registermode.o
+ .debug_info    0x00000000      0xb77 ./UART/uart_registermode.o
+ .debug_abbrev  0x00000000      0x166 ./UART/uart_registermode.o
  .debug_aranges
                 0x00000000       0x30 ./UART/uart_registermode.o
  .debug_ranges  0x00000000       0x20 ./UART/uart_registermode.o
@@ -533,7 +533,7 @@ Discarded input sections
  .debug_macro   0x00000000       0x27 ./UART/uart_registermode.o
  .debug_macro   0x00000000       0x2e ./UART/uart_registermode.o
  .debug_line    0x00000000      0x578 ./UART/uart_registermode.o
- .debug_str     0x00000000     0xaae9 ./UART/uart_registermode.o
+ .debug_str     0x00000000     0xaad1 ./UART/uart_registermode.o
  .comment       0x00000000       0x31 ./UART/uart_registermode.o
  .ARM.attributes
                 0x00000000       0x32 ./UART/uart_registermode.o
@@ -14170,7 +14170,7 @@ i._tx_queue_cleanup
 .igot.plt       0x40030700        0x0
  .igot.plt      0x00000000        0x0 ./UART/uart.o
 
-.bss            0x40030700     0x7900
+.bss            0x40030700     0x6f20
                 0x40030700                _bss_start = .
  *(.bss*)
  .bss.glPktsPending
@@ -14257,99 +14257,100 @@ i._tx_queue_cleanup
                 0x400318d0                _tx_timer_thread
                 0x40031978                _tx_timer_thread_stack_area
                 0x40031d78                . = ALIGN (0x4)
- COMMON         0x40031d78     0x3bc8 ./UART/uart.o
+ COMMON         0x40031d78      0x1cc ./UART/uart.o
                 0x40031d78                regValueEn
                 0x40031d7c                glUartLpChHandle
                 0x40031e28                response_buffer_new
                 0x40031e34                test_buffer
-                0x40031e40                HoldingRegister
-                0x4003583c                response_buffer_dma
-                0x4003593c                regValueDs
- COMMON         0x40035940     0x2160 ./SPI/spi_init.o
-                0x40035940                glEp0Buffer2
-                0x40036940                glSpiRxHandle
-                0x400369ec                glSpiTxHandle
-                0x40036aa0                glEp0Buffer
- COMMON         0x40037aa0      0x11a ./Modbus/modbus_self_implemented.o
-                0x40037aa0                reg_num
-                0x40037aa2                response_CRC_code
-                0x40037aa4                iii
-                0x40037aa8                iiii
-                0x40037aac                i
-                0x40037ab0                ii
-                0x40037ab4                ans
-                0x40037bb4                calculated_CRC_code
-                0x40037bb6                reg_start
-                0x40037bb8                given_CRC_code
- *fill*         0x40037bba        0x2 
- COMMON         0x40037bbc       0x28 ./GPIO/gpio_init.o
-                0x40037bbc                glFxGpioAppEvent
- COMMON         0x40037be4        0x1 ./GPIO/gpio_thread.o
-                0x40037be4                button_click
- *fill*         0x40037be5        0x3 
- COMMON         0x40037be8      0x418 ./Application/application_thread.o
-                0x40037be8                USBUARTAppThread
-                0x40037c90                UartLpAppThread
-                0x40037d38                gpioOutputThread
-                0x40037de0                gpioInputThread
-                0x40037e88                UartLpAppEvent
-                0x40037eb0                appThread
-                0x40037f58                UartLpAppThread2
-                0x40038000                _bss_end = .
+                0x40031e40                response_buffer_dma
+                0x40031f40                regValueDs
+ *fill*         0x40031f44       0x1c 
+ COMMON         0x40031f60     0x2160 ./SPI/spi_init.o
+                0x40031f60                glEp0Buffer2
+                0x40032f60                glSpiRxHandle
+                0x4003300c                glSpiTxHandle
+                0x400330c0                glEp0Buffer
+ COMMON         0x400340c0     0x311a ./Modbus/modbus_self_implemented.o
+                0x400340c0                reg_num
+                0x400340c2                response_CRC_code
+                0x400340c4                iii
+                0x400340c8                HoldingRegister
+                0x400370c8                iiii
+                0x400370cc                i
+                0x400370d0                ii
+                0x400370d4                ans
+                0x400371d4                calculated_CRC_code
+                0x400371d6                reg_start
+                0x400371d8                given_CRC_code
+ *fill*         0x400371da        0x2 
+ COMMON         0x400371dc       0x28 ./GPIO/gpio_init.o
+                0x400371dc                glFxGpioAppEvent
+ COMMON         0x40037204        0x1 ./GPIO/gpio_thread.o
+                0x40037204                button_click
+ *fill*         0x40037205        0x3 
+ COMMON         0x40037208      0x418 ./Application/application_thread.o
+                0x40037208                USBUARTAppThread
+                0x400372b0                UartLpAppThread
+                0x40037358                gpioOutputThread
+                0x40037400                gpioInputThread
+                0x400374a8                UartLpAppEvent
+                0x400374d0                appThread
+                0x40037578                UartLpAppThread2
+                0x40037620                _bss_end = .
 
-.ARM.extab      0x40038000        0x0
+.ARM.extab      0x40037620        0x0
  *(.ARM.extab* .gnu.linkonce.armextab.*)
-                0x40038000                . = ALIGN (0x4)
-                0x40038000                __exidx_start = .
+                0x40037620                . = ALIGN (0x4)
+                0x40037620                __exidx_start = .
 
-.ARM.exidx      0x40038000        0x0
+.ARM.exidx      0x40037620        0x0
  *(.ARM.exidx* .gnu.linkonce.armexidx.*)
-                0x40038000                . = ALIGN (0x4)
-                0x40038000                __exidx_end = .
+                0x40037620                . = ALIGN (0x4)
+                0x40037620                __exidx_end = .
 OUTPUT(BScProjectVaerksSensorInterfacing.elf elf32-littlearm)
 
-.debug_info     0x00000000     0x6cf9
- .debug_info    0x00000000     0x11f1 ./UART/uart.o
- .debug_info    0x000011f1      0xeea ./SPI/spi_config.o
- .debug_info    0x000020db      0xe3c ./SPI/spi_init.o
- .debug_info    0x00002f17      0x3a7 ./Modbus/modbus_self_implemented.o
- .debug_info    0x000032be      0x975 ./GPIO/gpio_init.o
- .debug_info    0x00003c33      0x3cc ./GPIO/gpio_thread.o
- .debug_info    0x00003fff       0x8a ./CyFxFiles/cyfx_gcc_startup.o
- .debug_info    0x00004089      0xf6f ./CyFxFiles/cyfxtx.o
- .debug_info    0x00004ff8      0x262 ./CyFxFiles/cyfxusbenumdscr.o
- .debug_info    0x0000525a      0x8cc ./Application/application_thread.o
- .debug_info    0x00005b26      0x57c ./ADcmXL3021/recording_modes.o
- .debug_info    0x000060a2      0x44b ./main.o
- .debug_info    0x000064ed       0x94 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3entry_armcc.o)
- .debug_info    0x00006581       0x94 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3entry_armcc.o)
- .debug_info    0x00006615       0x8c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3mmu.o)
- .debug_info    0x000066a1       0x94 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3isr_armcc.o)
- .debug_info    0x00006735       0xa4 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_system_return.o)
- .debug_info    0x000067d9       0xa0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_schedule.o)
- .debug_info    0x00006879       0xac C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_vectored_context_save.o)
- .debug_info    0x00006925       0xa0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_timer_interrupt.o)
- .debug_info    0x000069c5       0xa4 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_context_restore.o)
- .debug_info    0x00006a69       0xa4 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_irq_nesting_end.o)
- .debug_info    0x00006b0d       0xa8 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_irq_nesting_start.o)
- .debug_info    0x00006bb5       0xa4 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_initialize_low_level.o)
- .debug_info    0x00006c59       0xa0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_stack_build.o)
+.debug_info     0x00000000     0x6c5e
+ .debug_info    0x00000000     0x11bf ./UART/uart.o
+ .debug_info    0x000011bf      0xeea ./SPI/spi_config.o
+ .debug_info    0x000020a9      0xe3c ./SPI/spi_init.o
+ .debug_info    0x00002ee5      0x3a7 ./Modbus/modbus_self_implemented.o
+ .debug_info    0x0000328c      0x975 ./GPIO/gpio_init.o
+ .debug_info    0x00003c01      0x3cc ./GPIO/gpio_thread.o
+ .debug_info    0x00003fcd       0x8a ./CyFxFiles/cyfx_gcc_startup.o
+ .debug_info    0x00004057      0xf6f ./CyFxFiles/cyfxtx.o
+ .debug_info    0x00004fc6      0x262 ./CyFxFiles/cyfxusbenumdscr.o
+ .debug_info    0x00005228      0x89a ./Application/application_thread.o
+ .debug_info    0x00005ac2      0x545 ./ADcmXL3021/recording_modes.o
+ .debug_info    0x00006007      0x44b ./main.o
+ .debug_info    0x00006452       0x94 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3entry_armcc.o)
+ .debug_info    0x000064e6       0x94 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3entry_armcc.o)
+ .debug_info    0x0000657a       0x8c C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3mmu.o)
+ .debug_info    0x00006606       0x94 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3isr_armcc.o)
+ .debug_info    0x0000669a       0xa4 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_system_return.o)
+ .debug_info    0x0000673e       0xa0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_schedule.o)
+ .debug_info    0x000067de       0xac C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_vectored_context_save.o)
+ .debug_info    0x0000688a       0xa0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_timer_interrupt.o)
+ .debug_info    0x0000692a       0xa4 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_context_restore.o)
+ .debug_info    0x000069ce       0xa4 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_irq_nesting_end.o)
+ .debug_info    0x00006a72       0xa8 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_irq_nesting_start.o)
+ .debug_info    0x00006b1a       0xa4 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_initialize_low_level.o)
+ .debug_info    0x00006bbe       0xa0 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_stack_build.o)
 
-.debug_abbrev   0x00000000      0xd9e
- .debug_abbrev  0x00000000      0x1b4 ./UART/uart.o
- .debug_abbrev  0x000001b4      0x151 ./SPI/spi_config.o
- .debug_abbrev  0x00000305      0x1ae ./SPI/spi_init.o
- .debug_abbrev  0x000004b3      0x143 ./Modbus/modbus_self_implemented.o
- .debug_abbrev  0x000005f6      0x104 ./GPIO/gpio_init.o
- .debug_abbrev  0x000006fa       0xa2 ./GPIO/gpio_thread.o
- .debug_abbrev  0x0000079c       0x14 ./CyFxFiles/cyfx_gcc_startup.o
- .debug_abbrev  0x000007b0      0x253 ./CyFxFiles/cyfxtx.o
- .debug_abbrev  0x00000a03       0x78 ./CyFxFiles/cyfxusbenumdscr.o
- .debug_abbrev  0x00000a7b      0x14a ./Application/application_thread.o
- .debug_abbrev  0x00000bc5      0x11a ./ADcmXL3021/recording_modes.o
- .debug_abbrev  0x00000cdf       0xab ./main.o
- .debug_abbrev  0x00000d8a       0x14 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3entry_armcc.o)
-                0x00000d8a                __ARM_asm.debug_abbrev
+.debug_abbrev   0x00000000      0xd72
+ .debug_abbrev  0x00000000      0x1ab ./UART/uart.o
+ .debug_abbrev  0x000001ab      0x151 ./SPI/spi_config.o
+ .debug_abbrev  0x000002fc      0x1ae ./SPI/spi_init.o
+ .debug_abbrev  0x000004aa      0x143 ./Modbus/modbus_self_implemented.o
+ .debug_abbrev  0x000005ed      0x104 ./GPIO/gpio_init.o
+ .debug_abbrev  0x000006f1       0xa2 ./GPIO/gpio_thread.o
+ .debug_abbrev  0x00000793       0x14 ./CyFxFiles/cyfx_gcc_startup.o
+ .debug_abbrev  0x000007a7      0x253 ./CyFxFiles/cyfxtx.o
+ .debug_abbrev  0x000009fa       0x78 ./CyFxFiles/cyfxusbenumdscr.o
+ .debug_abbrev  0x00000a72      0x138 ./Application/application_thread.o
+ .debug_abbrev  0x00000baa      0x109 ./ADcmXL3021/recording_modes.o
+ .debug_abbrev  0x00000cb3       0xab ./main.o
+ .debug_abbrev  0x00000d5e       0x14 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyfxapi.a(cyu3entry_armcc.o)
+                0x00000d5e                __ARM_asm.debug_abbrev
 
 .debug_aranges  0x00000000      0x2a0
  .debug_aranges
@@ -14480,13 +14481,13 @@ OUTPUT(BScProjectVaerksSensorInterfacing.elf elf32-littlearm)
  .debug_line    0x0000476a       0x68 C:\Program Files (x86)\Cypress\EZ-USB FX3 SDK\1.3\/fw_lib/1_3_4/fx3_debug\libcyu3threadx.a(tx_thread_stack_build.o)
 
 .debug_str      0x00000000    0x10420
- .debug_str     0x00000000     0xc023 ./UART/uart.o
-                               0xc25e (size before relaxing)
- .debug_str     0x0000c023      0x228 ./SPI/spi_config.o
+ .debug_str     0x00000000     0xc013 ./UART/uart.o
+                               0xc246 (size before relaxing)
+ .debug_str     0x0000c013      0x228 ./SPI/spi_config.o
                                0xb07b (size before relaxing)
- .debug_str     0x0000c24b      0x78d ./SPI/spi_init.o
+ .debug_str     0x0000c23b      0x78d ./SPI/spi_init.o
                                0xae44 (size before relaxing)
- .debug_str     0x0000c9d8     0x19fc ./Modbus/modbus_self_implemented.o
+ .debug_str     0x0000c9c8     0x1a0c ./Modbus/modbus_self_implemented.o
                                0xb9c6 (size before relaxing)
  .debug_str     0x0000e3d4      0x353 ./GPIO/gpio_init.o
                                0xa63e (size before relaxing)
@@ -14497,9 +14498,9 @@ OUTPUT(BScProjectVaerksSensorInterfacing.elf elf32-littlearm)
  .debug_str     0x0000f439      0x219 ./CyFxFiles/cyfxusbenumdscr.o
                                0x35fd (size before relaxing)
  .debug_str     0x0000f652      0x15d ./Application/application_thread.o
-                               0xa584 (size before relaxing)
+                               0xa56c (size before relaxing)
  .debug_str     0x0000f7af      0xae7 ./ADcmXL3021/recording_modes.o
-                               0xa78c (size before relaxing)
+                               0xa6e4 (size before relaxing)
  .debug_str     0x00010296      0x18a ./main.o
                                0xb690 (size before relaxing)
 
