@@ -13,6 +13,7 @@
 #define CY_FX_GPIOAPP_GPIO_LOW_EVENT     (1 << 1)   /* GPIO low event */
 
 volatile uint8_t button_click;
+uint8_t mode_select = 1;
 
 /* Entry function for the gpioOutputThread */
 void GpioOutputThread_Entry (uint32_t input) {
@@ -21,25 +22,112 @@ void GpioOutputThread_Entry (uint32_t input) {
     CyFxGpioInit();
     button_click = 0;
     for (;;) {
+    	if (mode_select == 1) {
+    		/* Set the GPIO 5 to high */
+			apiRetStatus = CyU3PGpioSetValue (5, CyTrue);
+			if (apiRetStatus != CY_U3P_SUCCESS) while(1);
 
-//    	CyU3PThreadSleep(10);
-//    	if (button_click == 1) {
-//    		apiRetStatus = CyU3PGpioSetValue (5, CyTrue);
-//    	} else {
-//			apiRetStatus = CyU3PGpioSetValue (5, CyFalse);
-//		}
+			CyU3PThreadSleep(100);
 
-    	/* Set the GPIO 5 to high */
-        apiRetStatus = CyU3PGpioSetValue (5, CyTrue);
-        if (apiRetStatus != CY_U3P_SUCCESS) while(1);
+			/* Set the GPIO 5 to low */
+			apiRetStatus = CyU3PGpioSetValue (5, CyFalse);
+			if (apiRetStatus != CY_U3P_SUCCESS) while(1);
 
-        CyU3PThreadSleep(1000);
+			CyU3PThreadSleep(1000);
+    	}
+    	if (mode_select == 2) {
+			apiRetStatus = CyU3PGpioSetValue (5, CyTrue);
+			if (apiRetStatus != CY_U3P_SUCCESS) while(1);
 
-        /* Set the GPIO 5 to low */
-        apiRetStatus = CyU3PGpioSetValue (5, CyFalse);
-        if (apiRetStatus != CY_U3P_SUCCESS) while(1);
+			CyU3PThreadSleep(100);
 
-        CyU3PThreadSleep(1000);
+			apiRetStatus = CyU3PGpioSetValue (5, CyFalse);
+			if (apiRetStatus != CY_U3P_SUCCESS) while(1);
+
+			CyU3PThreadSleep(100);
+
+			apiRetStatus = CyU3PGpioSetValue (5, CyTrue);
+			if (apiRetStatus != CY_U3P_SUCCESS) while(1);
+
+			CyU3PThreadSleep(100);
+
+			apiRetStatus = CyU3PGpioSetValue (5, CyFalse);
+			if (apiRetStatus != CY_U3P_SUCCESS) while(1);
+
+			CyU3PThreadSleep(1000);
+		}
+    	if (mode_select == 3) {
+    		apiRetStatus = CyU3PGpioSetValue (5, CyTrue);
+			if (apiRetStatus != CY_U3P_SUCCESS) while(1);
+
+			CyU3PThreadSleep(100);
+
+			apiRetStatus = CyU3PGpioSetValue (5, CyFalse);
+			if (apiRetStatus != CY_U3P_SUCCESS) while(1);
+
+			CyU3PThreadSleep(100);
+
+			apiRetStatus = CyU3PGpioSetValue (5, CyTrue);
+			if (apiRetStatus != CY_U3P_SUCCESS) while(1);
+
+			CyU3PThreadSleep(100);
+
+			apiRetStatus = CyU3PGpioSetValue (5, CyFalse);
+			if (apiRetStatus != CY_U3P_SUCCESS) while(1);
+
+			CyU3PThreadSleep(100);
+
+			apiRetStatus = CyU3PGpioSetValue (5, CyTrue);
+			if (apiRetStatus != CY_U3P_SUCCESS) while(1);
+
+			CyU3PThreadSleep(100);
+
+			apiRetStatus = CyU3PGpioSetValue (5, CyFalse);
+			if (apiRetStatus != CY_U3P_SUCCESS) while(1);
+
+			CyU3PThreadSleep(1000);
+		}
+    	if (mode_select == 4) {
+    		apiRetStatus = CyU3PGpioSetValue (5, CyTrue);
+			if (apiRetStatus != CY_U3P_SUCCESS) while(1);
+
+			CyU3PThreadSleep(100);
+
+			apiRetStatus = CyU3PGpioSetValue (5, CyFalse);
+			if (apiRetStatus != CY_U3P_SUCCESS) while(1);
+
+			CyU3PThreadSleep(100);
+
+			apiRetStatus = CyU3PGpioSetValue (5, CyTrue);
+			if (apiRetStatus != CY_U3P_SUCCESS) while(1);
+
+			CyU3PThreadSleep(100);
+
+			apiRetStatus = CyU3PGpioSetValue (5, CyFalse);
+			if (apiRetStatus != CY_U3P_SUCCESS) while(1);
+
+			CyU3PThreadSleep(100);
+
+			apiRetStatus = CyU3PGpioSetValue (5, CyTrue);
+			if (apiRetStatus != CY_U3P_SUCCESS) while(1);
+
+			CyU3PThreadSleep(100);
+
+			apiRetStatus = CyU3PGpioSetValue (5, CyFalse);
+			if (apiRetStatus != CY_U3P_SUCCESS) while(1);
+
+			CyU3PThreadSleep(100);
+
+			apiRetStatus = CyU3PGpioSetValue (5, CyTrue);
+			if (apiRetStatus != CY_U3P_SUCCESS) while(1);
+
+			CyU3PThreadSleep(100);
+
+			apiRetStatus = CyU3PGpioSetValue (5, CyFalse);
+			if (apiRetStatus != CY_U3P_SUCCESS) while(1);
+
+			CyU3PThreadSleep(1000);
+		}
     }
 }
 

@@ -11,3 +11,4 @@ void GpioInputThread_Entry (uint32_t input);
 
 
 extern volatile uint8_t button_click;
+extern uint8_t mode_select;

@@ -24,7 +24,7 @@ CyFxUartLpApplnInit (void);
 
 
 
-
+extern uint8_t trigger_sampling;
 extern uint32_t  UartDataRdPtr;
 extern uint32_t  UartDataWrPtr;
 extern uint8_t  *UartDataBuffer;

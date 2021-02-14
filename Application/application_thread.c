@@ -53,22 +53,40 @@ void AppThread_Entry (uint32_t input) {
     status = CyFxUsbSpiInit ();
     if (status != CY_U3P_SUCCESS) while(1);
 
+    start_ADcmXL3021();
+
+    mode_select = 1;
+
     start_sampling:
+    if (mode_select == 1) {
+    	start_sampling_MTC();
+    }
+    if (mode_select == 2) {
+    	start_sampling_MFFT();
+	}
+    if (mode_select == 3) {
+    	start_sampling_AFFT();
+	}
+    if (mode_select == 4) {
+    	start_sampling_RTS();
+	}
+
+
     //turnOnOrOffADcmXL3021(); //Currently, this runs forever, turning the ADcmXL3021 on and off again.
     //start_sampling_RTS(); //This runs forever but only writes to the holding registers once. If you want to configure it such that it writes continously, you would have to put the data collection into a while loop.
     //start_sampling_MTC(); //This runs once and only writes to the holding registers once. If you want to configure it such that it writes continously, you would have to put invoking data collection and the data collection into a while loop.
     //start_sampling_MFFT(); //This runs once and only writes to the holding registers once. If you want to configure it such that it writes continously, you would have to put invoking data collection and the data collection into a while loop.
-    start_sampling_AFFT(); //This runs forever and writes to the holding registers continously.
+    //start_sampling_AFFT(); //This runs forever and writes to the holding registers continously.
 
     for (;;) {
     	CyU3PThreadSleep (5);
-    	if (button_click) {
-    		for (;;) {
-    			CyU3PThreadSleep (5);
-    			if (!button_click) {
-    				goto start_sampling;
-    			}
+    	if (!button_click) {
+    		if (mode_select == 4) {
+    			mode_select = 1;
+    		} else {
+    			mode_select++;
     		}
+			goto start_sampling;
     	}
     }
 

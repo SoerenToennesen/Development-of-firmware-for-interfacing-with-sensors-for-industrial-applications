@@ -27,6 +27,8 @@ CyU3PDmaBuffer_t response_buffer_new;
 uint8_t test_buffer[12];
 struct response response_buffer_dma;
 
+uint8_t trigger_sampling;
+
 
 /* Callback funtion for the DMA event notification */
 void CyFxUartLpDmaCallback (
@@ -42,14 +44,27 @@ void CyFxUartLpDmaCallback (
          * out unless it is explicitly committed. The call shall fail if there
          * is any application error. */
 
-    	//WHEN I REQUEST OVER 30 DATA POINTS (OR MORE) FROM THE HOLDINGREGISTER, THE OUTPUT BUFFER WILL BE OVER 64 BYTES LONG, AND THUS CRASH THE PROGRAM. CHANGE THE BYTES AMOUNT IF NEEDED.
     	if (input->buffer_p.count != 0) {
-			response_buffer_dma = entry_func_dmamode(&(input->buffer_p.buffer), input->buffer_p.count);
-			input->buffer_p.count = response_buffer_dma.response_size;
-			int j;
-			for (j = 0; j < response_buffer_dma.response_size; j++) {
-				input->buffer_p.buffer[j] = response_buffer_dma.response_array[j];
-			}
+
+    		if (mode_select != 3) {
+				if (trigger_sampling == 0) {
+					trigger_sampling = 1;
+				}
+				while (trigger_sampling != 2) {
+					CyU3PThreadSleep (5);
+				}
+    		}
+
+    		if (input->buffer_p.buffer[1] == 0x05) { //any write-coil will indicate we are done writing.
+				trigger_sampling = 0;
+    		} else {
+				response_buffer_dma = entry_func_dmamode(&(input->buffer_p.buffer), input->buffer_p.count);
+				input->buffer_p.count = response_buffer_dma.response_size;
+				int j;
+				for (j = 0; j < response_buffer_dma.response_size; j++) {
+					input->buffer_p.buffer[j] = response_buffer_dma.response_array[j];
+				}
+    		}
 			status = CyU3PDmaChannelCommitBuffer (chHandle, input->buffer_p.count, 0);
 			if (status != CY_U3P_SUCCESS) while(1);
 			glPktsPending++;
@@ -144,7 +159,6 @@ UartLpAppThread_Entry (
 	regValueDs = UART->lpp_uart_config & (~(CY_U3P_LPP_UART_RTS | CY_U3P_LPP_UART_RX_ENABLE));
 
 	for (;;) {
-
 		while (block_transmit) {
 			if (glIsApplnActive)
 			{
@@ -166,34 +180,9 @@ UartLpAppThread_Entry (
 					/* Enable UART Receiver Block */
 					UART->lpp_uart_config = regValueEn;
 				}
-
 				glPktsPending = 0;
 			}
-
-			CyU3PThreadSleep (10); // This used to be 50, under 9600 baudrate... Can it be 10ms for 115200 baudrate?
-
+			CyU3PThreadSleep (25); // This used to be 50, under 9600 baudrate... Can it be 10ms for 115200 baudrate?
 		}
 	}
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

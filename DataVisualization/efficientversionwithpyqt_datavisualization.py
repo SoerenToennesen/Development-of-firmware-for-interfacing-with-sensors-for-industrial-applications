@@ -17,6 +17,7 @@
 
 import sys
 import os
+import serial
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
@@ -32,12 +33,21 @@ from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 import time
 import threading
 from pymodbus.client.sync import ModbusSerialClient
+'''import logging
+FORMAT = ('%(asctime)-15s %(threadName)-15s '
+          '%(levelname)-8s %(module)-15s:%(lineno)-8s %(message)s')
+logging.basicConfig(format=FORMAT)
+log = logging.getLogger()
+log.setLevel(logging.DEBUG)'''
+
+
 
 client = ModbusSerialClient(
     method='rtu',
     port='COM4',
     baudrate=115200,
-    timeout=1,
+    timeout=3,
+#    retries = 5,
     parity='N',
     stopbits=1,
     bytesize=8
@@ -45,14 +55,23 @@ client = ModbusSerialClient(
 connection = client.connect()
 print("Connected = " + str(connection))
 
+#ser = serial.Serial('COM4', 115200)
+#packet = bytearray()
+#packet.append(0xFF)
+
+x_address = 0
+#x_address = 1024
+y_address = 2048
+#y_address = 3072
+z_address = 4096
+#z_address = 5120
 count = 10
-x_address = 1000
-y_address = 3000
-z_address = 5000
 x_count = 10
 y_count = 10
 z_count = 10
 slave_id = 1
+
+#wait_for_reply = 0
 
 
 
@@ -94,7 +113,7 @@ class CustomFigCanvas(FigureCanvas, TimedAnimation):
         self.addedData = []
         # print(matplotlib.__version__)
         # The data
-        self.xlim = 200
+        self.xlim = 100
         self.n = np.linspace(0, self.xlim - 1, self.xlim)
         #self.next_data = 1
         self.y1 = (self.n * 0.0) + 50
@@ -164,23 +183,30 @@ class CustomFigCanvas(FigureCanvas, TimedAnimation):
         self.ax4.add_line(self.line4_3)
         self.ax4.add_line(self.line4_3_tail)
         self.ax4.add_line(self.line4_3_head)
+        #For MTC
         self.ax1.set_xlim(0, self.xlim - 1)
-        self.ax1.set_ylim(0, 1000)#70000)
+        self.ax1.set_ylim(-33000, 33000)
         self.ax2.set_xlim(0, self.xlim - 1)
-        self.ax2.set_ylim(0, 1000)#70000)
+        self.ax2.set_ylim(-33000, 33000)
         self.ax3.set_xlim(0, self.xlim - 1)
-        self.ax3.set_ylim(0, 1000)#70000)
+        self.ax3.set_ylim(-33000, 33000)
         self.ax4.set_xlim(0, self.xlim - 1)
-        self.ax4.set_ylim(0, 1000)#70000)
+        self.ax4.set_ylim(-33000, 33000)
         FigureCanvas.__init__(self, self.fig)
-        TimedAnimation.__init__(self, self.fig, interval = 20, blit = True)
+        TimedAnimation.__init__(self, self.fig, interval = 10, blit = True)
         return
 
     def new_frame_seq(self):
+        '''global wait_for_reply
+        while wait_for_reply == 1:
+            time.sleep(0.01)'''
         print("New frame new me")
         return iter(range(self.n.size))
 
     def _init_draw(self):
+        '''global wait_for_reply
+        while wait_for_reply == 1:
+            time.sleep(0.01)'''
         print("Initiating drawings")
         
         if self.next_data == 1:
@@ -279,19 +305,43 @@ def dataSendLoop(addData_callbackFunc):
     # Setup the signal-slot mechanism.
     mySrc = Communicate()
     mySrc.data_signal.connect(addData_callbackFunc)
+    #global wait_for_reply
 
     while True:
+        '''#Testing purposes
+        for i in range(30):
+            j = (i % 3) * 5000
+            #j = i * 500
+            mySrc.data_signal.emit(j) # <- Here you emit a signal!
+            time.sleep(0.05)'''
         try:
+            #wait_for_reply = 1
             res_x = client.read_holding_registers(address=x_address, count=x_count, unit=slave_id)
             time.sleep(0.1)
             res_y = client.read_holding_registers(address=y_address, count=y_count, unit=slave_id)
             time.sleep(0.1)
             res_z = client.read_holding_registers(address=z_address, count=z_count, unit=slave_id)
             time.sleep(0.1)
+            client.write_coil(0, True)
+            #ser.write(packet) #one X,Y,Z sample has been received, next request starts a sample.
+            #wait_for_reply = 0
             if not res_x.isError() and not res_y.isError() and not res_z.isError():
                 x_data = res_x.registers
                 y_data = res_y.registers
                 z_data = res_z.registers
+                
+                #For MTC mode:
+                for i in range(len(x_data)):
+                    if(x_data[i] > 32767):
+                        x_data[i] = -(65535 - x_data[i] + 1)
+                for i in range(len(y_data)):
+                    if(y_data[i] > 32767):
+                        y_data[i] = -(65535 - y_data[i] + 1)
+                for i in range(len(z_data)):
+                    if(z_data[i] > 32767):
+                        z_data[i] = -(65535 - z_data[i] + 1)
+                
+                
                 print("X-data: {}".format(x_data))
                 print("Y-data: {}".format(y_data))
                 print("Z-data: {}".format(z_data))
@@ -304,10 +354,17 @@ def dataSendLoop(addData_callbackFunc):
                 print("Length of sent data (x- + y- + z-data): {}".format(len(y)))
                 for i in range(len(y)):
                     mySrc.data_signal.emit(y[i]) # <- Here you emit a signal!
-                    time.sleep(0.01)
+                    time.sleep(0.05)
                 print("")
                 print("------------------------------------------")
                 print("")
+                
+            else:
+                print('Error message: {}'.format(res_x))
+                print('Error message: {}'.format(res_y))
+                print('Error message: {}'.format(res_z))
+                time.sleep(0.2)
+            
         except Exception as e:
             print("An error has occurred...")
             print(e)
